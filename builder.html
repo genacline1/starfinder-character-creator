@@ -9,25 +9,32 @@
 <body>
   <main>
     <h1>Starfinder Character Builder</h1>
-    <form id="character-form">
-      <label for="char-name">Character Name:</label>
-      <input type="text" id="char-name" name="char-name" required />
+    <nav>
+      <button id="builder-tab">Builder</button>
+      <button id="view-tab">View Mode</button>
+    </nav>
 
-      <label for="race">Select Race:</label>
-      <select id="race" name="race"></select>
+    <section id="builder-section">
+      <form id="character-form">
+        <label for="char-name">Character Name:</label>
+        <input type="text" id="char-name" name="char-name" required />
 
-      <label for="class">Select Class:</label>
-      <select id="class" name="class"></select>
+        <label for="race">Select Race:</label>
+        <select id="race" name="race"></select>
 
-      <label for="theme">Select Theme:</label>
-      <select id="theme" name="theme"></select>
+        <label for="class">Select Class:</label>
+        <select id="class" name="class"></select>
 
-      <button type="submit">Create Character</button>
-    </form>
+        <label for="theme">Select Theme:</label>
+        <select id="theme" name="theme"></select>
 
-    <section id="character-summary" hidden>
-      <h2>Character Summary</h2>
-      <pre id="summary-output"></pre>
+        <button type="submit">Create Character</button>
+      </form>
+    </section>
+
+    <section id="view-section" hidden>
+      <h2>Character View Mode</h2>
+      <div id="view-output"></div>
     </section>
   </main>
 
@@ -87,8 +94,36 @@
         theme: themeData
       };
 
-      document.getElementById("character-summary").hidden = false;
-      document.getElementById("summary-output").textContent = JSON.stringify(summary, null, 2);
+      localStorage.setItem('character', JSON.stringify(summary));
+      renderViewMode(summary);
+      switchToView();
+    });
+
+    function renderViewMode(character) {
+      const viewOutput = document.getElementById("view-output");
+      viewOutput.innerHTML = `
+        <h3>${character.name}</h3>
+        <p><strong>Race:</strong> ${character.race.name}</p>
+        <p><strong>Class:</strong> ${character.class.name}</p>
+        <p><strong>Theme:</strong> ${character.theme.name}</p>
+      `;
+    }
+
+    function switchToBuilder() {
+      document.getElementById("builder-section").hidden = false;
+      document.getElementById("view-section").hidden = true;
+    }
+
+    function switchToView() {
+      document.getElementById("builder-section").hidden = true;
+      document.getElementById("view-section").hidden = false;
+    }
+
+    document.getElementById("builder-tab").addEventListener("click", switchToBuilder);
+    document.getElementById("view-tab").addEventListener("click", () => {
+      const charData = JSON.parse(localStorage.getItem('character'));
+      if (charData) renderViewMode(charData);
+      switchToView();
     });
 
     initForm();
