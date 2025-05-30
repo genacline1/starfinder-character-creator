@@ -70,11 +70,21 @@
       const cls = document.getElementById("class").value;
       const theme = document.getElementById("theme").value;
 
+      const [races, classes, themes] = await Promise.all([
+        loadData("data/races.json"),
+        loadData("data/classes.json"),
+        loadData("data/themes.json")
+      ]);
+
+      const raceData = races.find(r => r.name === race);
+      const classData = classes.find(c => c.name === cls);
+      const themeData = themes.find(t => t.name === theme);
+
       const summary = {
         name,
-        race,
-        class: cls,
-        theme
+        race: raceData,
+        class: classData,
+        theme: themeData
       };
 
       document.getElementById("character-summary").hidden = false;
