@@ -246,5 +246,1026 @@
         ]
       }
     ]
+  },
+  {
+    "name": "Envoy",
+    "key_ability": "Charisma",
+    "hit_points": 6,
+    "stamina_points": 6,
+    "skills_per_level": 8,
+    "class_skills": [
+      "Bluff",
+      "Computers",
+      "Culture",
+      "Diplomacy",
+      "Disguise",
+      "Engineering",
+      "Intimidate",
+      "Medicine",
+      "Perception",
+      "Sense Motive"
+    ],
+    "bab_progression": "medium",
+    "fort_save_progression": "poor",
+    "ref_save_progression": "good",
+    "will_save_progression": "good",
+    "level_progression": [
+      {
+        "level": 1,
+        "features": [
+          "Expertise Talent 1"
+        ]
+      },
+      {
+        "level": 2,
+        "features": [
+          "Improvisation"
+        ]
+      },
+      {
+        "level": 3,
+        "features": [
+          "Expertise Talent 3"
+        ]
+      },
+      {
+        "level": 4,
+        "features": [
+          "Improvisation"
+        ]
+      },
+      {
+        "level": 5,
+        "features": [
+          "Expertise Talent 5"
+        ]
+      },
+      {
+        "level": 6,
+        "features": [
+          "Improvisation"
+        ]
+      },
+      {
+        "level": 7,
+        "features": [
+          "Expertise Talent 7"
+        ]
+      },
+      {
+        "level": 8,
+        "features": [
+          "Improvisation"
+        ]
+      },
+      {
+        "level": 9,
+        "features": [
+          "Expertise Talent 9"
+        ]
+      },
+      {
+        "level": 10,
+        "features": [
+          "Improvisation"
+        ]
+      },
+      {
+        "level": 11,
+        "features": [
+          "Expertise Talent 11"
+        ]
+      },
+      {
+        "level": 12,
+        "features": [
+          "Improvisation"
+        ]
+      },
+      {
+        "level": 13,
+        "features": [
+          "Expertise Talent 13"
+        ]
+      },
+      {
+        "level": 14,
+        "features": [
+          "Improvisation"
+        ]
+      },
+      {
+        "level": 15,
+        "features": [
+          "Expertise Talent 15"
+        ]
+      },
+      {
+        "level": 16,
+        "features": [
+          "Improvisation"
+        ]
+      },
+      {
+        "level": 17,
+        "features": [
+          "Expertise Talent 17"
+        ]
+      },
+      {
+        "level": 18,
+        "features": [
+          "Improvisation"
+        ]
+      },
+      {
+        "level": 19,
+        "features": [
+          "Expertise Talent 19"
+        ]
+      },
+      {
+        "level": 20,
+        "features": [
+          "Improvisation"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Mechanic",
+    "key_ability": "Intelligence",
+    "hit_points": 6,
+    "stamina_points": 6,
+    "skills_per_level": 4,
+    "class_skills": [
+      "Computers",
+      "Engineering",
+      "Medicine",
+      "Perception",
+      "Physical Science",
+      "Piloting",
+      "Profession"
+    ],
+    "bab_progression": "medium",
+    "fort_save_progression": "poor",
+    "ref_save_progression": "good",
+    "will_save_progression": "good",
+    "level_progression": [
+      {
+        "level": 1,
+        "features": [
+          "Overload"
+        ]
+      },
+      {
+        "level": 2,
+        "features": [
+          "Mechanic Trick 2"
+        ]
+      },
+      {
+        "level": 3,
+        "features": [
+          "Overload"
+        ]
+      },
+      {
+        "level": 4,
+        "features": [
+          "Mechanic Trick 4"
+        ]
+      },
+      {
+        "level": 5,
+        "features": [
+          "Overload"
+        ]
+      },
+      {
+        "level": 6,
+        "features": [
+          "Mechanic Trick 6"
+        ]
+      },
+      {
+        "level": 7,
+        "features": [
+          "Overload"
+        ]
+      },
+      {
+        "level": 8,
+        "features": [
+          "Mechanic Trick 8"
+        ]
+      },
+      {
+        "level": 9,
+        "features": [
+          "Overload"
+        ]
+      },
+      {
+        "level": 10,
+        "features": [
+          "Mechanic Trick 10"
+        ]
+      },
+      {
+        "level": 11,
+        "features": [
+          "Overload"
+        ]
+      },
+      {
+        "level": 12,
+        "features": [
+          "Mechanic Trick 12"
+        ]
+      },
+      {
+        "level": 13,
+        "features": [
+          "Overload"
+        ]
+      },
+      {
+        "level": 14,
+        "features": [
+          "Mechanic Trick 14"
+        ]
+      },
+      {
+        "level": 15,
+        "features": [
+          "Overload"
+        ]
+      },
+      {
+        "level": 16,
+        "features": [
+          "Mechanic Trick 16"
+        ]
+      },
+      {
+        "level": 17,
+        "features": [
+          "Overload"
+        ]
+      },
+      {
+        "level": 18,
+        "features": [
+          "Mechanic Trick 18"
+        ]
+      },
+      {
+        "level": 19,
+        "features": [
+          "Overload"
+        ]
+      },
+      {
+        "level": 20,
+        "features": [
+          "Mechanic Trick 20"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Mystic",
+    "key_ability": "Wisdom",
+    "hit_points": 6,
+    "stamina_points": 6,
+    "skills_per_level": 6,
+    "class_skills": [
+      "Bluff",
+      "Culture",
+      "Diplomacy",
+      "Life Science",
+      "Medicine",
+      "Mysticism",
+      "Sense Motive"
+    ],
+    "bab_progression": "medium",
+    "fort_save_progression": "poor",
+    "ref_save_progression": "poor",
+    "will_save_progression": "good",
+    "level_progression": [
+      {
+        "level": 1,
+        "features": [
+          "Mystic Connection 1"
+        ]
+      },
+      {
+        "level": 2,
+        "features": [
+          "Mystic Connection 2"
+        ]
+      },
+      {
+        "level": 3,
+        "features": [
+          "Mystic Connection 3"
+        ]
+      },
+      {
+        "level": 4,
+        "features": [
+          "Mystic Connection 4"
+        ]
+      },
+      {
+        "level": 5,
+        "features": [
+          "Mystic Connection 5"
+        ]
+      },
+      {
+        "level": 6,
+        "features": [
+          "Mystic Connection 6"
+        ]
+      },
+      {
+        "level": 7,
+        "features": [
+          "Mystic Connection 7"
+        ]
+      },
+      {
+        "level": 8,
+        "features": [
+          "Mystic Connection 8"
+        ]
+      },
+      {
+        "level": 9,
+        "features": [
+          "Mystic Connection 9"
+        ]
+      },
+      {
+        "level": 10,
+        "features": [
+          "Mystic Connection 10"
+        ]
+      },
+      {
+        "level": 11,
+        "features": [
+          "Mystic Connection 11"
+        ]
+      },
+      {
+        "level": 12,
+        "features": [
+          "Mystic Connection 12"
+        ]
+      },
+      {
+        "level": 13,
+        "features": [
+          "Mystic Connection 13"
+        ]
+      },
+      {
+        "level": 14,
+        "features": [
+          "Mystic Connection 14"
+        ]
+      },
+      {
+        "level": 15,
+        "features": [
+          "Mystic Connection 15"
+        ]
+      },
+      {
+        "level": 16,
+        "features": [
+          "Mystic Connection 16"
+        ]
+      },
+      {
+        "level": 17,
+        "features": [
+          "Mystic Connection 17"
+        ]
+      },
+      {
+        "level": 18,
+        "features": [
+          "Mystic Connection 18"
+        ]
+      },
+      {
+        "level": 19,
+        "features": [
+          "Mystic Connection 19"
+        ]
+      },
+      {
+        "level": 20,
+        "features": [
+          "Mystic Connection 20"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Operative",
+    "key_ability": "Dexterity or Intelligence",
+    "hit_points": 6,
+    "stamina_points": 6,
+    "skills_per_level": 8,
+    "class_skills": [
+      "Acrobatics",
+      "Athletics",
+      "Bluff",
+      "Computers",
+      "Culture",
+      "Disguise",
+      "Engineering",
+      "Intimidate",
+      "Perception",
+      "Sense Motive",
+      "Sleight of Hand",
+      "Stealth"
+    ],
+    "bab_progression": "medium",
+    "fort_save_progression": "poor",
+    "ref_save_progression": "good",
+    "will_save_progression": "good",
+    "level_progression": [
+      {
+        "level": 1,
+        "features": [
+          "Exploit 1"
+        ]
+      },
+      {
+        "level": 2,
+        "features": [
+          "Trick Attack"
+        ]
+      },
+      {
+        "level": 3,
+        "features": [
+          "Exploit 3"
+        ]
+      },
+      {
+        "level": 4,
+        "features": [
+          "Trick Attack"
+        ]
+      },
+      {
+        "level": 5,
+        "features": [
+          "Exploit 5"
+        ]
+      },
+      {
+        "level": 6,
+        "features": [
+          "Trick Attack"
+        ]
+      },
+      {
+        "level": 7,
+        "features": [
+          "Exploit 7"
+        ]
+      },
+      {
+        "level": 8,
+        "features": [
+          "Trick Attack"
+        ]
+      },
+      {
+        "level": 9,
+        "features": [
+          "Exploit 9"
+        ]
+      },
+      {
+        "level": 10,
+        "features": [
+          "Trick Attack"
+        ]
+      },
+      {
+        "level": 11,
+        "features": [
+          "Exploit 11"
+        ]
+      },
+      {
+        "level": 12,
+        "features": [
+          "Trick Attack"
+        ]
+      },
+      {
+        "level": 13,
+        "features": [
+          "Exploit 13"
+        ]
+      },
+      {
+        "level": 14,
+        "features": [
+          "Trick Attack"
+        ]
+      },
+      {
+        "level": 15,
+        "features": [
+          "Exploit 15"
+        ]
+      },
+      {
+        "level": 16,
+        "features": [
+          "Trick Attack"
+        ]
+      },
+      {
+        "level": 17,
+        "features": [
+          "Exploit 17"
+        ]
+      },
+      {
+        "level": 18,
+        "features": [
+          "Trick Attack"
+        ]
+      },
+      {
+        "level": 19,
+        "features": [
+          "Exploit 19"
+        ]
+      },
+      {
+        "level": 20,
+        "features": [
+          "Trick Attack"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Solarian",
+    "key_ability": "Charisma",
+    "hit_points": 7,
+    "stamina_points": 7,
+    "skills_per_level": 4,
+    "class_skills": [
+      "Acrobatics",
+      "Athletics",
+      "Diplomacy",
+      "Intimidate",
+      "Mysticism",
+      "Physical Science",
+      "Sense Motive"
+    ],
+    "bab_progression": "full",
+    "fort_save_progression": "good",
+    "ref_save_progression": "good",
+    "will_save_progression": "poor",
+    "level_progression": [
+      {
+        "level": 1,
+        "features": [
+          "Solar Manifestation",
+          "Revelation 1"
+        ]
+      },
+      {
+        "level": 2,
+        "features": [
+          "Solar Manifestation",
+          "Revelation 2"
+        ]
+      },
+      {
+        "level": 3,
+        "features": [
+          "Solar Manifestation",
+          "Revelation 3"
+        ]
+      },
+      {
+        "level": 4,
+        "features": [
+          "Solar Manifestation",
+          "Revelation 4"
+        ]
+      },
+      {
+        "level": 5,
+        "features": [
+          "Solar Manifestation",
+          "Revelation 5"
+        ]
+      },
+      {
+        "level": 6,
+        "features": [
+          "Solar Manifestation",
+          "Revelation 6"
+        ]
+      },
+      {
+        "level": 7,
+        "features": [
+          "Solar Manifestation",
+          "Revelation 7"
+        ]
+      },
+      {
+        "level": 8,
+        "features": [
+          "Solar Manifestation",
+          "Revelation 8"
+        ]
+      },
+      {
+        "level": 9,
+        "features": [
+          "Solar Manifestation",
+          "Revelation 9"
+        ]
+      },
+      {
+        "level": 10,
+        "features": [
+          "Solar Manifestation",
+          "Revelation 10"
+        ]
+      },
+      {
+        "level": 11,
+        "features": [
+          "Solar Manifestation",
+          "Revelation 11"
+        ]
+      },
+      {
+        "level": 12,
+        "features": [
+          "Solar Manifestation",
+          "Revelation 12"
+        ]
+      },
+      {
+        "level": 13,
+        "features": [
+          "Solar Manifestation",
+          "Revelation 13"
+        ]
+      },
+      {
+        "level": 14,
+        "features": [
+          "Solar Manifestation",
+          "Revelation 14"
+        ]
+      },
+      {
+        "level": 15,
+        "features": [
+          "Solar Manifestation",
+          "Revelation 15"
+        ]
+      },
+      {
+        "level": 16,
+        "features": [
+          "Solar Manifestation",
+          "Revelation 16"
+        ]
+      },
+      {
+        "level": 17,
+        "features": [
+          "Solar Manifestation",
+          "Revelation 17"
+        ]
+      },
+      {
+        "level": 18,
+        "features": [
+          "Solar Manifestation",
+          "Revelation 18"
+        ]
+      },
+      {
+        "level": 19,
+        "features": [
+          "Solar Manifestation",
+          "Revelation 19"
+        ]
+      },
+      {
+        "level": 20,
+        "features": [
+          "Solar Manifestation",
+          "Revelation 20"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Technomancer",
+    "key_ability": "Intelligence",
+    "hit_points": 5,
+    "stamina_points": 5,
+    "skills_per_level": 4,
+    "class_skills": [
+      "Computers",
+      "Engineering",
+      "Life Science",
+      "Mysticism",
+      "Physical Science",
+      "Piloting"
+    ],
+    "bab_progression": "poor",
+    "fort_save_progression": "poor",
+    "ref_save_progression": "poor",
+    "will_save_progression": "good",
+    "level_progression": [
+      {
+        "level": 1,
+        "features": [
+          "Magic Hack 1"
+        ]
+      },
+      {
+        "level": 2,
+        "features": [
+          "Magic Hack 2"
+        ]
+      },
+      {
+        "level": 3,
+        "features": [
+          "Magic Hack 3"
+        ]
+      },
+      {
+        "level": 4,
+        "features": [
+          "Magic Hack 4"
+        ]
+      },
+      {
+        "level": 5,
+        "features": [
+          "Magic Hack 5"
+        ]
+      },
+      {
+        "level": 6,
+        "features": [
+          "Magic Hack 6"
+        ]
+      },
+      {
+        "level": 7,
+        "features": [
+          "Magic Hack 7"
+        ]
+      },
+      {
+        "level": 8,
+        "features": [
+          "Magic Hack 8"
+        ]
+      },
+      {
+        "level": 9,
+        "features": [
+          "Magic Hack 9"
+        ]
+      },
+      {
+        "level": 10,
+        "features": [
+          "Magic Hack 10"
+        ]
+      },
+      {
+        "level": 11,
+        "features": [
+          "Magic Hack 11"
+        ]
+      },
+      {
+        "level": 12,
+        "features": [
+          "Magic Hack 12"
+        ]
+      },
+      {
+        "level": 13,
+        "features": [
+          "Magic Hack 13"
+        ]
+      },
+      {
+        "level": 14,
+        "features": [
+          "Magic Hack 14"
+        ]
+      },
+      {
+        "level": 15,
+        "features": [
+          "Magic Hack 15"
+        ]
+      },
+      {
+        "level": 16,
+        "features": [
+          "Magic Hack 16"
+        ]
+      },
+      {
+        "level": 17,
+        "features": [
+          "Magic Hack 17"
+        ]
+      },
+      {
+        "level": 18,
+        "features": [
+          "Magic Hack 18"
+        ]
+      },
+      {
+        "level": 19,
+        "features": [
+          "Magic Hack 19"
+        ]
+      },
+      {
+        "level": 20,
+        "features": [
+          "Magic Hack 20"
+        ]
+      }
+    ]
+  },
+  {
+    "name": "Vanguard",
+    "key_ability": "Constitution",
+    "hit_points": 7,
+    "stamina_points": 7,
+    "skills_per_level": 6,
+    "class_skills": [
+      "Athletics",
+      "Intimidate",
+      "Life Science",
+      "Medicine",
+      "Mysticism",
+      "Physical Science",
+      "Survival"
+    ],
+    "bab_progression": "full",
+    "fort_save_progression": "good",
+    "ref_save_progression": "poor",
+    "will_save_progression": "good",
+    "level_progression": [
+      {
+        "level": 1,
+        "features": [
+          "Aspect Embodiment"
+        ]
+      },
+      {
+        "level": 2,
+        "features": [
+          "Entropic Ability 2"
+        ]
+      },
+      {
+        "level": 3,
+        "features": [
+          "Aspect Embodiment"
+        ]
+      },
+      {
+        "level": 4,
+        "features": [
+          "Entropic Ability 4"
+        ]
+      },
+      {
+        "level": 5,
+        "features": [
+          "Aspect Embodiment"
+        ]
+      },
+      {
+        "level": 6,
+        "features": [
+          "Entropic Ability 6"
+        ]
+      },
+      {
+        "level": 7,
+        "features": [
+          "Aspect Embodiment"
+        ]
+      },
+      {
+        "level": 8,
+        "features": [
+          "Entropic Ability 8"
+        ]
+      },
+      {
+        "level": 9,
+        "features": [
+          "Aspect Embodiment"
+        ]
+      },
+      {
+        "level": 10,
+        "features": [
+          "Entropic Ability 10"
+        ]
+      },
+      {
+        "level": 11,
+        "features": [
+          "Aspect Embodiment"
+        ]
+      },
+      {
+        "level": 12,
+        "features": [
+          "Entropic Ability 12"
+        ]
+      },
+      {
+        "level": 13,
+        "features": [
+          "Aspect Embodiment"
+        ]
+      },
+      {
+        "level": 14,
+        "features": [
+          "Entropic Ability 14"
+        ]
+      },
+      {
+        "level": 15,
+        "features": [
+          "Aspect Embodiment"
+        ]
+      },
+      {
+        "level": 16,
+        "features": [
+          "Entropic Ability 16"
+        ]
+      },
+      {
+        "level": 17,
+        "features": [
+          "Aspect Embodiment"
+        ]
+      },
+      {
+        "level": 18,
+        "features": [
+          "Entropic Ability 18"
+        ]
+      },
+      {
+        "level": 19,
+        "features": [
+          "Aspect Embodiment"
+        ]
+      },
+      {
+        "level": 20,
+        "features": [
+          "Entropic Ability 20"
+        ]
+      }
+    ]
   }
 ]
