@@ -35,6 +35,12 @@
     <section id="view-section" hidden>
       <h2>Character View Mode</h2>
       <div id="view-output"></div>
+      <div id="stats-section">
+        <label>HP: <input type="number" id="hp" value="0"></label>
+        <label>Stamina: <input type="number" id="stamina" value="0"></label>
+        <label>Resolve: <input type="number" id="resolve" value="0"></label>
+        <button id="save-stats">Save Stats</button>
+      </div>
     </section>
   </main>
 
@@ -91,7 +97,10 @@
         name,
         race: raceData,
         class: classData,
-        theme: themeData
+        theme: themeData,
+        hp: 0,
+        stamina: 0,
+        resolve: 0
       };
 
       localStorage.setItem('character', JSON.stringify(summary));
@@ -107,7 +116,18 @@
         <p><strong>Class:</strong> ${character.class.name}</p>
         <p><strong>Theme:</strong> ${character.theme.name}</p>
       `;
+      document.getElementById("hp").value = character.hp;
+      document.getElementById("stamina").value = character.stamina;
+      document.getElementById("resolve").value = character.resolve;
     }
+
+    document.getElementById("save-stats").addEventListener("click", () => {
+      const character = JSON.parse(localStorage.getItem('character'));
+      character.hp = parseInt(document.getElementById("hp").value) || 0;
+      character.stamina = parseInt(document.getElementById("stamina").value) || 0;
+      character.resolve = parseInt(document.getElementById("resolve").value) || 0;
+      localStorage.setItem('character', JSON.stringify(character));
+    });
 
     function switchToBuilder() {
       document.getElementById("builder-section").hidden = false;
