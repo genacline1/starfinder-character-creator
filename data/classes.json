@@ -1,74 +1,250 @@
 [
   {
-    "name": "Envoy",
-    "hit_points": 6,
-    "stamina_points": 6,
-    "key_ability": "Charisma",
-    "skills_per_level": 8,
-    "description": "Masters of social situations, Envoys use their charm and skills to influence others and bolster allies."
-  },
-  {
-    "name": "Mechanic",
-    "hit_points": 6,
-    "stamina_points": 6,
-    "key_ability": "Intelligence",
-    "skills_per_level": 4,
-    "description": "Experts in technology, Mechanics use their knowledge to control drones and hack systems."
-  },
-  {
-    "name": "Mystic",
-    "hit_points": 6,
-    "stamina_points": 6,
-    "key_ability": "Wisdom",
-    "skills_per_level": 6,
-    "description": "Mystics draw on connections to a mysterious force to cast spells and heal allies."
-  },
-  {
-    "name": "Operative",
-    "hit_points": 6,
-    "stamina_points": 6,
-    "key_ability": "Dexterity",
-    "skills_per_level": 8,
-    "description": "Stealthy and dexterous, Operatives excel at infiltration, reconnaissance, and precision attacks."
-  },
-  {
-    "name": "Solarian",
-    "hit_points": 7,
-    "stamina_points": 7,
-    "key_ability": "Charisma",
-    "skills_per_level": 4,
-    "description": "Solarians harness the power of stars, channeling solar energy into weapons and armor."
-  },
-  {
     "name": "Soldier",
-    "hit_points": 7,
-    "stamina_points": 7,
     "key_ability": "Strength or Dexterity",
-    "skills_per_level": 4,
-    "description": "Masters of combat, Soldiers are trained in a wide array of weapons and tactics."
-  },
-  {
-    "name": "Technomancer",
-    "hit_points": 5,
-    "stamina_points": 5,
-    "key_ability": "Intelligence",
-    "skills_per_level": 4,
-    "description": "Technomancers blend magic and technology, casting spells that manipulate both."
-  },
-  {
-    "name": "Vanguard",
     "hit_points": 7,
     "stamina_points": 7,
-    "key_ability": "Constitution",
-    "skills_per_level": 6,
-    "description": "Vanguards use entropy to protect allies and dismantle foes, excelling in close combat."
+    "skills_per_level": 4,
+    "class_skills": [
+      "Acrobatics",
+      "Athletics",
+      "Engineering",
+      "Intimidate",
+      "Medicine",
+      "Piloting",
+      "Profession",
+      "Survival"
+    ],
+    "bab_progression": "full",
+    "fort_save_progression": "good",
+    "ref_save_progression": "good",
+    "will_save_progression": "poor",
+    "level_progression": [
+      {
+        "level": 1,
+        "features": []
+      },
+      {
+        "level": 2,
+        "features": []
+      },
+      {
+        "level": 3,
+        "features": []
+      },
+      {
+        "level": 4,
+        "features": []
+      },
+      {
+        "level": 5,
+        "features": []
+      },
+      {
+        "level": 6,
+        "features": []
+      },
+      {
+        "level": 7,
+        "features": []
+      },
+      {
+        "level": 8,
+        "features": []
+      },
+      {
+        "level": 9,
+        "features": []
+      },
+      {
+        "level": 10,
+        "features": []
+      },
+      {
+        "level": 11,
+        "features": []
+      },
+      {
+        "level": 12,
+        "features": []
+      },
+      {
+        "level": 13,
+        "features": []
+      },
+      {
+        "level": 14,
+        "features": []
+      },
+      {
+        "level": 15,
+        "features": []
+      },
+      {
+        "level": 16,
+        "features": []
+      },
+      {
+        "level": 17,
+        "features": []
+      },
+      {
+        "level": 18,
+        "features": []
+      },
+      {
+        "level": 19,
+        "features": []
+      },
+      {
+        "level": 20,
+        "features": []
+      }
+    ]
   },
   {
     "name": "Witchwarper",
+    "key_ability": "Charisma",
     "hit_points": 6,
     "stamina_points": 6,
-    "key_ability": "Charisma",
-    "skills_per_level": 6,
-    "description": "Witchwarpers manipulate alternate realities, altering the battlefield to their advantage."
+    "skills_per_level": 4,
+    "class_skills": [
+      "Bluff",
+      "Culture",
+      "Diplomacy",
+      "Disguise",
+      "Intimidate",
+      "Life Science",
+      "Mysticism",
+      "Perception",
+      "Physical Science",
+      "Sense Motive"
+    ],
+    "bab_progression": "medium",
+    "fort_save_progression": "poor",
+    "ref_save_progression": "poor",
+    "will_save_progression": "good",
+    "level_progression": [
+      {
+        "level": 1,
+        "features": [
+          "Infinite Worlds (1th)"
+        ]
+      },
+      {
+        "level": 2,
+        "features": [
+          "Paradigm Shift (2th)"
+        ]
+      },
+      {
+        "level": 3,
+        "features": [
+          "Infinite Worlds (3th)"
+        ]
+      },
+      {
+        "level": 4,
+        "features": [
+          "Paradigm Shift (4th)"
+        ]
+      },
+      {
+        "level": 5,
+        "features": [
+          "Infinite Worlds (5th)"
+        ]
+      },
+      {
+        "level": 6,
+        "features": [
+          "Paradigm Shift (6th)"
+        ]
+      },
+      {
+        "level": 7,
+        "features": [
+          "Infinite Worlds (7th)"
+        ]
+      },
+      {
+        "level": 8,
+        "features": [
+          "Paradigm Shift (8th)"
+        ]
+      },
+      {
+        "level": 9,
+        "features": [
+          "Infinite Worlds (9th)"
+        ]
+      },
+      {
+        "level": 10,
+        "features": [
+          "Paradigm Shift (10th)"
+        ]
+      },
+      {
+        "level": 11,
+        "features": [
+          "Infinite Worlds (11th)"
+        ]
+      },
+      {
+        "level": 12,
+        "features": [
+          "Paradigm Shift (12th)"
+        ]
+      },
+      {
+        "level": 13,
+        "features": [
+          "Infinite Worlds (13th)"
+        ]
+      },
+      {
+        "level": 14,
+        "features": [
+          "Paradigm Shift (14th)"
+        ]
+      },
+      {
+        "level": 15,
+        "features": [
+          "Infinite Worlds (15th)"
+        ]
+      },
+      {
+        "level": 16,
+        "features": [
+          "Paradigm Shift (16th)"
+        ]
+      },
+      {
+        "level": 17,
+        "features": [
+          "Infinite Worlds (17th)"
+        ]
+      },
+      {
+        "level": 18,
+        "features": [
+          "Paradigm Shift (18th)"
+        ]
+      },
+      {
+        "level": 19,
+        "features": [
+          "Infinite Worlds (19th)"
+        ]
+      },
+      {
+        "level": 20,
+        "features": [
+          "Paradigm Shift (20th)"
+        ]
+      }
+    ]
   }
 ]
