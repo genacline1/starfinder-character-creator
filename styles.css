@@ -1,0 +1,23 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 40px;
+  background-color: #f0f2f5;
+}
+h1 {
+  color: #333;
+}
+label {
+  display: block;
+  margin-top: 20px;
+  font-weight: bold;
+}
+select {
+  width: 250px;
+  padding: 6px;
+}
+.info-box {
+  background: #fff;
+  padding: 12px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+}
