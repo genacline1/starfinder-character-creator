@@ -1,0 +1,49 @@
+{
+  "name": "",
+  "player_name": "",
+  "race": "",
+  "subrace": null,
+  "class": "",
+  "theme": "",
+  "level": 1,
+  "alignment": "",
+  "deity": "",
+  "gender": "",
+  "speed": 30,
+  "size": "Medium",
+
+  "abilities": {
+    "str": 10,
+    "dex": 10,
+    "con": 10,
+    "int": 10,
+    "wis": 10,
+    "cha": 10
+  },
+
+  "modifiers": {
+    "str": 0,
+    "dex": 0,
+    "con": 0,
+    "int": 0,
+    "wis": 0,
+    "cha": 0
+  },
+
+  "hp": {
+    "max": 0,
+    "current": 0,
+    "source": {
+      "class": 0,
+      "race": 0,
+      "level_up": 0
+    }
+  },
+
+  "stamina": {
+    "max": 0,
+    "current": 0
+  },
+
+  "resolve": {
+    "max"
