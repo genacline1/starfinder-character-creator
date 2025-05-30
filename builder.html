@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Starfinder Character Builder</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main>
+    <h1>Starfinder Character Builder</h1>
+    <form id="character-form">
+      <label for="char-name">Character Name:</label>
+      <input type="text" id="char-name" name="char-name" required />
+
+      <label for="race">Select Race:</label>
+      <select id="race" name="race"></select>
+
+      <label for="class">Select Class:</label>
+      <select id="class" name="class"></select>
+
+      <label for="theme">Select Theme:</label>
+      <select id="theme" name="theme"></select>
+
+      <button type="submit">Create Character</button>
+    </form>
+
+    <section id="character-summary" hidden>
+      <h2>Character Summary</h2>
+      <pre id="summary-output"></pre>
+    </section>
+  </main>
+
+  <script>
+    async function loadData(url) {
+      const res = await fetch(url);
+      return res.json();
+    }
+
+    function populateDropdown(selectEl, data, keyField = "name") {
+      for (const item of data) {
+        const opt = document.createElement("option");
+        opt.value = item[keyField];
+        opt.textContent = item[keyField];
+        selectEl.appendChild(opt);
+      }
+    }
+
+    async function initForm() {
+      const raceSelect = document.getElementById("race");
+      const classSelect = document.getElementById("class");
+      const themeSelect = document.getElementById("theme");
+
+      const [races, classes, themes] = await Promise.all([
+        loadData("data/races.json"),
+        loadData("data/classes.json"),
+        loadData("data/themes.json")
+      ]);
+
+      populateDropdown(raceSelect, races);
+      populateDropdown(classSelect, classes);
+      populateDropdown(themeSelect, themes);
+    }
+
+    document.getElementById("character-form").addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      const name = document.getElementById("char-name").value;
+      const race = document.getElementById("race").value;
+      const cls = document.getElementById("class").value;
+      const theme = document.getElementById("theme").value;
+
+      const summary = {
+        name,
+        race,
+        class: cls,
+        theme
+      };
+
+      document.getElementById("character-summary").hidden = false;
+      document.getElementById("summary-output").textContent = JSON.stringify(summary, null, 2);
+    });
+
+    initForm();
+  </script>
+</body>
+</html>
