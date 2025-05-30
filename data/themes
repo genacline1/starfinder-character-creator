@@ -1,0 +1,52 @@
+[
+  {
+    "name": "Ace Pilot",
+    "ability_adjustment": "+1 Dexterity",
+    "description": "Skilled at operating starships and other vehicles, Ace Pilots are known for their steady hands and nerves of steel."
+  },
+  {
+    "name": "Bounty Hunter",
+    "ability_adjustment": "+1 Constitution",
+    "description": "Relentless trackers, Bounty Hunters excel at finding and capturing their targets, dead or alive."
+  },
+  {
+    "name": "Icon",
+    "ability_adjustment": "+1 Charisma",
+    "description": "Famous individuals, Icons leverage their celebrity status to influence others and gain access."
+  },
+  {
+    "name": "Mercenary",
+    "ability_adjustment": "+1 Strength",
+    "description": "Hired guns, Mercenaries are seasoned warriors who fight for profit and survival."
+  },
+  {
+    "name": "Outlaw",
+    "ability_adjustment": "+1 Dexterity",
+    "description": "Living on the fringes of society, Outlaws use their cunning and agility to stay one step ahead."
+  },
+  {
+    "name": "Priest",
+    "ability_adjustment": "+1 Wisdom",
+    "description": "Devout followers, Priests draw strength from their faith to guide and protect others."
+  },
+  {
+    "name": "Scholar",
+    "ability_adjustment": "+1 Intelligence",
+    "description": "Knowledge seekers, Scholars dedicate their lives to learning and understanding the universe."
+  },
+  {
+    "name": "Spacefarer",
+    "ability_adjustment": "+1 Constitution",
+    "description": "Explorers of the cosmos, Spacefarers are at home among the stars and unknown worlds."
+  },
+  {
+    "name": "Xenoseeker",
+    "ability_adjustment": "+1 Charisma",
+    "description": "Fascinated by alien cultures, Xenoseekers strive to make contact and understand new species."
+  },
+  {
+    "name": "Themeless",
+    "ability_adjustment": "None",
+    "description": "Without a specific theme, Themeless characters rely on versatility and adaptability."
+  }
+]
