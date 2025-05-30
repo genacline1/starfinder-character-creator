@@ -1,52 +1,1865 @@
 [
   {
     "name": "Ace Pilot",
-    "ability_adjustment": "+1 Dexterity",
-    "description": "Skilled at operating starships and other vehicles, Ace Pilots are known for their steady hands and nerves of steel."
+    "description": "You are most at home in the pilot\u2019s seat.",
+    "theme_knowledge": {
+      "description": "You gain a +1 bonus to Piloting checks, and Piloting is a class skill for you. If it is already a class skill, you instead gain a +1 bonus to Piloting checks.",
+      "skills": [
+        "Piloting"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Lone Wolf",
+        "description": "You can reroll a failed Piloting check once per day."
+      },
+      {
+        "level": 12,
+        "name": "Need for Speed",
+        "description": "Your vehicle\u2019s speed increases by 10%."
+      },
+      {
+        "level": 18,
+        "name": "Master Pilot",
+        "description": "You can take 10 on Piloting checks even when threatened."
+      }
+    ]
   },
   {
     "name": "Bounty Hunter",
-    "ability_adjustment": "+1 Constitution",
-    "description": "Relentless trackers, Bounty Hunters excel at finding and capturing their targets, dead or alive."
+    "description": "You track and capture fugitives.",
+    "theme_knowledge": {
+      "description": "You gain a +1 bonus to Survival checks, and Survival is a class skill for you. If it is already a class skill, you instead gain a +1 bonus to Survival checks.",
+      "skills": [
+        "Survival"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Relentless Pursuit",
+        "description": "Track targets in urban environments without penalties."
+      },
+      {
+        "level": 12,
+        "name": "Subdue",
+        "description": "Deal nonlethal damage without penalties."
+      },
+      {
+        "level": 18,
+        "name": "Master Tracker",
+        "description": "Track across any terrain without penalties."
+      }
+    ]
   },
   {
     "name": "Icon",
-    "ability_adjustment": "+1 Charisma",
-    "description": "Famous individuals, Icons leverage their celebrity status to influence others and gain access."
+    "description": "You are a widely recognized celebrity.",
+    "theme_knowledge": {
+      "description": "You gain a +1 bonus to Culture checks, and Culture is a class skill for you. If it is already a class skill, you instead gain a +1 bonus to Culture checks.",
+      "skills": [
+        "Culture"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Celebrity Advantage",
+        "description": "Gain bonus to Bluff and Diplomacy in public."
+      },
+      {
+        "level": 12,
+        "name": "Mass Following",
+        "description": "Inspire crowds with your presence."
+      },
+      {
+        "level": 18,
+        "name": "Legend",
+        "description": "Become an iconic figure gaining unique story influence."
+      }
+    ]
   },
   {
     "name": "Mercenary",
-    "ability_adjustment": "+1 Strength",
-    "description": "Hired guns, Mercenaries are seasoned warriors who fight for profit and survival."
+    "description": "You are a soldier of fortune.",
+    "theme_knowledge": {
+      "description": "You gain a +1 bonus to Athletics checks, and Athletics is a class skill for you. If it is already a class skill, you instead gain a +1 bonus to Athletics checks.",
+      "skills": [
+        "Athletics"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Hard Knocks",
+        "description": "Reroll failed Strength-based skill check once per day."
+      },
+      {
+        "level": 12,
+        "name": "War-Hardened",
+        "description": "Gain resistance to fear and pain."
+      },
+      {
+        "level": 18,
+        "name": "Battle Master",
+        "description": "Gain a morale bonus to damage rolls."
+      }
+    ]
   },
   {
     "name": "Outlaw",
-    "ability_adjustment": "+1 Dexterity",
-    "description": "Living on the fringes of society, Outlaws use their cunning and agility to stay one step ahead."
+    "description": "You operate outside the law.",
+    "theme_knowledge": {
+      "description": "You gain a +1 bonus to Stealth checks, and Stealth is a class skill for you. If it is already a class skill, you instead gain a +1 bonus to Stealth checks.",
+      "skills": [
+        "Stealth"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Evasion",
+        "description": "Take no damage on successful Reflex save."
+      },
+      {
+        "level": 12,
+        "name": "Concealed Identity",
+        "description": "Mask your presence from detection."
+      },
+      {
+        "level": 18,
+        "name": "Most Wanted",
+        "description": "Your notoriety gives you leverage."
+      }
+    ]
   },
   {
     "name": "Priest",
-    "ability_adjustment": "+1 Wisdom",
-    "description": "Devout followers, Priests draw strength from their faith to guide and protect others."
+    "description": "You are a devoted servant of a deity.",
+    "theme_knowledge": {
+      "description": "You gain a +1 bonus to Mysticism checks, and Mysticism is a class skill for you. If it is already a class skill, you instead gain a +1 bonus to Mysticism checks.",
+      "skills": [
+        "Mysticism"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Divine Boon",
+        "description": "Call upon your deity for assistance."
+      },
+      {
+        "level": 12,
+        "name": "Spiritual Shield",
+        "description": "Gain resistance against supernatural effects."
+      },
+      {
+        "level": 18,
+        "name": "Chosen Vessel",
+        "description": "Channel divine power directly."
+      }
+    ]
   },
   {
     "name": "Scholar",
-    "ability_adjustment": "+1 Intelligence",
-    "description": "Knowledge seekers, Scholars dedicate their lives to learning and understanding the universe."
+    "description": "You are a deep thinker and researcher.",
+    "theme_knowledge": {
+      "description": "You gain a +1 bonus to Life Science or Physical Science checks, and one of these is a class skill for you. If it already is, you instead gain a +1 bonus.",
+      "skills": [
+        "Life Science",
+        "Physical Science"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Researcher",
+        "description": "Reduce time needed to research by 50%."
+      },
+      {
+        "level": 12,
+        "name": "Scientific Insight",
+        "description": "Gain insight bonus on science-related checks."
+      },
+      {
+        "level": 18,
+        "name": "Master Scholar",
+        "description": "Recall obscure facts automatically."
+      }
+    ]
   },
   {
     "name": "Spacefarer",
-    "ability_adjustment": "+1 Constitution",
-    "description": "Explorers of the cosmos, Spacefarers are at home among the stars and unknown worlds."
-  },
-  {
-    "name": "Xenoseeker",
-    "ability_adjustment": "+1 Charisma",
-    "description": "Fascinated by alien cultures, Xenoseekers strive to make contact and understand new species."
+    "description": "You are a wanderer of the stars.",
+    "theme_knowledge": {
+      "description": "You gain a +1 bonus to Physical Science checks, and Physical Science is a class skill for you. If it is already a class skill, you instead gain a +1 bonus to Physical Science checks.",
+      "skills": [
+        "Physical Science"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Zero-G Training",
+        "description": "Ignore penalties in zero gravity."
+      },
+      {
+        "level": 12,
+        "name": "Void Survivor",
+        "description": "Gain environmental immunities in space."
+      },
+      {
+        "level": 18,
+        "name": "Starborn",
+        "description": "Your connection to the cosmos enhances your resolve."
+      }
+    ]
   },
   {
     "name": "Themeless",
-    "ability_adjustment": "None",
-    "description": "Without a specific theme, Themeless characters rely on versatility and adaptability."
+    "description": "You do not fit into any predefined mold.",
+    "theme_knowledge": {
+      "description": "You gain a +1 bonus to any one skill, and it becomes a class skill for you.",
+      "skills": [
+        "Any"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Flexibility",
+        "description": "Choose a skill bonus or reroll ability daily."
+      },
+      {
+        "level": 12,
+        "name": "Adaptability",
+        "description": "Switch out feats during rest periods."
+      },
+      {
+        "level": 18,
+        "name": "Universal Talent",
+        "description": "Gain an extra feat of your choice."
+      }
+    ]
+  },
+  {
+    "name": "Career Trooper",
+    "description": "You are a career member of a military and have been embroiled in conflicts and military bureaucracy for many years.",
+    "theme_knowledge": {
+      "description": "Reduce the DC of any Culture or Diplomacy check to gather or recall information about enemy troop sizes and tactics by 5. Piloting is a class skill for you, though if it is a class skill from your class, gain a +1 bonus to Piloting checks instead.",
+      "skills": [
+        "Piloting"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Adaptive Kit",
+        "description": "You can modify your armor to gain the benefits of one set of environmental clothing appropriate to the area\u2019s climate. This adaptation reduces the armor check penalty by 1 for 24 hours. You can adapt your armor only once per week."
+      },
+      {
+        "level": 12,
+        "name": "Indefatigable",
+        "description": "Once per day as a move action, you can regain Stamina Points equal to your level plus your Constitution modifier."
+      },
+      {
+        "level": 18,
+        "name": "Determined Upkeep",
+        "description": "Twice per day, you can spend 10 minutes maintaining your gear to regain 1 Resolve Point (doesn\u2019t count as resting to regain SP)."
+      }
+    ]
+  },
+  {
+    "name": "Athlete",
+    "description": "You are a professional competitor and an expert in physical finesse or brute strength, providing you advantages in battle.",
+    "theme_knowledge": {
+      "description": "You are or were a professional-level athlete with specialized physical skills.",
+      "skills": [
+        "Athletics"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Athletic Training",
+        "description": "You can reroll a failed Athletics check once per day."
+      },
+      {
+        "level": 12,
+        "name": "Enduring Performance",
+        "description": "Reduce the penalties from fatigue by half."
+      },
+      {
+        "level": 18,
+        "name": "Champion's Resilience",
+        "description": "Gain immunity to the exhausted condition."
+      }
+    ]
+  },
+  {
+    "name": "Battle Medic",
+    "description": "You\u2019ve been trained to treat combat wounds on and off the battlefield.",
+    "theme_knowledge": {
+      "description": "You gain insight into treating injuries under duress. Medicine is a class skill for you.",
+      "skills": [
+        "Medicine"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Combat Triage",
+        "description": "You can attempt Medicine checks to treat deadly wounds as a move action."
+      },
+      {
+        "level": 12,
+        "name": "Field Surgeon",
+        "description": "You no longer take penalties for treating creatures in combat."
+      },
+      {
+        "level": 18,
+        "name": "Master Healer",
+        "description": "Once per day, you can automatically succeed at a Medicine check."
+      }
+    ]
+  },
+  {
+    "name": "Beastblood",
+    "description": "You have a powerful affinity with the beasts of the wild.",
+    "theme_knowledge": {
+      "description": "You understand the behavior of wild animals instinctively.",
+      "skills": [
+        "Life Science"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Animal Empathy",
+        "description": "You gain a +2 bonus to checks to influence or understand animals."
+      },
+      {
+        "level": 12,
+        "name": "Beastfriend",
+        "description": "You can attempt to command a creature as if using the charm monster spell once per day."
+      },
+      {
+        "level": 18,
+        "name": "Wild Incarnate",
+        "description": "Animals will not attack you unless provoked."
+      }
+    ]
+  },
+  {
+    "name": "Biotechnician",
+    "description": "You are a biotech researcher or avid user of such tech, constantly seeking new augmentations.",
+    "theme_knowledge": {
+      "description": "You\u2019re proficient with biotechnology and modifying biological systems.",
+      "skills": [
+        "Life Science"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Biotech Familiarity",
+        "description": "Reduce the cost of biotech augmentations by 10%."
+      },
+      {
+        "level": 12,
+        "name": "Efficient Integration",
+        "description": "Install or remove biotech augmentations in half the time."
+      },
+      {
+        "level": 18,
+        "name": "Living Innovation",
+        "description": "You gain an additional biotech augmentation slot."
+      }
+    ]
+  },
+  {
+    "name": "Bouncer",
+    "description": "You work the nightlife scene and know how to handle yourself and others when things get rough.",
+    "theme_knowledge": {
+      "description": "You have experience maintaining order and handling unruly guests.",
+      "skills": [
+        "Intimidate"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Tavern Tough",
+        "description": "You gain a +2 bonus to KAC against grapple and bull rush attempts."
+      },
+      {
+        "level": 12,
+        "name": "Calm the Crowd",
+        "description": "You can use Intimidate to defuse or redirect hostile crowds."
+      },
+      {
+        "level": 18,
+        "name": "Legendary Bouncer",
+        "description": "You are immune to being moved against your will."
+      }
+    ]
+  },
+  {
+    "name": "Bounty Hunter",
+    "description": "Almost nothing will stop you from tracking down your quarries and returning them\u2014dead or alive.",
+    "theme_knowledge": {
+      "description": "You excel at identifying and apprehending individuals.",
+      "skills": [
+        "Survival"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Tracking Specialist",
+        "description": "You can track targets through urban environments without penalty."
+      },
+      {
+        "level": 12,
+        "name": "Pinpoint Target",
+        "description": "You can reroll a missed ranged attack against a flat-footed enemy once per day."
+      },
+      {
+        "level": 18,
+        "name": "Relentless Pursuit",
+        "description": "You are not slowed by difficult terrain while pursuing a bounty."
+      }
+    ]
+  },
+  {
+    "name": "Bureaucrat",
+    "description": "You bring your no-nonsense ability to cut through red tape to bear in surprising ways.",
+    "theme_knowledge": {
+      "description": "You have experience navigating administrative systems and hierarchical organizations.",
+      "skills": [
+        "Profession (bureaucrat)"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Efficient Paperwork",
+        "description": "You reduce the time and cost of acquiring permits, licenses, and similar paperwork by half."
+      },
+      {
+        "level": 12,
+        "name": "Bureaucratic Immunity",
+        "description": "You can talk your way out of legal trouble once per week."
+      },
+      {
+        "level": 18,
+        "name": "Policy Mastermind",
+        "description": "You gain +2 to Diplomacy and Sense Motive checks when dealing with officials."
+      }
+    ]
+  },
+  {
+    "name": "Colonist",
+    "description": "You have an unquenchable trailblazer\u2019s spirit and the skills to carve out new settlements.",
+    "theme_knowledge": {
+      "description": "You have knowledge of survival and logistical planning for undeveloped regions.",
+      "skills": [
+        "Survival"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Pathfinder",
+        "description": "You ignore natural difficult terrain when traveling with a group."
+      },
+      {
+        "level": 12,
+        "name": "Settler's Resolve",
+        "description": "You can treat natural 1s on Fortitude saves as natural 10s once per day."
+      },
+      {
+        "level": 18,
+        "name": "Wilderness Veteran",
+        "description": "Gain a +4 bonus to Survival checks in untamed regions."
+      }
+    ]
+  },
+  {
+    "name": "Corporate Agent",
+    "description": "You are an agent of a corporation, which relies on your negotiation and cunning to advance its agendas.",
+    "theme_knowledge": {
+      "description": "You\u2019re well-versed in business practices and corporate politics.",
+      "skills": [
+        "Profession (corporate agent)"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Corporate Discount",
+        "description": "Reduce the price of goods by 10% when purchasing for your corporation."
+      },
+      {
+        "level": 12,
+        "name": "Executive Privilege",
+        "description": "Once per day, call in a corporate favor for minor assistance."
+      },
+      {
+        "level": 18,
+        "name": "CEO Material",
+        "description": "You gain a +4 bonus to Charisma-based checks in business dealings."
+      }
+    ]
+  },
+  {
+    "name": "Crisis Refugee",
+    "description": "The Drift Crisis cut you off from the place you called home.",
+    "theme_knowledge": {
+      "description": "You survived displacement during the Drift Crisis, gaining resilience and adaptability.",
+      "skills": [
+        "Culture"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Resilient Spirit",
+        "description": "Once per day, reroll a failed Will save against fear or despair effects."
+      },
+      {
+        "level": 12,
+        "name": "Unshaken",
+        "description": "Gain immunity to the shaken condition."
+      },
+      {
+        "level": 18,
+        "name": "Unbreakable Will",
+        "description": "Gain a +4 bonus to saves against mind-affecting effects."
+      }
+    ]
+  },
+  {
+    "name": "Cult Hunter",
+    "description": "Your life\u2019s work is to ferret out cults and free those who have fallen into their clutches.",
+    "theme_knowledge": {
+      "description": "You are familiar with cult behavior, rituals, and infiltration tactics.",
+      "skills": [
+        "Sense Motive"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Discern Deception",
+        "description": "You can roll Sense Motive twice and take the better result once per day."
+      },
+      {
+        "level": 12,
+        "name": "Mind Shield",
+        "description": "Gain a +2 bonus to saves against charm and compulsion effects."
+      },
+      {
+        "level": 18,
+        "name": "Cultural Cleanser",
+        "description": "Once per week, you can negate a charm effect on another creature as a standard action."
+      }
+    ]
+  },
+  {
+    "name": "Cultist",
+    "description": "You served a hidden religion or organization with questionable goals.",
+    "theme_knowledge": {
+      "description": "You are versed in secret rituals and underground networks.",
+      "skills": [
+        "Mysticism"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Hidden Agenda",
+        "description": "You gain a +2 bonus to Bluff checks when hiding your true motives."
+      },
+      {
+        "level": 12,
+        "name": "Dark Channel",
+        "description": "You can use sending once per day to contact other cult members."
+      },
+      {
+        "level": 18,
+        "name": "Devoted Sacrifice",
+        "description": "Once per day, reduce damage to 0 from an effect that would reduce you to 0 HP."
+      }
+    ]
+  },
+  {
+    "name": "Cyberborn",
+    "description": "You\u2019ve had some form of cybernetic augmentation since you were very young.",
+    "theme_knowledge": {
+      "description": "You are intimately familiar with cybernetic systems and maintenance.",
+      "skills": [
+        "Engineering"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Integrated Function",
+        "description": "You gain a +2 bonus on Engineering checks related to cybernetics."
+      },
+      {
+        "level": 12,
+        "name": "Cybernetic Efficiency",
+        "description": "Once per day, reroll a failed saving throw caused by system malfunction."
+      },
+      {
+        "level": 18,
+        "name": "Machine Fusion",
+        "description": "You gain an additional cybernetic slot and reduce usage time by half."
+      }
+    ]
+  },
+  {
+    "name": "Death-Touched",
+    "description": "You have an affinity for the dead and undead.",
+    "theme_knowledge": {
+      "description": "You possess unnatural familiarity with necromantic forces and undead beings.",
+      "skills": [
+        "Mysticism"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Chill of the Grave",
+        "description": "Gain cold resistance 5 and +2 on saving throws vs. death effects."
+      },
+      {
+        "level": 12,
+        "name": "Ghost Whisper",
+        "description": "Once per day, speak with dead (as spell) without material components."
+      },
+      {
+        "level": 18,
+        "name": "Deathless Fortitude",
+        "description": "Gain DR 5/magic and immunity to energy drain."
+      }
+    ]
+  },
+  {
+    "name": "Diplomat",
+    "description": "You strive for peace and amicable solutions even in tense situations.",
+    "theme_knowledge": {
+      "description": "You are skilled in negotiation, peacemaking, and cultural protocol.",
+      "skills": [
+        "Diplomacy"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Smooth Talker",
+        "description": "Once per day, reroll a failed Diplomacy check."
+      },
+      {
+        "level": 12,
+        "name": "Silver Tongue",
+        "description": "Diplomacy checks take half the usual time."
+      },
+      {
+        "level": 18,
+        "name": "Universal Appeaser",
+        "description": "You are treated as having a helpful attitude by default when first meeting NPCs."
+      }
+    ]
+  },
+  {
+    "name": "Dragonblood",
+    "description": "You can feel draconic magic pulsing through your veins.",
+    "theme_knowledge": {
+      "description": "You have an innate understanding of dragons and their magic.",
+      "skills": [
+        "Mysticism"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Draconic Affinity",
+        "description": "Gain a +2 bonus to saving throws against breath weapons."
+      },
+      {
+        "level": 12,
+        "name": "Scaled Resilience",
+        "description": "Gain energy resistance 5 to one type of energy associated with a dragon."
+      },
+      {
+        "level": 18,
+        "name": "Ancient Heritage",
+        "description": "Once per day, you can cast dragon breath as a spell-like ability."
+      }
+    ]
+  },
+  {
+    "name": "Dream Prophet",
+    "description": "You were drawn to Liavara by the Dreamers\u2019 songs.",
+    "theme_knowledge": {
+      "description": "You are attuned to the mystical dreams of the cosmos.",
+      "skills": [
+        "Culture"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Oneiromancer",
+        "description": "You gain +2 to saves against sleep and illusion effects."
+      },
+      {
+        "level": 12,
+        "name": "Shared Visions",
+        "description": "You can grant a reroll on a Will save to an ally once per day."
+      },
+      {
+        "level": 18,
+        "name": "Dream Echo",
+        "description": "Once per day, you may automatically succeed at one failed Will save."
+      }
+    ]
+  },
+  {
+    "name": "Drift Crashed",
+    "description": "You were aboard a starship when the Drift Crash occurred.",
+    "theme_knowledge": {
+      "description": "You developed instincts during your harrowing time in the Drift.",
+      "skills": [
+        "Piloting"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Crisis Navigator",
+        "description": "You gain a +2 bonus to Piloting checks in hazardous conditions."
+      },
+      {
+        "level": 12,
+        "name": "Temporal Sense",
+        "description": "You can detect minor temporal anomalies (as per the detect affliction spell)."
+      },
+      {
+        "level": 18,
+        "name": "Drift Survivor",
+        "description": "Gain immunity to flat-footed condition in the surprise round."
+      }
+    ]
+  },
+  {
+    "name": "Esper",
+    "description": "Monsters are out there. They seek to invade your mind and destroy all that lies within.",
+    "theme_knowledge": {
+      "description": "You have developed mental fortitude and sensitivity to mental influence.",
+      "skills": [
+        "Mysticism"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Mental Resistance",
+        "description": "Gain +2 bonus on saves vs. mind-affecting effects."
+      },
+      {
+        "level": 12,
+        "name": "Psychic Echo",
+        "description": "Once per day, reflect a mind-affecting spell back at the caster."
+      },
+      {
+        "level": 18,
+        "name": "Sanity Anchor",
+        "description": "Gain immunity to confusion and insanity effects."
+      }
+    ]
+  },
+  {
+    "name": "Gambler",
+    "description": "You\u2019ve mastered the odds and your luck often saves the day.",
+    "theme_knowledge": {
+      "description": "You are skilled at reading probabilities and exploiting chance.",
+      "skills": [
+        "Bluff"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Lucky Break",
+        "description": "Once per day, reroll a failed skill check."
+      },
+      {
+        "level": 12,
+        "name": "High Stakes",
+        "description": "Gain a +2 bonus on Bluff and Sense Motive checks when gambling."
+      },
+      {
+        "level": 18,
+        "name": "Desna's Favor",
+        "description": "Once per day, treat a d20 roll as if you had rolled a natural 20."
+      }
+    ]
+  },
+  {
+    "name": "Giantblood",
+    "description": "You can trace your ancestry to giants.",
+    "theme_knowledge": {
+      "description": "You possess knowledge of giant kin and their mighty heritage.",
+      "skills": [
+        "Athletics"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Titan Strength",
+        "description": "Gain a +2 bonus to Athletics checks involving lifting, pushing, or pulling."
+      },
+      {
+        "level": 12,
+        "name": "Hefty Endurance",
+        "description": "Reduce falling damage by half and carry capacity is doubled."
+      },
+      {
+        "level": 18,
+        "name": "Colossal Might",
+        "description": "Once per day, deal double damage on a melee attack."
+      }
+    ]
+  },
+  {
+    "name": "Gladiator",
+    "description": "You are a veteran of the public blood sport industry.",
+    "theme_knowledge": {
+      "description": "You know the ins and outs of arena combat and performance.",
+      "skills": [
+        "Intimidate"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Crowd Favorite",
+        "description": "Gain +2 bonus on checks to perform or intimidate in combat."
+      },
+      {
+        "level": 12,
+        "name": "Showstopper",
+        "description": "Once per combat, demoralize all enemies within 30 feet as a move action."
+      },
+      {
+        "level": 18,
+        "name": "Champion's Presence",
+        "description": "Allies within 30 feet gain +1 morale bonus to attack and damage rolls."
+      }
+    ]
+  },
+  {
+    "name": "Grifter",
+    "description": "Swindling and ingratiating yourself to others are your specialties.",
+    "theme_knowledge": {
+      "description": "You\u2019re an expert in con games, lies, and getting people to trust you.",
+      "skills": [
+        "Bluff"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Silver Lies",
+        "description": "Gain a +2 bonus to Bluff checks to convince others of outlandish claims."
+      },
+      {
+        "level": 12,
+        "name": "Fake Identity",
+        "description": "Maintain a cover identity that resists verification (DC +10)."
+      },
+      {
+        "level": 18,
+        "name": "Master Manipulator",
+        "description": "Once per day, suggest a course of action to an NPC as per suggestion spell."
+      }
+    ]
+  },
+  {
+    "name": "Guard",
+    "description": "You are a vigilant protector of your clients and friends.",
+    "theme_knowledge": {
+      "description": "You are trained in tactics to defend others and recognize threats.",
+      "skills": [
+        "Perception"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Protective Reflexes",
+        "description": "Once per day, grant an adjacent ally +2 AC as a reaction."
+      },
+      {
+        "level": 12,
+        "name": "Zone of Safety",
+        "description": "Allies within 10 feet gain +1 to saving throws."
+      },
+      {
+        "level": 18,
+        "name": "Unyielding Sentinel",
+        "description": "You are immune to the flat-footed condition and gain +2 to saves vs. fear."
+      }
+    ]
+  },
+  {
+    "name": "Icon",
+    "description": "You are a popular and respected celebrity within colonized space.",
+    "theme_knowledge": {
+      "description": "You know how to manage your brand and public presence.",
+      "skills": [
+        "Culture"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Famous Face",
+        "description": "Gain +2 bonus to Diplomacy checks with fans and media."
+      },
+      {
+        "level": 12,
+        "name": "Media Spin",
+        "description": "Once per day, shift attitude of a hostile NPC by one step with a Diplomacy check."
+      },
+      {
+        "level": 18,
+        "name": "Living Legend",
+        "description": "Your fame grants +2 morale bonus on all Charisma-based checks."
+      }
+    ]
+  },
+  {
+    "name": "Law Officer",
+    "description": "You are an enforcer of law and protector of the public.",
+    "theme_knowledge": {
+      "description": "You are trained in criminal procedures, codes, and combat tactics.",
+      "skills": [
+        "Intimidate"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Commanding Presence",
+        "description": "Gain a +2 bonus to Intimidate checks to enforce lawful orders."
+      },
+      {
+        "level": 12,
+        "name": "Hold the Line",
+        "description": "Allies within 10 feet gain +2 CMD against bull rush and reposition."
+      },
+      {
+        "level": 18,
+        "name": "Marshal Authority",
+        "description": "Once per day, grant allies a +2 bonus on attack rolls for 1 minute."
+      }
+    ]
+  },
+  {
+    "name": "Mercenary",
+    "description": "You are a trained soldier of fortune who works well with companions in battle.",
+    "theme_knowledge": {
+      "description": "You know the ways of combat contracts, battlefield tactics, and team cohesion.",
+      "skills": [
+        "Profession (Soldier)"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Battle Hardened",
+        "description": "Gain a +2 bonus to saving throws against fear effects."
+      },
+      {
+        "level": 12,
+        "name": "Coordinated Assault",
+        "description": "Allies gain +1 to attacks against enemies you threaten."
+      },
+      {
+        "level": 18,
+        "name": "Wartime Veteran",
+        "description": "You gain DR 5/- and a +2 bonus on all saving throws during combat."
+      }
+    ]
+  },
+  {
+    "name": "Noble Scion",
+    "description": "You were born into power and privilege and navigate high society with ease.",
+    "theme_knowledge": {
+      "description": "You are skilled in etiquette, history, and manipulation of political systems.",
+      "skills": [
+        "Diplomacy"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Aristocratic Favor",
+        "description": "Once per day, call in a favor from a noble contact for minor assistance."
+      },
+      {
+        "level": 12,
+        "name": "High Society Savvy",
+        "description": "Gain a +2 bonus to Culture checks related to noble or elite groups."
+      },
+      {
+        "level": 18,
+        "name": "Born Leader",
+        "description": "Allies within 30 feet gain +1 morale bonus to saving throws while you are conscious."
+      }
+    ]
+  },
+  {
+    "name": "Opportunist",
+    "description": "For many, a crisis is nothing less than an opportunity.",
+    "theme_knowledge": {
+      "description": "You are adept at finding advantage in chaos and navigating uncertainty.",
+      "skills": [
+        "Sense Motive"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Seize the Moment",
+        "description": "Gain +2 bonus to initiative checks and Sense Motive in tense situations."
+      },
+      {
+        "level": 12,
+        "name": "Exploit Weakness",
+        "description": "Once per day, treat an enemy as flat-footed for one round."
+      },
+      {
+        "level": 18,
+        "name": "Crisis Mastermind",
+        "description": "Gain +2 to all skill checks while in a critical situation (GM\u2019s discretion)."
+      }
+    ]
+  },
+  {
+    "name": "Outlaw",
+    "description": "Whether guilty or not, you are a wanted criminal.",
+    "theme_knowledge": {
+      "description": "You know how to survive in the underworld and avoid detection.",
+      "skills": [
+        "Stealth"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Marked Fugitive",
+        "description": "You gain +2 bonus to Disguise and Stealth checks while evading pursuit."
+      },
+      {
+        "level": 12,
+        "name": "Hide in Plain Sight",
+        "description": "You can attempt Stealth checks even while being observed, once per day."
+      },
+      {
+        "level": 18,
+        "name": "Ghost in the System",
+        "description": "You are immune to divination spells and tracking by magical means once per day."
+      }
+    ]
+  },
+  {
+    "name": "Paranormal Investigator",
+    "description": "You seek out what goes bump in the night and expose it to the light.",
+    "theme_knowledge": {
+      "description": "You have extensive knowledge of strange creatures, magic, and unexplained phenomena.",
+      "skills": [
+        "Mysticism"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Sixth Sense",
+        "description": "Gain +2 bonus on Perception and Mysticism checks to detect magical anomalies."
+      },
+      {
+        "level": 12,
+        "name": "Warding Ritual",
+        "description": "You can cast protection from evil or chaos once per day as a spell-like ability."
+      },
+      {
+        "level": 18,
+        "name": "Occult Expertise",
+        "description": "You gain +4 bonus to identify or counter supernatural effects."
+      }
+    ]
+  },
+  {
+    "name": "Personal Trainer",
+    "description": "You\u2019ve made a career out of pushing yourself and others to peak fitness.",
+    "theme_knowledge": {
+      "description": "You are skilled in kinesiology, endurance routines, and motivational techniques.",
+      "skills": [
+        "Medicine"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Condition Coach",
+        "description": "Once per day, grant an ally a +2 bonus to Athletics or Acrobatics for 1 hour."
+      },
+      {
+        "level": 12,
+        "name": "Push Through",
+        "description": "You may ignore the fatigued condition once per day for up to 10 minutes."
+      },
+      {
+        "level": 18,
+        "name": "Peak Performance",
+        "description": "You and adjacent allies gain +2 bonus to Strength and Constitution-based checks."
+      }
+    ]
+  },
+  {
+    "name": "Pickpocket",
+    "description": "You\u2019ve got sticky fingers and a knack for not getting caught.",
+    "theme_knowledge": {
+      "description": "You are talented at sleight of hand, distractions, and escaping notice.",
+      "skills": [
+        "Sleight of Hand"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Sticky Fingers",
+        "description": "Gain +2 bonus to Sleight of Hand checks to lift small objects unnoticed."
+      },
+      {
+        "level": 12,
+        "name": "Light Touch",
+        "description": "You can plant or retrieve objects on creatures as a move action without penalty."
+      },
+      {
+        "level": 18,
+        "name": "Master Thief",
+        "description": "You can take 10 on Sleight of Hand checks, even in combat."
+      }
+    ]
+  },
+  {
+    "name": "Planar Traveler",
+    "description": "You feel at home across the planes, whether or not you're a native of the Material Plane.",
+    "theme_knowledge": {
+      "description": "You have a deep understanding of planar cosmology and the hazards of other realms.",
+      "skills": [
+        "Mysticism"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Planar Resilience",
+        "description": "Gain resistance 5 to one energy type associated with your favorite plane."
+      },
+      {
+        "level": 12,
+        "name": "Plane Shift Adaptation",
+        "description": "Gain a +2 bonus to saves against planar hazards and environmental effects."
+      },
+      {
+        "level": 18,
+        "name": "Harmonized Existence",
+        "description": "Once per day, reduce all planar travel mishap chances to 0% for you and your allies."
+      }
+    ]
+  },
+  {
+    "name": "Priest",
+    "description": "Your devotion to a religion or philosophy is central to your identity.",
+    "theme_knowledge": {
+      "description": "You have deep religious or philosophical training and are practiced in rites and beliefs.",
+      "skills": [
+        "Culture"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Ritual Expertise",
+        "description": "Gain a +2 bonus to Culture checks when dealing with religious institutions or texts."
+      },
+      {
+        "level": 12,
+        "name": "Channel Conviction",
+        "description": "Once per day, reroll a failed saving throw against a compulsion or charm effect."
+      },
+      {
+        "level": 18,
+        "name": "Spiritual Anchor",
+        "description": "All allies within 10 feet gain +2 on Will saves while you are conscious."
+      }
+    ]
+  },
+  {
+    "name": "Prisoner",
+    "description": "You escaped incarceration or lived under forced confinement and emerged stronger.",
+    "theme_knowledge": {
+      "description": "You understand confinement tactics and the psychology of captivity.",
+      "skills": [
+        "Intimidate"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Scarred Will",
+        "description": "Gain a +2 bonus on saving throws against mind-affecting effects."
+      },
+      {
+        "level": 12,
+        "name": "Iron Resolve",
+        "description": "Once per day, negate a condition imposed by fear or pain."
+      },
+      {
+        "level": 18,
+        "name": "Hardened Survivor",
+        "description": "Gain DR 5/\u2014 and ignore movement penalties from being entangled or grappled."
+      }
+    ]
+  },
+  {
+    "name": "Prole",
+    "description": "You\u2019re a hardworking cog in the corporate machine.",
+    "theme_knowledge": {
+      "description": "You are experienced in logistics, task efficiency, and workplace survival.",
+      "skills": [
+        "Profession (any)"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Efficient Worker",
+        "description": "Gain a +2 bonus to Profession checks and reduce task completion time by 10%."
+      },
+      {
+        "level": 12,
+        "name": "Resourceful",
+        "description": "Once per day, treat a failed Profession or Engineering check as if you rolled a 10."
+      },
+      {
+        "level": 18,
+        "name": "Unionized Might",
+        "description": "You and adjacent allies gain a +1 morale bonus to attack and damage rolls."
+      }
+    ]
+  },
+  {
+    "name": "Quartermaster",
+    "description": "You are always prepared with the right gear for the job.",
+    "theme_knowledge": {
+      "description": "You are trained in inventory systems, logistics, and provisioning.",
+      "skills": [
+        "Engineering"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Gear Savant",
+        "description": "Gain a +2 bonus to Engineering checks when identifying or repairing equipment."
+      },
+      {
+        "level": 12,
+        "name": "Inventory Trick",
+        "description": "Once per day, produce a consumable worth up to 1,000 credits from your reserves."
+      },
+      {
+        "level": 18,
+        "name": "Logistical Genius",
+        "description": "Allies within 30 feet gain +2 to attack rolls with gear you provide them."
+      }
+    ]
+  },
+  {
+    "name": "Rancher",
+    "description": "You grew up tending animals and managing large plots of land in remote areas.",
+    "theme_knowledge": {
+      "description": "You\u2019re familiar with animal care, agricultural cycles, and outdoor survival.",
+      "skills": [
+        "Survival"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Animal Sense",
+        "description": "Gain +2 bonus to Survival checks when interacting with animals or in wilderness areas."
+      },
+      {
+        "level": 12,
+        "name": "Frontier Fortitude",
+        "description": "You gain a +2 bonus on Fortitude saves in natural environments."
+      },
+      {
+        "level": 18,
+        "name": "Master of the Range",
+        "description": "You and allies within 30 feet gain +2 morale bonus on ranged attacks while outdoors."
+      }
+    ]
+  },
+  {
+    "name": "Roboticist",
+    "description": "You are fascinated by constructs and artificial life.",
+    "theme_knowledge": {
+      "description": "You understand robotics, AI behavior, and maintenance of mechanical beings.",
+      "skills": [
+        "Engineering"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Mechanized Insight",
+        "description": "Gain +2 bonus to Engineering checks involving constructs or tech."
+      },
+      {
+        "level": 12,
+        "name": "Override Subroutines",
+        "description": "Once per day, command a construct to halt or reroute behavior for 1 round (Will negates)."
+      },
+      {
+        "level": 18,
+        "name": "Artificial Ally",
+        "description": "Create a temporary drone ally once per day that lasts for 10 minutes."
+      }
+    ]
+  },
+  {
+    "name": "Scholar",
+    "description": "Your academic curiosity drives you to collect and apply knowledge.",
+    "theme_knowledge": {
+      "description": "You are deeply educated in one or more fields of study.",
+      "skills": [
+        "Life Science",
+        "Physical Science"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Informed Approach",
+        "description": "Gain +2 bonus on skill checks when researching or recalling knowledge."
+      },
+      {
+        "level": 12,
+        "name": "Strategic Recall",
+        "description": "Once per day, reroll a failed skill check to identify a creature, hazard, or item."
+      },
+      {
+        "level": 18,
+        "name": "Living Encyclopedia",
+        "description": "You can take 20 on any untrained Knowledge skill check once per day."
+      }
+    ]
+  },
+  {
+    "name": "Sensate",
+    "description": "You crave new experiences and exposure to the unknown.",
+    "theme_knowledge": {
+      "description": "You have a wide base of sensory knowledge and enjoy pushing your limits.",
+      "skills": [
+        "Culture"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Eager Explorer",
+        "description": "Gain +2 bonus to Culture and Survival checks in unfamiliar settings."
+      },
+      {
+        "level": 12,
+        "name": "Overwhelming Curiosity",
+        "description": "You can take 10 on any Culture or Life Science check, even in combat."
+      },
+      {
+        "level": 18,
+        "name": "Multisensory Savant",
+        "description": "You gain blindsight (30 feet) for 1 minute once per day."
+      }
+    ]
+  },
+  {
+    "name": "Solar Disciple",
+    "description": "You are devoted to solar mysteries, whether religious or scientific.",
+    "theme_knowledge": {
+      "description": "You have studied the sun's role in various systems and beliefs.",
+      "skills": [
+        "Mysticism"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Solar Channel",
+        "description": "You gain +2 bonus to saving throws against cold effects and low temperatures."
+      },
+      {
+        "level": 12,
+        "name": "Radiant Core",
+        "description": "Emit bright light in a 30-foot radius for 1 hour once per day; grants +1 morale bonus to allies' Will saves."
+      },
+      {
+        "level": 18,
+        "name": "Solar Avatar",
+        "description": "Gain immunity to the blinded condition and solar environmental hazards once per day for 1 hour."
+      }
+    ]
+  },
+  {
+    "name": "Space Pirate",
+    "description": "You\u2019re a rebellious corsair living by your own rules among the stars.",
+    "theme_knowledge": {
+      "description": "You\u2019re familiar with the shadowy rules of pirate society, smuggling routes, and starship theft.",
+      "skills": [
+        "Piloting"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Daring Boarding",
+        "description": "Gain +2 bonus to Piloting or Acrobatics checks when boarding or breaching starships."
+      },
+      {
+        "level": 12,
+        "name": "Smuggler\u2019s Instinct",
+        "description": "Once per day, reroll a failed Sleight of Hand or Stealth check."
+      },
+      {
+        "level": 18,
+        "name": "Pirate Legend",
+        "description": "Allies gain +2 morale bonus to initiative rolls when you are present during space combat."
+      }
+    ]
+  },
+  {
+    "name": "Spacefarer",
+    "description": "You thrive on interstellar travel and exploration.",
+    "theme_knowledge": {
+      "description": "You\u2019re adept at navigation, void survival, and interplanetary diplomacy.",
+      "skills": [
+        "Physical Science"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Void Conditioning",
+        "description": "Gain +2 bonus to saving throws against vacuum exposure and radiation."
+      },
+      {
+        "level": 12,
+        "name": "Gravitic Stability",
+        "description": "You ignore difficult terrain caused by low or zero gravity."
+      },
+      {
+        "level": 18,
+        "name": "Interstellar Coordination",
+        "description": "Once per day, reduce a Drift travel mishap chance to 0%."
+      }
+    ]
+  },
+  {
+    "name": "Spectra Scion",
+    "description": "You share a mystical bond with the planar beings known as spectra.",
+    "theme_knowledge": {
+      "description": "You understand Drift phenomena and the workings of spectra within the plane.",
+      "skills": [
+        "Mysticism"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Spectral Guidance",
+        "description": "Gain +2 bonus to Mysticism checks when dealing with Drift-related phenomena."
+      },
+      {
+        "level": 12,
+        "name": "Planar Harmony",
+        "description": "You gain resistance 5 to force damage and +1 to Will saves while in the Drift."
+      },
+      {
+        "level": 18,
+        "name": "Spectra Ally",
+        "description": "Once per day, summon a spectra ally for 1 minute to assist you."
+      }
+    ]
+  },
+  {
+    "name": "Starwalker",
+    "description": "You\u2019ve walked through the dark, empty places between the stars.",
+    "theme_knowledge": {
+      "description": "You have deep familiarity with vacuum conditions, asteroid navigation, and zero-gravity tactics.",
+      "skills": [
+        "Athletics"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Vacuum Tolerance",
+        "description": "Gain a +2 bonus to Athletics checks in low or zero-gravity environments."
+      },
+      {
+        "level": 12,
+        "name": "Solar Drift",
+        "description": "Once per day, negate gravity penalties for 1 hour."
+      },
+      {
+        "level": 18,
+        "name": "Darkspace Survivor",
+        "description": "Gain immunity to environmental hazards from vacuum for 10 minutes per day."
+      }
+    ]
+  },
+  {
+    "name": "Stormrunner",
+    "description": "You\u2019ve mastered movement through violent weather and dangerous skies.",
+    "theme_knowledge": {
+      "description": "You understand atmospheric patterns, weather manipulation, and aerial traversal.",
+      "skills": [
+        "Survival"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Wind Dancer",
+        "description": "Gain +2 bonus to Acrobatics or Survival checks when in severe weather."
+      },
+      {
+        "level": 12,
+        "name": "Lightning Reflexes",
+        "description": "Once per day, gain evasion for 1 round after succeeding a Reflex save."
+      },
+      {
+        "level": 18,
+        "name": "Stormshaper",
+        "description": "You and allies within 30 feet gain electricity resistance 5 and are unaffected by natural winds."
+      }
+    ]
+  },
+  {
+    "name": "Street Magician",
+    "description": "You perform close-up magic tricks and misdirection, often with a deeper understanding of real magic.",
+    "theme_knowledge": {
+      "description": "You\u2019ve honed your sleight of hand and can seamlessly blend mundane tricks with actual spellcasting.",
+      "skills": [
+        "Sleight of Hand"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Trickster\u2019s Edge",
+        "description": "Gain +2 bonus on Bluff checks and Sleight of Hand checks in urban areas."
+      },
+      {
+        "level": 12,
+        "name": "Spell Feint",
+        "description": "Once per day, cast a 1st-level illusion spell without provoking attacks of opportunity."
+      },
+      {
+        "level": 18,
+        "name": "Master of Illusions",
+        "description": "You can reroll failed Will saves against illusion spells once per day."
+      }
+    ]
+  },
+  {
+    "name": "Street Rat",
+    "description": "Scrappy and streetwise, you survived harsh urban environments by wit and grit.",
+    "theme_knowledge": {
+      "description": "You are well-versed in navigating back alleys, avoiding patrols, and scavenging resources.",
+      "skills": [
+        "Stealth"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Urban Camouflage",
+        "description": "Gain +2 bonus to Stealth and Survival checks in urban settings."
+      },
+      {
+        "level": 12,
+        "name": "Narrow Escape",
+        "description": "Once per day, you can automatically succeed on an Acrobatics check to move through a threatened space."
+      },
+      {
+        "level": 18,
+        "name": "Ghost of the City",
+        "description": "You can reroll one failed Stealth check per day and gain a +5 bonus on that reroll."
+      }
+    ]
+  },
+  {
+    "name": "Tempered Pilgrim",
+    "description": "You\u2019ve undergone a personal Tempering, expanding your worldview and gaining unique insights.",
+    "theme_knowledge": {
+      "description": "You\u2019re familiar with kasathan philosophies and the teachings of many cultures.",
+      "skills": [
+        "Culture"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Cultural Fluency",
+        "description": "Gain +2 bonus to Culture checks and reduce DC to recall information about alien civilizations."
+      },
+      {
+        "level": 12,
+        "name": "Philosophical Calm",
+        "description": "Once per day, reroll a failed Will save against fear or emotion effects."
+      },
+      {
+        "level": 18,
+        "name": "Enlightened Wanderer",
+        "description": "You are immune to confusion effects and reduce Diplomacy DCs by 2."
+      }
+    ]
+  },
+  {
+    "name": "Themeless",
+    "description": "You don\u2019t fit any predefined mold. Your experiences are uniquely yours.",
+    "theme_knowledge": {
+      "description": "You rely on general versatility rather than specialized training.",
+      "skills": []
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Jack of All Trades",
+        "description": "You can use all skills untrained."
+      },
+      {
+        "level": 12,
+        "name": "Adaptive Learning",
+        "description": "Select any one feat for which you meet the prerequisites. You gain this feat."
+      },
+      {
+        "level": 18,
+        "name": "Master Generalist",
+        "description": "You gain a +1 insight bonus to all skill checks."
+      }
+    ]
+  },
+  {
+    "name": "Tinker",
+    "description": "You are an inventive builder of gadgets, micro-devices, and helpful constructs.",
+    "theme_knowledge": {
+      "description": "You are an expert in small-scale mechanics and fabrication using UPBs.",
+      "skills": [
+        "Engineering"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Gadgeteer",
+        "description": "Gain +2 bonus to Engineering checks to build or repair technological items."
+      },
+      {
+        "level": 12,
+        "name": "Quick Fix",
+        "description": "Once per day, repair 1d8 HP to a construct or device as a move action."
+      },
+      {
+        "level": 18,
+        "name": "Innovator Supreme",
+        "description": "Once per day, reduce crafting time for a technological item by 75%."
+      }
+    ]
+  },
+  {
+    "name": "Vaster",
+    "description": "You come from a system far beyond the Pact Worlds, bringing unique experiences with you.",
+    "theme_knowledge": {
+      "description": "You\u2019re familiar with remote systems, alien environments, and obscure histories.",
+      "skills": [
+        "Culture"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Star-Born Insight",
+        "description": "Gain +2 bonus on Culture checks regarding non-Pact Worlds civilizations."
+      },
+      {
+        "level": 12,
+        "name": "Exotic Knowledge",
+        "description": "Once per day, reroll a failed Culture or Life Science check."
+      },
+      {
+        "level": 18,
+        "name": "Beyond the Stars",
+        "description": "You gain a +2 bonus to all saving throws against effects originating from extraplanar or alien creatures."
+      }
+    ]
+  },
+  {
+    "name": "Vidgamer",
+    "description": "You\u2019ve spent years mastering virtual games of all kinds, sharpening your reflexes and strategy.",
+    "theme_knowledge": {
+      "description": "You are highly skilled at pattern recognition, tactical thinking, and rapid hand-eye coordination.",
+      "skills": [
+        "Computers"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Quick Reflexes",
+        "description": "Gain +2 bonus on initiative rolls and reflex saves in virtual or simulated environments."
+      },
+      {
+        "level": 12,
+        "name": "Simulation Mastery",
+        "description": "Once per day, gain a +2 bonus to a Computers check related to virtual systems or VR."
+      },
+      {
+        "level": 18,
+        "name": "Digital Dominance",
+        "description": "You cannot be flat-footed or surprised while in digital simulations or VR."
+      }
+    ]
+  },
+  {
+    "name": "Void Nomad",
+    "description": "You thrive in the black of space, adapting to the void like a second home.",
+    "theme_knowledge": {
+      "description": "You\u2019re intimately familiar with life support systems, starship maintenance, and deep-space travel.",
+      "skills": [
+        "Engineering"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Void Walker",
+        "description": "Gain +2 bonus on Engineering checks for void survival gear and systems."
+      },
+      {
+        "level": 12,
+        "name": "Zero-G Adaptation",
+        "description": "You ignore the off-kilter condition in zero gravity."
+      },
+      {
+        "level": 18,
+        "name": "Vacuum Mastery",
+        "description": "You are immune to the environmental effects of vacuum and do not need to make saving throws against them."
+      }
+    ]
+  },
+  {
+    "name": "Wild Warden",
+    "description": "You protect nature and thrive in untamed environments.",
+    "theme_knowledge": {
+      "description": "You are deeply knowledgeable in wilderness survival, animal behavior, and natural terrain.",
+      "skills": [
+        "Survival"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Natural Camouflage",
+        "description": "Gain +2 bonus on Survival and Stealth checks in natural environments."
+      },
+      {
+        "level": 12,
+        "name": "Beast Empathy",
+        "description": "You can attempt Diplomacy checks to influence the attitude of animals and beasts."
+      },
+      {
+        "level": 18,
+        "name": "Guardian of the Wilds",
+        "description": "You and allies within 30 feet gain resistance 5 to acid, cold, and fire damage while in natural settings."
+      }
+    ]
+  },
+  {
+    "name": "Xenoarchaeologist",
+    "description": "You delve into the ruins and artifacts of alien civilizations.",
+    "theme_knowledge": {
+      "description": "You specialize in understanding alien languages, cultures, and ancient technology.",
+      "skills": [
+        "Culture"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "Ancient Clues",
+        "description": "Gain +2 bonus on Culture checks related to alien artifacts and ruins."
+      },
+      {
+        "level": 12,
+        "name": "Artifact Affinity",
+        "description": "Once per day, reroll a failed Mysticism or Engineering check to identify ancient tech."
+      },
+      {
+        "level": 18,
+        "name": "Alien Historian",
+        "description": "Gain a +2 insight bonus to saves against ancient alien magic or technology."
+      }
+    ]
+  },
+  {
+    "name": "Xenoseeker",
+    "description": "You live to encounter and understand new alien lifeforms.",
+    "theme_knowledge": {
+      "description": "You have extensive familiarity with alien physiology, culture, and diplomacy.",
+      "skills": [
+        "Life Science"
+      ]
+    },
+    "abilities": [
+      {
+        "level": 6,
+        "name": "First Contact Specialist",
+        "description": "Gain +2 bonus to Diplomacy and Life Science checks involving alien creatures."
+      },
+      {
+        "level": 12,
+        "name": "Open Mind",
+        "description": "Once per day, reroll a failed Will save against enchantment or mind-affecting effects."
+      },
+      {
+        "level": 18,
+        "name": "Galactic Ambassador",
+        "description": "You gain a +2 morale bonus to Diplomacy checks and can cast tongues once per day as a spell-like ability."
+      }
+    ]
   }
 ]
