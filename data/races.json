@@ -1,0 +1,110 @@
+[
+  {
+    "name": "Android",
+    "ability_modifiers": "+2 Dex, +2 Int, -2 Cha",
+    "hit_points": 4,
+    "size": "Medium",
+    "type": "Humanoid (android)",
+    "special_abilities": [
+      "Constructed",
+      "Exceptional Vision",
+      "Flat Affect",
+      "Upgrade Slot"
+    ],
+    "source": "Starfinder Core Rulebook"
+  },
+  {
+    "name": "Human",
+    "ability_modifiers": "+2 to any one ability score",
+    "hit_points": 4,
+    "size": "Medium",
+    "type": "Humanoid (human)",
+    "special_abilities": [
+      "Bonus Feat",
+      "Skilled"
+    ],
+    "source": "Starfinder Core Rulebook"
+  },
+  {
+    "name": "Kasatha",
+    "ability_modifiers": "+2 Str, +2 Wis, -2 Int",
+    "hit_points": 4,
+    "size": "Medium",
+    "type": "Humanoid (kasatha)",
+    "special_abilities": [
+      "Desert Stride",
+      "Four-Armed",
+      "Historian",
+      "Natural Grace"
+    ],
+    "source": "Starfinder Core Rulebook"
+  },
+  {
+    "name": "Lashunta (Korasha)",
+    "ability_modifiers": "+2 Str, +2 Cha, -2 Wis",
+    "hit_points": 4,
+    "size": "Medium",
+    "type": "Humanoid (lashunta)",
+    "special_abilities": [
+      "Lashunta Magic",
+      "Limited Telepathy",
+      "Student"
+    ],
+    "source": "Starfinder Core Rulebook"
+  },
+  {
+    "name": "Lashunta (Damaya)",
+    "ability_modifiers": "+2 Int, +2 Cha, -2 Con",
+    "hit_points": 4,
+    "size": "Medium",
+    "type": "Humanoid (lashunta)",
+    "special_abilities": [
+      "Lashunta Magic",
+      "Limited Telepathy",
+      "Student"
+    ],
+    "source": "Starfinder Core Rulebook"
+  },
+  {
+    "name": "Shirren",
+    "ability_modifiers": "+2 Con, +2 Wis, -2 Cha",
+    "hit_points": 6,
+    "size": "Medium",
+    "type": "Humanoid (shirren)",
+    "special_abilities": [
+      "Blindsense",
+      "Communalism",
+      "Cultural Fascination",
+      "Limited Telepathy"
+    ],
+    "source": "Starfinder Core Rulebook"
+  },
+  {
+    "name": "Vesk",
+    "ability_modifiers": "+2 Str, +2 Con, -2 Int",
+    "hit_points": 6,
+    "size": "Medium",
+    "type": "Humanoid (vesk)",
+    "special_abilities": [
+      "Armor Savant",
+      "Fearless",
+      "Low-Light Vision",
+      "Natural Weapons"
+    ],
+    "source": "Starfinder Core Rulebook"
+  },
+  {
+    "name": "Ysoki",
+    "ability_modifiers": "+2 Dex, +2 Int, -2 Str",
+    "hit_points": 2,
+    "size": "Small",
+    "type": "Humanoid (ysoki)",
+    "special_abilities": [
+      "Cheek Pouches",
+      "Darkvision",
+      "Moxie",
+      "Scrounger"
+    ],
+    "source": "Starfinder Core Rulebook"
+  }
+]
