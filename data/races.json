@@ -1,347 +1,404 @@
-[
-  {
-    "name": "Android",
-    "ability_adjustments": {
-      "dex": 2,
-      "int": 2,
-      "cha": -2
-    },
-    "hit_points": 4,
-    "size": "Medium",
-    "speed": 30,
-    "traits": [
-      "Constructed",
-      "Flat Affect",
-      "Upgrade Slot",
-      "Exceptional Vision"
-    ],
-    "alternate_traits": [
-      {
-        "name": "Easily Augmented",
-        "replaces": [
-          "Upgrade Slot"
-        ],
-        "description": "Androids with this trait can install one additional cybernetic augmentation into a system that already has an augmentation."
+{
+  "version": 2,
+  "races": [
+    {
+      "id": "android",
+      "name": "Android",
+      "variant": null,
+      "hp": 4,
+      "size": "Medium",
+      "speed": 30,
+      "ability_adjustments": {
+        "dex": 2,
+        "int": 2,
+        "cha": -2
       },
-      {
-        "name": "Emotionless",
-        "replaces": [
-          "Flat Affect"
-        ],
-        "description": "Androids with this trait don't take penalties to Disguise checks to appear as a different race or type when disguising as a human."
-      }
-    ]
-  },
-  {
-    "name": "Human",
-    "ability_adjustments": {
-      "any": 2
+      "traits": [
+        "Constructed",
+        "Flat Affect",
+        "Upgrade Slot",
+        "Exceptional Vision"
+      ],
+      "alternate_traits": [
+        {
+          "id": "android__alt__easily_augmented",
+          "name": "Easily Augmented",
+          "replaces": [
+            "Upgrade Slot"
+          ],
+          "description": "Androids with this trait can install one additional cybernetic augmentation into a system that already has an augmentation."
+        },
+        {
+          "id": "android__alt__emotionless",
+          "name": "Emotionless",
+          "replaces": [
+            "Flat Affect"
+          ],
+          "description": "Androids with this trait don't take penalties to Disguise checks to appear as a different race or type when disguising as a human."
+        }
+      ],
+      "sources": []
     },
-    "hit_points": 4,
-    "size": "Medium",
-    "speed": 30,
-    "traits": [
-      "Bonus Feat",
-      "Skilled"
-    ],
-    "alternate_traits": [
-      {
-        "name": "Dual Talent",
-        "replaces": [
-          "Bonus Feat",
-          "Skilled"
-        ],
-        "description": "Humans with this trait gain +2 to two ability scores of their choice instead of +2 to one."
+    {
+      "id": "human",
+      "name": "Human",
+      "variant": null,
+      "hp": 4,
+      "size": "Medium",
+      "speed": 30,
+      "ability_adjustments": {
+        "any": 2
       },
-      {
-        "name": "Adoptive Parentage",
-        "replaces": [
-          "Bonus Feat"
-        ],
-        "description": "Humans with this trait gain weapon familiarity and languages of another race."
-      }
-    ]
-  },
-  {
-    "name": "Kasatha",
-    "ability_adjustments": {
-      "str": 2,
-      "wis": 2,
-      "int": -2
+      "traits": [
+        "Bonus Feat",
+        "Skilled"
+      ],
+      "alternate_traits": [
+        {
+          "id": "human__alt__dual_talent",
+          "name": "Dual Talent",
+          "replaces": [
+            "Bonus Feat",
+            "Skilled"
+          ],
+          "description": "Humans with this trait gain +2 to two ability scores of their choice instead of +2 to one."
+        },
+        {
+          "id": "human__alt__adoptive_parentage",
+          "name": "Adoptive Parentage",
+          "replaces": [
+            "Bonus Feat"
+          ],
+          "description": "Humans with this trait gain weapon familiarity and languages of another race."
+        }
+      ],
+      "sources": []
     },
-    "hit_points": 4,
-    "size": "Medium",
-    "speed": 30,
-    "traits": [
-      "Four-Armed",
-      "Kasatha Culture",
-      "Desert Stride",
-      "Historian"
-    ],
-    "alternate_traits": [
-      {
-        "name": "Stone Strider",
-        "replaces": [
-          "Desert Stride"
-        ],
-        "description": "Kasathas with this trait move through rocky terrain at normal speed and without difficulty."
-      }
-    ]
-  },
-  {
-    "name": "Lashunta",
-    "ability_adjustments": {
-      "int": 2,
-      "cha": 2,
-      "str": -2
+    {
+      "id": "kasatha__v1",
+      "name": "Kasatha",
+      "variant": null,
+      "hp": 4,
+      "size": "Medium",
+      "speed": 30,
+      "ability_adjustments": {
+        "str": 2,
+        "wis": 2,
+        "int": -2
+      },
+      "traits": [
+        "Four-Armed",
+        "Kasatha Culture",
+        "Desert Stride",
+        "Historian"
+      ],
+      "alternate_traits": [
+        {
+          "id": "kasatha__v1__alt__stone_strider",
+          "name": "Stone Strider",
+          "replaces": [
+            "Desert Stride"
+          ],
+          "description": "Kasathas with this trait move through rocky terrain at normal speed and without difficulty."
+        }
+      ],
+      "sources": []
     },
-    "hit_points": 4,
-    "size": "Medium",
-    "speed": 30,
-    "traits": [
-      "Lashunta Magic",
-      "Limited Telepathy",
-      "Student"
-    ],
-    "alternate_traits": [
-      {
-        "name": "Psychic Receptivity",
-        "replaces": [
-          "Lashunta Magic"
-        ],
-        "description": "You gain a +2 racial bonus to Bluff, Diplomacy, and Sense Motive checks."
-      }
-    ]
-  },
-  {
-    "name": "Shirren",
-    "ability_adjustments": {
-      "con": 2,
-      "wis": 2,
-      "cha": -2
+    {
+      "id": "lashunta",
+      "name": "Lashunta",
+      "variant": null,
+      "hp": 4,
+      "size": "Medium",
+      "speed": 30,
+      "ability_adjustments": {
+        "int": 2,
+        "cha": 2,
+        "str": -2
+      },
+      "traits": [
+        "Lashunta Magic",
+        "Limited Telepathy",
+        "Student"
+      ],
+      "alternate_traits": [
+        {
+          "id": "lashunta__alt__psychic_receptivity",
+          "name": "Psychic Receptivity",
+          "replaces": [
+            "Lashunta Magic"
+          ],
+          "description": "You gain a +2 racial bonus to Bluff, Diplomacy, and Sense Motive checks."
+        }
+      ],
+      "sources": []
     },
-    "hit_points": 6,
-    "size": "Medium",
-    "speed": 30,
-    "traits": [
-      "Blindsense",
-      "Communalism",
-      "Limited Telepathy"
-    ],
-    "alternate_traits": [
-      {
-        "name": "Mental Fortress",
-        "replaces": [
-          "Communalism"
-        ],
-        "description": "Shirrens with this trait gain a +2 racial bonus to saving throws against mind-affecting effects."
-      }
-    ]
-  },
-  {
-    "name": "Vesk",
-    "ability_adjustments": {
-      "str": 2,
-      "con": 2,
-      "int": -2
+    {
+      "id": "shirren__v1",
+      "name": "Shirren",
+      "variant": null,
+      "hp": 6,
+      "size": "Medium",
+      "speed": 30,
+      "ability_adjustments": {
+        "con": 2,
+        "wis": 2,
+        "cha": -2
+      },
+      "traits": [
+        "Blindsense",
+        "Communalism",
+        "Limited Telepathy"
+      ],
+      "alternate_traits": [
+        {
+          "id": "shirren__v1__alt__mental_fortress",
+          "name": "Mental Fortress",
+          "replaces": [
+            "Communalism"
+          ],
+          "description": "Shirrens with this trait gain a +2 racial bonus to saving throws against mind-affecting effects."
+        }
+      ],
+      "sources": []
     },
-    "hit_points": 6,
-    "size": "Medium",
-    "speed": 30,
-    "traits": [
-      "Armor Savant",
-      "Fearless",
-      "Low-Light Vision",
-      "Natural Weapons"
-    ],
-    "alternate_traits": [
-      {
-        "name": "Warrior Scholar",
-        "replaces": [
-          "Fearless"
-        ],
-        "description": "Vesk with this trait gain a +2 racial bonus to one Profession skill of their choice."
-      }
-    ]
-  },
-  {
-    "name": "Ysoki",
-    "ability_adjustments": {
-      "dex": 2,
-      "int": 2,
-      "str": -2
+    {
+      "id": "vesk__v1",
+      "name": "Vesk",
+      "variant": null,
+      "hp": 6,
+      "size": "Medium",
+      "speed": 30,
+      "ability_adjustments": {
+        "str": 2,
+        "con": 2,
+        "int": -2
+      },
+      "traits": [
+        "Armor Savant",
+        "Fearless",
+        "Low-Light Vision",
+        "Natural Weapons"
+      ],
+      "alternate_traits": [
+        {
+          "id": "vesk__v1__alt__warrior_scholar",
+          "name": "Warrior Scholar",
+          "replaces": [
+            "Fearless"
+          ],
+          "description": "Vesk with this trait gain a +2 racial bonus to one Profession skill of their choice."
+        }
+      ],
+      "sources": []
     },
-    "hit_points": 2,
-    "size": "Small",
-    "speed": 30,
-    "traits": [
-      "Cheek Pouches",
-      "Darkvision",
-      "Moxie",
-      "Scrounger"
-    ],
-    "alternate_traits": [
-      {
-        "name": "Quick Packer",
-        "replaces": [
-          "Cheek Pouches"
-        ],
-        "description": "Ysoki with this trait can draw or stow items as a swift action."
-      }
-    ]
-  },
-  {
-    "name": "Kasatha",
-    "ability_adjustments": {
-      "str": 2,
-      "wis": 2,
-      "int": -2
+    {
+      "id": "ysoki__v1",
+      "name": "Ysoki",
+      "variant": null,
+      "hp": 2,
+      "size": "Small",
+      "speed": 30,
+      "ability_adjustments": {
+        "dex": 2,
+        "int": 2,
+        "str": -2
+      },
+      "traits": [
+        "Cheek Pouches",
+        "Darkvision",
+        "Moxie",
+        "Scrounger"
+      ],
+      "alternate_traits": [
+        {
+          "id": "ysoki__v1__alt__quick_packer",
+          "name": "Quick Packer",
+          "replaces": [
+            "Cheek Pouches"
+          ],
+          "description": "Ysoki with this trait can draw or stow items as a swift action."
+        }
+      ],
+      "sources": []
     },
-    "hit_points": 4,
-    "size": "Medium",
-    "speed": 30,
-    "traits": [
-      "Desert Stride",
-      "Four-Armed",
-      "Historian",
-      "Natural Grace"
-    ],
-    "alternate_traits": [
-      {
-        "name": "Stone Runner",
-        "replaces": [
-          "Desert Stride"
-        ],
-        "description": "Kasathas with this trait can move through rocky difficult terrain at their normal speed."
-      }
-    ]
-  },
-  {
-    "name": "Lashunta (Damaya)",
-    "ability_adjustments": {
-      "int": 2,
-      "cha": 2,
-      "str": -2
+    {
+      "id": "kasatha__v2",
+      "name": "Kasatha",
+      "variant": null,
+      "hp": 4,
+      "size": "Medium",
+      "speed": 30,
+      "ability_adjustments": {
+        "str": 2,
+        "wis": 2,
+        "int": -2
+      },
+      "traits": [
+        "Desert Stride",
+        "Four-Armed",
+        "Historian",
+        "Natural Grace"
+      ],
+      "alternate_traits": [
+        {
+          "id": "kasatha__v2__alt__stone_runner",
+          "name": "Stone Runner",
+          "replaces": [
+            "Desert Stride"
+          ],
+          "description": "Kasathas with this trait can move through rocky difficult terrain at their normal speed."
+        }
+      ],
+      "sources": []
     },
-    "hit_points": 4,
-    "size": "Medium",
-    "speed": 30,
-    "traits": [
-      "Lashunta Magic",
-      "Limited Telepathy",
-      "Student"
-    ],
-    "alternate_traits": [
-      {
-        "name": "Thought Reading",
-        "replaces": [
-          "Lashunta Magic"
-        ],
-        "description": "These lashuntas gain detect thoughts once per day as a spell-like ability."
-      }
-    ]
-  },
-  {
-    "name": "Lashunta (Korasha)",
-    "ability_adjustments": {
-      "str": 2,
-      "cha": 2,
-      "wis": -2
+    {
+      "id": "lashunta_damaya",
+      "name": "Lashunta",
+      "variant": "Damaya",
+      "hp": 4,
+      "size": "Medium",
+      "speed": 30,
+      "ability_adjustments": {
+        "int": 2,
+        "cha": 2,
+        "str": -2
+      },
+      "traits": [
+        "Lashunta Magic",
+        "Limited Telepathy",
+        "Student"
+      ],
+      "alternate_traits": [
+        {
+          "id": "lashunta_damaya__alt__thought_reading",
+          "name": "Thought Reading",
+          "replaces": [
+            "Lashunta Magic"
+          ],
+          "description": "These lashuntas gain detect thoughts once per day as a spell-like ability."
+        }
+      ],
+      "sources": []
     },
-    "hit_points": 4,
-    "size": "Medium",
-    "speed": 30,
-    "traits": [
-      "Lashunta Magic",
-      "Limited Telepathy",
-      "Mentored"
-    ],
-    "alternate_traits": [
-      {
-        "name": "Mental Fortitude",
-        "replaces": [
-          "Lashunta Magic"
-        ],
-        "description": "These lashuntas gain a +2 racial bonus to Will saving throws."
-      }
-    ]
-  },
-  {
-    "name": "Shirren",
-    "ability_adjustments": {
-      "con": 2,
-      "wis": 2,
-      "cha": -2
+    {
+      "id": "lashunta_korasha",
+      "name": "Lashunta",
+      "variant": "Korasha",
+      "hp": 4,
+      "size": "Medium",
+      "speed": 30,
+      "ability_adjustments": {
+        "str": 2,
+        "cha": 2,
+        "wis": -2
+      },
+      "traits": [
+        "Lashunta Magic",
+        "Limited Telepathy",
+        "Mentored"
+      ],
+      "alternate_traits": [
+        {
+          "id": "lashunta_korasha__alt__mental_fortitude",
+          "name": "Mental Fortitude",
+          "replaces": [
+            "Lashunta Magic"
+          ],
+          "description": "These lashuntas gain a +2 racial bonus to Will saving throws."
+        }
+      ],
+      "sources": []
     },
-    "hit_points": 6,
-    "size": "Medium",
-    "speed": 30,
-    "traits": [
-      "Blindsense",
-      "Communalism",
-      "Limited Telepathy",
-      "Shirren Senses"
-    ],
-    "alternate_traits": [
-      {
-        "name": "Resistant Carapace",
-        "replaces": [
-          "Communalism"
-        ],
-        "description": "Shirrens with this trait gain DR 1/\u2014 instead of their cooperative bonus."
-      }
-    ]
-  },
-  {
-    "name": "Vesk",
-    "ability_adjustments": {
-      "str": 2,
-      "con": 2,
-      "int": -2
+    {
+      "id": "shirren__v2",
+      "name": "Shirren",
+      "variant": null,
+      "hp": 6,
+      "size": "Medium",
+      "speed": 30,
+      "ability_adjustments": {
+        "con": 2,
+        "wis": 2,
+        "cha": -2
+      },
+      "traits": [
+        "Blindsense",
+        "Communalism",
+        "Limited Telepathy",
+        "Shirren Senses"
+      ],
+      "alternate_traits": [
+        {
+          "id": "shirren__v2__alt__resistant_carapace",
+          "name": "Resistant Carapace",
+          "replaces": [
+            "Communalism"
+          ],
+          "description": "Shirrens with this trait gain DR 1/\u2014 instead of their cooperative bonus."
+        }
+      ],
+      "sources": []
     },
-    "hit_points": 6,
-    "size": "Medium",
-    "speed": 30,
-    "traits": [
-      "Armor Savant",
-      "Fearless",
-      "Low-Light Vision",
-      "Natural Weapons"
-    ],
-    "alternate_traits": [
-      {
-        "name": "Terrifying Roar",
-        "replaces": [
-          "Fearless"
-        ],
-        "description": "Vesk with this trait gain a racial bonus to Intimidate instead of saving throw bonuses."
-      }
-    ]
-  },
-  {
-    "name": "Ysoki",
-    "ability_adjustments": {
-      "dex": 2,
-      "int": 2,
-      "str": -2
+    {
+      "id": "vesk__v2",
+      "name": "Vesk",
+      "variant": null,
+      "hp": 6,
+      "size": "Medium",
+      "speed": 30,
+      "ability_adjustments": {
+        "str": 2,
+        "con": 2,
+        "int": -2
+      },
+      "traits": [
+        "Armor Savant",
+        "Fearless",
+        "Low-Light Vision",
+        "Natural Weapons"
+      ],
+      "alternate_traits": [
+        {
+          "id": "vesk__v2__alt__terrifying_roar",
+          "name": "Terrifying Roar",
+          "replaces": [
+            "Fearless"
+          ],
+          "description": "Vesk with this trait gain a racial bonus to Intimidate instead of saving throw bonuses."
+        }
+      ],
+      "sources": []
     },
-    "hit_points": 2,
-    "size": "Small",
-    "speed": 30,
-    "traits": [
-      "Cheek Pouches",
-      "Darkvision",
-      "Moxie",
-      "Scrounger"
-    ],
-    "alternate_traits": [
-      {
-        "name": "Tunnel Rat",
-        "replaces": [
-          "Moxie"
-        ],
-        "description": "Ysoki with this trait gain bonuses to squeezing and moving through tight spaces."
-      }
-    ]
-  }
-]
+    {
+      "id": "ysoki__v2",
+      "name": "Ysoki",
+      "variant": null,
+      "hp": 2,
+      "size": "Small",
+      "speed": 30,
+      "ability_adjustments": {
+        "dex": 2,
+        "int": 2,
+        "str": -2
+      },
+      "traits": [
+        "Cheek Pouches",
+        "Darkvision",
+        "Moxie",
+        "Scrounger"
+      ],
+      "alternate_traits": [
+        {
+          "id": "ysoki__v2__alt__tunnel_rat",
+          "name": "Tunnel Rat",
+          "replaces": [
+            "Moxie"
+          ],
+          "description": "Ysoki with this trait gain bonuses to squeezing and moving through tight spaces."
+        }
+      ],
+      "sources": []
+    }
+  ]
+}
