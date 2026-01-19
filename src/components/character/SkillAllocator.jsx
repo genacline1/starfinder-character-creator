@@ -24,12 +24,31 @@ export default function SkillAllocator({
   }, [JSON.stringify(skills)]);
 
   // Calculate skill points available for THIS level only
-// Ability score key can differ depending on your model (int vs intelligence)
-  const intScore =
-    abilityScores?.intelligence ??
-    abilityScores?.int ??
-    10;
-  const intMod = calculateModifier(intScore);
+    const intScore =
+      abilityScores?.intelligence ??
+      abilityScores?.int ??
+      10;
+
+    const intMod = calculateModifier(intScore);
+
+    // IMPORTANT: use the standardized class field (no default "4")
+    const baseSkillPoints = selectedClass?.skillRanksPerLevelBase ?? null;
+
+    if (selectedClass && baseSkillPoints == null) {
+      console.error("Class missing skillRanksPerLevelBase:", selectedClass);
+    }
+
+    const skillPointsPerLevel =
+      baseSkillPoints == null ? 0 : Math.max(1, baseSkillPoints + intMod);
+
+    const totalSkillPoints = skillPointsPerLevel * totalLevel;
+
+  // Ability score key can differ depending on your model (int vs intelligence)
+    const intScore =
+      abilityScores?.intelligence ??
+      abilityScores?.int ??
+      10;
+    const intMod = calculateModifier(intScore);
   // IMPORTANT: use the standardized class field (no default "4")
 const baseSkillPoints = selectedClass?.skillRanksPerLevelBase ?? null;
 
@@ -109,8 +128,8 @@ const totalSkillPoints = skillPointsPerLevel * totalLevel;
       <div className="text-center mb-8">
         <p className="text-cyan-300/60 text-sm">
           {baseSkillPoints == null
-            ? 'Select a class to determine skill points per level.'
-            : `${baseSkillPoints} ${intMod >= 0 ? '+' : ''}${intMod} INT = ${skillPointsPerLevel} skill points per level`}
+            ? "Select a class to determine skill points per level."
+            : `${baseSkillPoints} ${intMod >= 0 ? "+" : ""}${intMod} INT = ${skillPointsPerLevel} skill points per level`}
           {baseSkillPoints != null && totalLevel > 1 && ` (Total: ${totalSkillPoints})`}
         </p>
       </div>
