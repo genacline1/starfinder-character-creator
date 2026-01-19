@@ -41,6 +41,7 @@ import LanguageSelector from '@/components/character/LanguageSelector';
 import { DEITIES } from '@/components/character/deitiesData';
 import { SYSTEMS } from '@/components/character/systemsData';
 import { 
+  CLASSES,
   calculateModifier, 
   getRaceById, 
   getClassById, 
@@ -876,7 +877,7 @@ const handleSave = async () => {
           <SkillAllocator
             skills={character.skills}
             onSkillsChange={(skills) => updateCharacter('skills', skills)}
-            selectedClass={character.selectedClass}
+            selectedClass={CLASSES.find(c => c.id === character.selectedClass?.id) || null}
             abilityScores={character.abilityScores}
             theme={character.theme}
             totalLevel={Math.max(1, getTotalLevel(character.classes))}

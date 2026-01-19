@@ -31,39 +31,11 @@ export default function SkillAllocator({
 
     const intMod = calculateModifier(intScore);
 
-    // IMPORTANT: use the standardized class field (no default "4")
-    const baseSkillPoints = selectedClass?.skillRanksPerLevelBase ?? null;
-
-    if (selectedClass && baseSkillPoints == null) {
-      console.error("Class missing skillRanksPerLevelBase:", selectedClass);
-    }
-
-    const skillPointsPerLevel =
-      baseSkillPoints == null ? 0 : Math.max(1, baseSkillPoints + intMod);
-
-    const totalSkillPoints = skillPointsPerLevel * totalLevel;
-
-  // Ability score key can differ depending on your model (int vs intelligence)
-    const intScore =
-      abilityScores?.intelligence ??
-      abilityScores?.int ??
-      10;
-    const intMod = calculateModifier(intScore);
-  // IMPORTANT: use the standardized class field (no default "4")
-const baseSkillPoints = selectedClass?.skillRanksPerLevelBase ?? null;
-
-if (selectedClass && baseSkillPoints == null) {
-  console.error("Class missing skillRanksPerLevelBase:", selectedClass);
-}
-
-const skillPointsPerLevel =
-  baseSkillPoints == null ? 0 : Math.max(1, baseSkillPoints + intMod);
-
-const totalSkillPoints = skillPointsPerLevel * totalLevel;
-
-
   // Class field name can differ too; prefer explicit base value with a safe fallback
   const baseSkillPoints = selectedClass?.skillRanksPerLevelBase ?? null;
+  console.log("SkillAllocator selectedClass keys:", Object.keys(selectedClass || {}));
+  console.log("SkillAllocator selectedClass:", selectedClass);
+  console.log("SkillAllocator selectedClass:", selectedClass, "baseSkillPoints:", baseSkillPoints);
 
   // If no class selected (or class missing the field), don't lie with "4"
   const skillPointsPerLevel =
