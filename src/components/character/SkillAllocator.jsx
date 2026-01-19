@@ -24,9 +24,23 @@ export default function SkillAllocator({
   }, [JSON.stringify(skills)]);
 
   // Calculate skill points available for THIS level only
-  const intMod = calculateModifier(abilityScores?.intelligence || 10);
-  const baseSkillPoints = selectedClass?.skillRanksPerLevel || 4;
-  const skillPointsPerLevel = Math.max(1, baseSkillPoints + intMod);
+// Ability score key can differ depending on your model (int vs intelligence)
+  const intScore =
+    abilityScores?.intelligence ??
+    abilityScores?.int ??
+    10;
+  const intMod = calculateModifier(intScore);
+
+  // Class field name can differ too; prefer explicit base value with a safe fallback
+  const baseSkillPoints =
+    selectedClass?.skillRanksPerLevel ??
+    selectedClass?.skillRanksPerLevelBase ??
+    selectedClass?.skillRanks ??
+    null;
+
+  // If no class selected (or class missing the field), don't lie with "4"
+  const skillPointsPerLevel =
+    baseSkillPoints == null ? 0 : Math.max(1, baseSkillPoints + intMod);
   const totalSkillPoints = skillPointsPerLevel * totalLevel;
 
   // Calculate points spent
@@ -85,10 +99,11 @@ export default function SkillAllocator({
   return (
     <div className="space-y-6">
       <div className="text-center mb-8">
-        <h2 className="text-2xl font-light text-white mb-2">Allocate Skill Points</h2>
         <p className="text-cyan-300/60 text-sm">
-          {baseSkillPoints} + {intMod >= 0 ? '+' : ''}{intMod} INT = {skillPointsPerLevel} skill points per level
-          {totalLevel > 1 && ` (Total: ${totalSkillPoints})`}
+          {baseSkillPoints == null
+            ? 'Select a class to determine skill points per level.'
+            : `${baseSkillPoints} ${intMod >= 0 ? '+' : ''}${intMod} INT = ${skillPointsPerLevel} skill points per level`}
+          {baseSkillPoints != null && totalLevel > 1 && ` (Total: ${totalSkillPoints})`}
         </p>
       </div>
 

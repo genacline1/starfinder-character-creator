@@ -26,19 +26,39 @@ export default function LevelUpManager({ character, onCharacterUpdate }) {
   const [showClassAbilities, setShowClassAbilities] = useState(false);
   const [showClassFeatures, setShowClassFeatures] = useState(false);
 
+  const getIntScore = () =>
+  character?.abilityScores?.intelligence ??
+  character?.abilityScores?.int ??
+  character?.ability_scores?.intelligence ??
+  character?.ability_scores?.int ??
+  10;
+  
   // Auto-expand sections that require input when class is selected
   React.useEffect(() => {
     if (selectedClassId) {
-      const intMod = calculateModifier(character.abilityScores?.intelligence || 10);
-      const baseSkillPoints = selectedClass?.skillRanksPerLevel || 4;
-      const expectedSkillPoints = Math.max(1, baseSkillPoints + intMod);
+      const intScore =
+        character?.abilityScores?.intelligence ??
+        character?.abilityScores?.int ??
+        character?.ability_scores?.intelligence ??
+        character?.ability_scores?.int ??
+        10;
+
+      const intMod = calculateModifier(intScore);
+      const baseSkillPoints = selectedClass?.skillRanksPerLevelBase;
+
+      if (selectedClass && baseSkillPoints == null) {
+        console.error("Class missing skillRanksPerLevelBase:", selectedClass);
+      }
+
+      const expectedSkillPoints =
+       baseSkillPoints == null ? null : Math.max(1, baseSkillPoints + intMod);
       const skillPointsSpent = Object.values(newSkills).reduce((sum, ranks) => sum + ranks, 0);
       
       // Expand sections that require input
       if (getsAbilityIncrease && abilityIncreases.length !== 4) {
         setShowAbilityIncrease(true);
       }
-      if (skillPointsSpent !== expectedSkillPoints) {
+      if (expectedSkillPoints != null && skillPointsSpent !== expectedSkillPoints) {
         setShowSkillAllocation(true);
       }
       if (getsFeat && newFeats.length === 0) {
@@ -78,15 +98,29 @@ export default function LevelUpManager({ character, onCharacterUpdate }) {
     if (!selectedClassId) return { valid: false, message: 'Please select a class to level up' };
     
     // Calculate expected skill points for this level
-    const intMod = calculateModifier(character.abilityScores?.intelligence || 10);
-    const baseSkillPoints = selectedClass?.skillRanksPerLevel || 4;
-    const expectedSkillPoints = Math.max(1, baseSkillPoints + intMod);
+    const intScore =
+      character?.abilityScores?.intelligence ??
+      character?.abilityScores?.int ??
+      character?.ability_scores?.intelligence ??
+      character?.ability_scores?.int ??
+      10;
+
+    const intMod = calculateModifier(intScore);
+    const baseSkillPoints = selectedClass?.skillRanksPerLevelBase;
+
+    if (selectedClass && baseSkillPoints == null) {
+      console.error("Class missing skillRanksPerLevelBase:", selectedClass);
+      return { valid: false, message: "Selected class is missing skill rank data." };
+    }
+
+    const expectedSkillPoints =
+      baseSkillPoints == null ? null : Math.max(1, baseSkillPoints + intMod);
     const skillPointsSpent = Object.values(newSkills).reduce((sum, ranks) => sum + ranks, 0);
-    
-    if (skillPointsSpent !== expectedSkillPoints) {
-      return { 
-        valid: false, 
-        message: `Please allocate all skill ranks (${skillPointsSpent}/${expectedSkillPoints} allocated)` 
+
+    if (expectedSkillPoints != null && skillPointsSpent !== expectedSkillPoints) {
+      return {
+        valid: false,
+        message: `Please allocate all skill ranks (${skillPointsSpent}/${expectedSkillPoints} allocated)`
       };
     }
     
@@ -541,7 +575,7 @@ export default function LevelUpManager({ character, onCharacterUpdate }) {
               </div>
               <div className="flex items-center gap-2">
                 <BookOpen className="w-4 h-4 text-cyan-400" />
-                <span className="text-slate-300">+{selectedClass.skillRanksPerLevel} skill ranks (+ Int modifier)</span>
+                <span className="text-slate-300">+{selectedClass.skillRanksPerLevelBase} skill ranks (+ Int modifier)</span>
               </div>
               {getsAbilityIncrease && (
                 <div className="flex items-center gap-2">
@@ -647,11 +681,26 @@ export default function LevelUpManager({ character, onCharacterUpdate }) {
 
           {/* Skill Allocation */}
           <Card className={`bg-slate-800/50 ${(() => {
-            const intMod = calculateModifier(character.abilityScores?.intelligence || 10);
-            const baseSkillPoints = selectedClass?.skillRanksPerLevel || 4;
-            const expectedSkillPoints = Math.max(1, baseSkillPoints + intMod);
+            const intScore =
+              character?.abilityScores?.intelligence ??
+              character?.abilityScores?.int ??
+              character?.ability_scores?.intelligence ??
+              character?.ability_scores?.int ??
+              10;
+
+            const intMod = calculateModifier(intScore);
+            const baseSkillPoints = selectedClass?.skillRanksPerLevelBase;
+
+      if (selectedClass && baseSkillPoints == null) {
+        console.error("Class missing skillRanksPerLevelBase:", selectedClass);
+      }
+
+      const expectedSkillPoints =
+        baseSkillPoints == null ? null : Math.max(1, baseSkillPoints + intMod);
             const skillPointsSpent = Object.values(newSkills).reduce((sum, ranks) => sum + ranks, 0);
-            return skillPointsSpent !== expectedSkillPoints ? 'border-amber-500/50' : 'border-slate-700/50';
+            return expectedSkillPoints != null && skillPointsSpent !== expectedSkillPoints
+              ? 'border-amber-500/50'
+              : 'border-slate-700/50';
           })()}`}>
             <CardHeader className="cursor-pointer" onClick={() => setShowSkillAllocation(!showSkillAllocation)}>
               <CardTitle className="text-white flex items-center justify-between">
@@ -659,11 +708,26 @@ export default function LevelUpManager({ character, onCharacterUpdate }) {
                   <BookOpen className="w-5 h-5 text-cyan-400" />
                   Allocate New Skill Ranks
                   {(() => {
-                    const intMod = calculateModifier(character.abilityScores?.intelligence || 10);
-                    const baseSkillPoints = selectedClass?.skillRanksPerLevel || 4;
-                    const expectedSkillPoints = Math.max(1, baseSkillPoints + intMod);
+                    const intScore =
+                      character?.abilityScores?.intelligence ??
+                      character?.abilityScores?.int ??
+                      character?.ability_scores?.intelligence ??
+                      character?.ability_scores?.int ??
+                      10;
+
+                    const intMod = calculateModifier(intScore);
+                    const baseSkillPoints = selectedClass?.skillRanksPerLevelBase;
+
+      if (selectedClass && baseSkillPoints == null) {
+        console.error("Class missing skillRanksPerLevelBase:", selectedClass);
+      }
+
+      const expectedSkillPoints =
+        baseSkillPoints == null ? null : Math.max(1, baseSkillPoints + intMod);
                     const skillPointsSpent = Object.values(newSkills).reduce((sum, ranks) => sum + ranks, 0);
-                    return skillPointsSpent !== expectedSkillPoints && <Badge className="bg-amber-500/20 text-amber-300 border-amber-500/50 text-xs ml-2">Required</Badge>;
+                    return expectedSkillPoints != null && skillPointsSpent !== expectedSkillPoints
+                      ? <Badge className="bg-amber-500/20 text-amber-300 border-amber-500/50 text-xs ml-2">Required</Badge>
+                      : null;
                   })()}
                 </span>
                 <ChevronDown className={`w-5 h-5 text-slate-400 transition-transform ${showSkillAllocation ? 'rotate-180' : ''}`} />

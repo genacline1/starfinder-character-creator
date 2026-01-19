@@ -101,7 +101,7 @@ export default function ClassSelector({ selectedClass, onSelect }) {
               </div>
               <div className="flex justify-between items-center p-2 bg-slate-700/30 rounded">
                 <span className="text-slate-400">Skill Ranks</span>
-                <span className="text-white font-medium">{detailView.skillRanksPerLevel} + Int/level</span>
+                <span className="text-white font-medium">{detailView.skillRanksPerLevelBase} + Int/level</span>
               </div>
             </CardContent>
           </Card>
@@ -340,7 +340,7 @@ export default function ClassSelector({ selectedClass, onSelect }) {
               </div>
               <div>
                 <div className="text-xs text-slate-400 mb-1">Skill Ranks</div>
-                <div className="text-white">{detailView.skillRanksPerLevel} + Int/level</div>
+                <div className="text-white">{detailView.skillRanksPerLevelBase} + Int/level</div>
               </div>
             </div>
 
@@ -639,7 +639,7 @@ export default function ClassSelector({ selectedClass, onSelect }) {
                       <BookOpen className="w-3 h-3" />
                       <span className="text-xs">Skills</span>
                     </div>
-                    <span className="text-white font-medium">{cls.skillRanksPerLevel}</span>
+                    <span className="text-white font-medium">{cls.skillRanksPerLevelBase}</span>
                   </div>
                 </div>
 
