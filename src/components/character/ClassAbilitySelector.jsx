@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { Sparkles, Check } from 'lucide-react';
+import { Sparkles, Check, MoreHorizontal, ChevronUp, AlertTriangle } from 'lucide-react';
 
 export default function ClassAbilitySelector({ 
   abilityType, 
@@ -13,12 +13,46 @@ export default function ClassAbilitySelector({
   existingAbilities = [],
   maxSelections = 1 
 }) {
+
+  const [expandedIds, setExpandedIds] = useState(() => new Set());
+
+  const toggleExpanded = (id) => {
+    setExpandedIds(prev => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
+  };
+
   const isAbilitySelected = (abilityId) => {
     return selectedAbilities.some(a => a.id === abilityId);
   };
 
   const isAbilityOwned = (abilityId) => {
     return existingAbilities.some(a => a.id === abilityId);
+  };
+
+    // --- Prerequisite warnings (soft) ---
+  const ownedAbilityIds = new Set([
+    ...existingAbilities.map(a => a.id),
+    ...selectedAbilities.map(a => a.id),
+  ]);
+
+  // Normalize prereq strings so entries like "versatile_nanites (Disguise)"
+  // will still match "versatile_nanites" if that's what the user has.
+  const normalizePrereqId = (prereq) => {
+    if (!prereq || typeof prereq !== 'string') return prereq;
+    // Take everything before first space or "("
+    return prereq.split('(')[0].split(' ')[0].trim();
+  };
+
+  const getUnmetPrereqs = (ability) => {
+    if (!ability?.prerequisites?.length) return [];
+    return ability.prerequisites.filter((p) => {
+      const id = normalizePrereqId(p);
+      return !ownedAbilityIds.has(id);
+    });
   };
 
   const handleAbilitySelect = (ability) => {
@@ -46,6 +80,7 @@ export default function ClassAbilitySelector({
         {options.map(ability => {
           const isSelected = isAbilitySelected(ability.id);
           const isOwned = isAbilityOwned(ability.id);
+          const unmetPrereqs = getUnmetPrereqs(ability);
           const canSelect = !isOwned && (isSelected || selectedAbilities.length < maxSelections);
 
           return (
@@ -65,14 +100,48 @@ export default function ClassAbilitySelector({
                 }
               `}
             >
-              <div className="flex justify-between items-start mb-2">
+              <div className="flex justify-between items-start mb-2 gap-2">
                 <h4 className={`font-medium ${isSelected ? 'text-purple-300' : 'text-white'}`}>
                   {ability.name}
                 </h4>
-                {isSelected && <Check className="w-5 h-5 text-purple-400 flex-shrink-0" />}
-                {isOwned && <Badge variant="outline" className="text-xs">Owned</Badge>}
+
+                <div className="flex items-center gap-2 flex-shrink-0">
+                  {isOwned && <Badge variant="outline" className="text-xs">Owned</Badge>}
+                  {isSelected && <Check className="w-5 h-5 text-purple-400" />}
+
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation();      // don’t trigger select
+                      toggleExpanded(ability.id);
+                    }}
+                    className="p-1 rounded hover:bg-white/10 text-slate-300 hover:text-white"
+                    aria-label={expandedIds.has(ability.id) ? 'Hide details' : 'Show details'}
+                    title={expandedIds.has(ability.id) ? 'Hide details' : 'Show details'}
+                  >
+                    {expandedIds.has(ability.id)
+                      ? <ChevronUp className="w-4 h-4" />
+                      : <MoreHorizontal className="w-4 h-4" />
+                    }
+                  </button>
+                </div>
               </div>
-              <p className="text-sm text-slate-400">{ability.description}</p>
+              <p className="text-sm text-slate-400">
+                {ability.shortDescription ?? ability.description}
+              </p>
+              {unmetPrereqs.length > 0 && (
+                <div className="mt-2 flex items-start gap-2 text-amber-300/90">
+                  <AlertTriangle className="w-4 h-4 mt-0.5 flex-shrink-0" />
+                  <p className="text-xs leading-snug">
+                    Requires: {unmetPrereqs.join(', ')}
+                  </p>
+                </div>
+              )}
+              {expandedIds.has(ability.id) && (
+                <div className="mt-2 rounded bg-white/5 p-2 text-sm text-slate-200 leading-relaxed">
+                  {ability.fullDescription ?? ability.description ?? ability.shortDescription}
+                </div>
+              )}
             </motion.div>
           );
         })}
