@@ -3289,22 +3289,1819 @@ export const OPERATIVE_EXPLOITS = [
  ];
 
 export const ENVOY_IMPROVISATIONS = [
-  { id: 'a_few_more_steps', name: 'A Few More Steps!', description: 'As a reaction, when ally drops to 0 HP, they stay conscious but nauseated until end of next turn. At 6th level, they become staggered instead.' },
-  { id: 'brace_yourselves', name: 'Brace Yourselves', description: 'As move action, you and allies gain +1 morale to AC when adjacent to ally vs one enemy. At 6th, spend 1 RP for all enemies within 60 ft.' },
-  { id: 'clever_feint', name: 'Clever Feint', description: 'Feint as move action with Bluff against enemy within 60 feet. Make them flat-footed against you; on success, flat-footed vs allies too. At 6th, spend 1 RP to treat fail as success.' },
-  { id: 'coordinated_reload', name: 'Coordinated Reload', description: 'As move action, grant ally a move action to reload/draw weapon. You can also reload/draw as part of this. Adjacent ally can use your ammo.' },
-  { id: 'dispiriting_taunt', name: 'Dispiriting Taunt', description: 'Taunt enemy with Intimidate. On fail, they\'re off-target; on success, shaken until end of next turn. At 6th, spend 1 RP to treat fail as success.' },
-  { id: 'dont_quit', name: 'Don\'t Quit', description: 'Ally ignores one condition until start of your next turn. At 6th, more conditions. At 12th, spend 1 RP to remove it.' },
-  { id: 'expanded_attunement', name: 'Expanded Attunement', description: 'Use beneficial mind-affecting improvisations on constructs, robots, and undead.' },
-  { id: 'get_em', name: 'Get \'Em', description: 'As move action, designate a foe. Allies gain +1 morale bonus to attacks against that target.' },
-  { id: 'inspiring_boost', name: 'Inspiring Boost', description: 'As standard action, restore SP to an ally within 30 feet equal to 2d8 + Cha mod.' },
-  { id: 'not_in_the_face', name: 'Not in the Face', description: 'As move action, grant ally within 60 ft +2 to AC vs next attack. At 6th, can affect all allies and spend 1 RP for +4.' },
-  { id: 'universal_expression', name: 'Universal Expression', description: 'Convey basic ideas and emotions to any creature regardless of language.' },
-  { id: 'watch_out', name: 'Watch Out', description: 'As reaction, shout warning to ally about to be attacked, granting +4 to AC vs that attack.' },
-  { id: 'draw_fire', name: 'Draw Fire', description: 'As move action, you become focus of enemy\'s ire. Foes take -2 to attacks vs allies, you take -2 to AC.' },
-  { id: 'hurry', name: 'Hurry', description: 'As standard action, grant ally an extra standard action they can use before your next turn.' },
-  { id: 'watch_your_step', name: 'Watch Your Step', description: 'As move action, designate 10-ft square. Allies don\'t trigger traps in that square.' },
-  { id: 'quick_inspiring_boost', name: 'Quick Inspiring Boost', description: 'Use inspiring boost as move action instead of standard (requires Inspiring Boost).' },
+  // Envoy Improvisations — Level 1 (plus entry/meta info)
+  //
+  // Notes on structure differences you flagged:
+  // - Improvisations have “tags” like Language-Dependent / Mind-Affecting / Sense-Dependent.
+  // - Many have level-scaling riders (often at 6th, sometimes 12th/15th, etc.).
+  // - Some grant feats or change how other improvisations work (Expanded Attunement, Universal Expression).
+  // - Some impose per-target immunity windows or cooldown timers.
+  //
+  // I’m representing those with:
+  // - tags: [] for the three special categories
+  // - scaling: [{ level, text, ... }] for “At Xth level…”
+  // - cooldown: { type, ... } for “once per day”, “can’t use again until…”, “1d10 minutes”, etc.
+  // - immunities: [{ scope, duration, ... }] for “target immune for 24 hours” style text
+  // - prerequisites: [] where applicable
+{
+    id: 'a_few_more_steps',
+    name: "A Few More Steps!",
+    levelRequired: 1,
+    actionType: 'reaction',
+    range: '60 feet',
+    tags: ['language-dependent', 'mind-affecting', 'sense-dependent'],
+    shortDescription:
+      'Reaction when an ally would drop unconscious at 0 HP: keep them conscious briefly with temp HP; then they fall unconscious/dying as normal (24-hour per-target immunity).',
+    fullDescription:
+      "As a reaction when an ally within 60 feet of you is reduced to 0 HP and would become unconscious, you can compel them to stay up and stagger out of the fray. The ally remains conscious, becomes nauseated, and gains temporary Hit Points equal to your envoy level + your Charisma modifier until the end of their next turn. Afterward, if the ally has 0 Hit Points, they become unconscious and dying as normal, including losing 1 Resolve Point at the end of their turn. Once a creature has been affected by this improvisation, they’re immune to it for 24 hours.",
+    scaling: [
+      {
+        level: 6,
+        text:
+          'The ally becomes staggered and off-target rather than nauseated. If the ally is stable and unconscious and spends 1 RP to regain 1 HP within 1 minute of falling unconscious, they instead regain HP equal to your envoy level + your Charisma modifier.',
+      },
+    ],
+    immunities: [{ scope: 'target', duration: '24 hours' }],
+    source: { book: 'Interstellar Species', page: 22 },
+    sfsLegal: true,
+    prerequisites: [],
+    repeatable: false,
+  },
+  {
+    id: 'brace_yourselves',
+    name: 'Brace Yourselves',
+    levelRequired: 1,
+    actionType: 'move',
+    range: '60 feet',
+    tags: ['language-dependent', 'mind-affecting', 'sense-dependent'],
+    shortDescription:
+      'Choose one enemy; until your next turn you and allies gain +1 morale AC while adjacent to at least one ally (can expand to all enemies at 6th with 1 RP).',
+    fullDescription:
+      "As a move action, you can choose one enemy within 60 feet. Until the start of your next turn, you and your allies gain a +1 morale bonus to AC if adjacent to at least one other ally, as you all position yourselves so that your armor protects you better. The bonus persists even if the enemy moves beyond 60 feet or out of line of sight or hearing.",
+    scaling: [
+      {
+        level: 6,
+        text:
+          'You can spend 1 RP to grant this bonus to AC against attacks made by all enemies within 60 feet.',
+      },
+    ],
+    source: { book: 'Starfinder Armory', page: 144 },
+    sfsLegal: true,
+    prerequisites: [],
+    repeatable: false,
+  },
+  {
+    id: 'clever_feint',
+    name: 'Clever Feint',
+    levelRequired: 1,
+    actionType: 'standard',
+    range: '60 feet',
+    tags: ['sense-dependent'],
+    shortDescription:
+      'Bluff vs feint DC to make target flat-footed vs you (even on fail); on success, also flat-footed vs allies; can RP-upgrade a failure at 6th.',
+    fullDescription:
+      "As a standard action, you can fake out an enemy within 60 feet, making that enemy open to your attacks. Attempt a Bluff check with the same DC as a check to feint against that enemy (though this isn’t a standard check to feint, so Improved Feint and Greater Feint don’t apply). Even if you fail, that enemy is flat-footed against your attacks until the end of your next turn. If you succeed, the enemy is also flat-footed against your allies’ attacks until the end of your next turn. You can’t use clever feint against a creature that lacks an Intelligence score.",
+    scaling: [
+      { level: 6, text: 'You can spend 1 RP to treat a failed Bluff check as if it were a success.' },
+    ],
+    source: { book: 'Starfinder Core Rulebook', page: 62 },
+    sfsLegal: true,
+    prerequisites: [],
+    repeatable: false,
+    restrictions: ['Target must have an Intelligence score.'],
+  },
+  {
+    id: 'coordinated_reload',
+    name: 'Coordinated Reload',
+    levelRequired: 1,
+    actionType: 'move',
+    range: '60 feet',
+    tags: ['mind-affecting', 'sense-dependent'],
+    shortDescription:
+      'Grant an ally a bonus move action next turn usable only to reload/draw (and you can reload/draw too). Only 1 bonus action from this family per round.',
+    fullDescription:
+      "As a move action, you can grant a single move action to an ally within 60 feet. The ally can use that move action during her next turn to reload or draw a weapon. As part of the move action to activate this ability, you can also reload or draw a weapon. If the ally is adjacent to you, she can draw weapons and use ammunition you are carrying as though she were carrying them herself. The ally can use her extra move action in between her other actions, as well as before or after a full action. A character can use no more than one bonus action from coordinated reload or similar abilities (such as the quick quaff and hurry envoy improvisations) in a single round.",
+    source: { book: 'Starfinder Armory', page: 144 },
+    sfsLegal: true,
+    prerequisites: [],
+    repeatable: false,
+    limitations: ['Bonus-action-family limit: 1 per round (coordinated reload / quick quaff / hurry / similar).'],
+  },
+  {
+    id: 'dispiriting_taunt',
+    name: 'Dispiriting Taunt',
+    levelRequired: 1,
+    actionType: 'standard',
+    range: '60 feet',
+    tags: ['language-dependent', 'mind-affecting', 'sense-dependent'],
+    shortDescription:
+      'Intimidate vs demoralize DC: on fail target is off-target; on success target is shaken; can RP-upgrade a failure at 6th (emotion/fear).',
+    fullDescription:
+      "As a standard action, you can taunt an enemy within 60 feet. Attempt an Intimidate check with the same DC as a check to demoralize that enemy (though this isn’t a check to demoralize, so you can’t use abilities that would apply to a demoralization attempt, like the rattling presence expertise talent). If you fail, that enemy is off-target until the end of your next turn. If you succeed, that enemy is instead shaken until the end of your next turn. This is an emotion and fear effect.",
+    scaling: [
+      { level: 6, text: 'You can spend 1 RP to treat a failed Intimidate check as if it were a success.' },
+    ],
+    source: { book: 'Starfinder Core Rulebook', page: 62 },
+    sfsLegal: true,
+    prerequisites: [],
+    repeatable: false,
+    traits: ['emotion', 'fear'],
+  },
+  {
+    id: 'dont_quit',
+    name: "Don't Quit",
+    levelRequired: 1,
+    actionType: 'standard',
+    range: '60 feet',
+    tags: ['mind-affecting', 'sense-dependent'],
+    shortDescription:
+      'Signal an ally to ignore (suppress) one condition from a list until your next turn; expands list at 6th; can remove instead of suppress at 12th (1 RP).',
+    fullDescription:
+      "As a standard action, you can signal a single ally within 60 feet. That ally ignores one condition of your choice until the start of your next turn, chosen from the following list: confused, fascinated, fatigued, shaken, sickened, and staggered.\n\nWhile your ally doesn’t suffer the effects of the condition during that period, the condition is merely suppressed, not removed, and its effects resume at the start of your next turn. The condition can still be removed with spells, technology, and other effects as normal.",
+    scaling: [
+      {
+        level: 6,
+        text:
+          'Add: cowering, dazed, exhausted, frightened, nauseated, panicked, paralyzed, and stunned.',
+      },
+      {
+        level: 12,
+        text:
+          "You can spend 1 RP to remove the condition instead of suppressing it. You can’t remove a condition with a permanent duration this way; if you attempt to do so, your attempt fails but you don’t lose the RP.",
+      },
+    ],
+    source: { book: 'Starfinder Core Rulebook', page: 62 },
+    sfsLegal: true,
+    prerequisites: [],
+    repeatable: false,
+  },
+  {
+    id: 'expanded_attunement',
+    name: 'Expanded Attunement',
+    levelRequired: 1,
+    actionType: 'passive',
+    range: null,
+    tags: [],
+    shortDescription:
+      'Your beneficial mind-affecting improvisations can affect allies that normally can’t benefit (constructs/robots/undead, etc.); morale bonuses also apply to those who normally can’t.',
+    fullDescription:
+      "You can use beneficial mind-affecting envoy improvisations to aid allies who usually would not be able to gain benefits from mind-affecting effects, such as constructs, robots, and undead. If the improvisation grants a morale bonus, even allies who can’t normally benefit from morale bonuses gain that bonus.",
+    source: { book: 'Starfinder Core Rulebook', page: 62 },
+    sfsLegal: true,
+    prerequisites: [],
+    repeatable: false,
+  },
+  {
+    id: 'fire_support',
+    name: 'Fire Support',
+    levelRequired: 1,
+    actionType: 'passive',
+    range: null,
+    tags: [],
+    shortDescription:
+      'When you successfully harry (AC 15), you also provide covering fire vs the next ally attacked by that target; plus an option to harry two targets as a full action (–4 each).',
+    fullDescription:
+      "When you take a standard action to provide harrying fire and hit the AC of 15 required to do so, you also provide covering fire for the next ally attacked by the target of your harrying fire attacks before your next turn.\n\nAdditionally, as a full action, you can make two ranged attack rolls against two different targets, taking a –4 penalty to each attack roll, to apply harrying fire to each target hit. For each target that you successfully apply harrying fire to, you also provide covering fire for the next ally that is attacked by either target before your next turn.",
+    source: { book: 'Starfinder Armory', page: 144 },
+    sfsLegal: true,
+    prerequisites: [],
+    repeatable: false,
+  },
+  {
+    id: 'frustrating_target',
+    name: 'Frustrating Target',
+    levelRequired: 1,
+    actionType: 'move',
+    range: 'adjacent',
+    tags: [],
+    shortDescription:
+      'While adjacent to a chosen significant enemy, other enemies take –1 to hit you; at 6th you can spend 1 RP as a reaction to force an attacker to roll twice and take worse (still adjacent).',
+    fullDescription:
+      "You duck and weave around an opponent in close combat, making it difficult for others to draw a bead on you. Once per turn as a move action, choose a significant enemy you are adjacent to. All other enemies take a –1 penalty to attack rolls against you until the beginning of your next turn, as long as you are still adjacent to the designated opponent.",
+    scaling: [
+      {
+        level: 6,
+        text:
+          "You can spend 1 RP as a reaction when an enemy other than the designated opponent attacks you to make that enemy roll twice on a single attack and take the worse result, as long as you are still adjacent to the designated opponent. Both rolls take the –1 penalty.",
+      },
+    ],
+    source: { book: 'Starfinder #25: The Chimera Mystery', page: 47 },
+    sfsLegal: true,
+    prerequisites: [],
+    repeatable: false,
+    restrictions: ['Requires an adjacent significant enemy. Effects end if no longer adjacent.'],
+    cooldown: { type: 'perTurn', uses: 1, action: 'move' },
+  },
+  {
+    id: 'get_em',
+    name: "Get 'Em",
+    levelRequired: 1,
+    actionType: 'move',
+    range: '60 feet',
+    tags: ['language-dependent', 'mind-affecting', 'sense-dependent'],
+    shortDescription:
+      'Choose one enemy; allies get +1 morale to attack vs that enemy until your next turn; at 6th, 1 RP expands to attack + damage vs all enemies within 60 ft.',
+    fullDescription:
+      "As a move action, you can choose one enemy within 60 feet. Until the start of your next turn, you and your allies gain a +1 morale bonus to attack rolls made against that enemy. The bonus persists even if the enemy moves beyond 60 feet or out of line of sight or hearing.",
+    scaling: [
+      {
+        level: 6,
+        text:
+          'You can spend 1 RP to grant this bonus to attack rolls and damage rolls against all enemies who are within 60 feet.',
+      },
+    ],
+    source: { book: 'Starfinder Core Rulebook', page: 62 },
+    sfsLegal: true,
+    prerequisites: [],
+    repeatable: false,
+  },
+  {
+    id: 'got_your_back',
+    name: 'Got Your Back',
+    levelRequired: 1,
+    actionType: 'move',
+    range: 'special',
+    tags: ['sense-dependent'],
+    shortDescription:
+      'Grant unflankable to you + up to Cha mod creatures in a linked melee-reach “chain”; ends if an affected creature ends turn not in reach of an affected ally; can spend 1 RP to last Cha mod rounds.',
+    fullDescription:
+      "As a move action, you grant the unflankable universal creature rule to yourself and a number of creatures that doesn’t exceed your Charisma modifier. When you use this improvisation, each creature affected must be within the melee reach of at least one other affected creature. The effect ends for an affected creature if it ends its turn without being in the melee reach of an affected ally. This effect lasts until the end of your next turn. If you spend a Resolve Point when activating the improvisation, it instead lasts a number of rounds equal to your Charisma modifier.",
+    source: { book: 'Interstellar Species', page: 22 },
+    sfsLegal: true,
+    prerequisites: [],
+    repeatable: false,
+    special: ['Linked adjacency-by-reach requirement per affected creature.'],
+  },
+  {
+    id: 'inspiring_boost',
+    name: 'Inspiring Boost',
+    levelRequired: 1,
+    actionType: 'standard',
+    range: '30 feet',
+    tags: ['language-dependent', 'mind-affecting', 'sense-dependent'],
+    shortDescription:
+      'Restore ally stamina after being damaged by a significant enemy since your last turn; rest-gated for that ally; scales at 6th (optional 1 RP add envoy level) and 15th (bigger base).',
+    fullDescription:
+      "As a standard action, you can signal an ally within 30 feet who has taken damage from any attack made by a significant enemy at any point after your last turn ended. That ally regains a number of Stamina Points (up to his maximum) equal to twice your envoy level + your Charisma modifier; at 15th level, this increases to three times your envoy level + your Charisma modifier. Once an ally has benefited from your inspiring boost, that ally can’t gain the benefits of your inspiring boost again until he takes a 10-minute rest to recover Stamina Points.",
+    scaling: [{ level: 6, text: 'You can spend 1 RP to add your envoy level to the Stamina Points regained.' }],
+    source: { book: 'Starfinder Core Rulebook', page: 62 },
+    sfsLegal: true,
+    prerequisites: [],
+    repeatable: false,
+    limitations: ['Per-ally lockout until that ally takes a 10-minute rest to regain Stamina.'],
+  },
+  {
+    id: 'look_alive',
+    name: 'Look Alive',
+    levelRequired: 1,
+    actionType: 'passive',
+    range: '60 feet (during rest)',
+    tags: ['mind-affecting'],
+    shortDescription:
+      'After a 10-minute rest where you spend RP to regain stamina, allies within 60 ft throughout gain +2 morale to Perception and initiative for 1 hour or until next 10-minute rest.',
+    fullDescription:
+      "When you spend a Resolve Point to regain Stamina Points after a 10-minute rest, all allies who stay within 60 feet of you throughout the rest gain a +2 morale bonus to Perception and initiative checks for the next hour or until the next 10-minute rest to recover Stamina Points, whichever comes first.",
+    source: { book: 'Starfinder Core Rulebook', page: 62 },
+    sfsLegal: true,
+    prerequisites: [],
+    repeatable: false,
+  },
+  {
+    id: 'not_in_the_face',
+    name: 'Not in the Face',
+    levelRequired: 1,
+    actionType: 'move',
+    range: '60 feet',
+    tags: ['sense-dependent'],
+    shortDescription:
+      'Choose one enemy: Will save or it takes –4 to attacks vs you until end of your next turn; at 6th, 1 RP removes the save.',
+    fullDescription:
+      "As a move action, you can choose one enemy within 60 feet. That enemy must succeed at a Will save or take a –4 penalty to all attacks it makes against you until the end of your next turn.",
+    scaling: [{ level: 6, text: 'You can spend 1 RP to make the enemy take the penalty with no saving throw allowed.' }],
+    source: { book: 'Starfinder Core Rulebook', page: 62 },
+    sfsLegal: true,
+    prerequisites: [],
+    repeatable: false,
+  },
+  {
+    id: 'now_you_see_it',
+    name: 'Now You See It',
+    levelRequired: 1,
+    actionType: 'passive',
+    range: null,
+    tags: [],
+    shortDescription:
+      'Use Sleight of Hand to pick pockets in combat (DC = KAC+4). Can also plant an item; special grenade interaction if you have Pull the Pin.',
+    fullDescription:
+      "You’re adept at mid-combat distraction, creating openings to tamper with your foes’ gear. You can use Sleight of Hand to pick pockets during combat, though the check DC to take an item equals the foe’s KAC + 4 (rather than 20). Thereafter, the target can attempt a Perception check to spot your action, as normal.\nRather than steal an item, you can instead hide an item of light bulk or negligible bulk among the target’s belongings. If you have the Pull the Pin feat and successfully hide a grenade on a creature, you can activate the grenade as part of this action; if that grenade deals damage, after rolling the damage, you can roll your expertise die and replace one of the grenade’s damage dice with the expertise die’s result.",
+    source: { book: 'Starfinder Enhanced', page: 38 },
+    sfsLegal: true,
+    prerequisites: [],
+    repeatable: false,
+    synergies: [{ requires: 'pull_the_pin_feat', effect: 'Grenade plant can be activated; swap one damage die with expertise die.' }],
+  },
+  {
+    id: 'on_my_mark',
+    name: 'On My Mark',
+    levelRequired: 1,
+    actionType: 'passive',
+    range: 'varies',
+    tags: ['language-dependent', 'mind-affecting', 'sense-dependent'],
+    shortDescription:
+      'When you ready an action, allies who ready a similar action with the same trigger get +1 morale to their first roll; alternate expertise-die options; per-creature lockout until 10-minute rest.',
+    fullDescription:
+      "When you ready an action, you can also provide quick encouragement and directions. Any ally who readies a similar action—such as making an attack, even if with a different type of weapon—with the same trigger before you take your readied action gains a +1 morale bonus to their first attack roll or skill check performed as part of the readied action. If the readied action requires a skill check to which you can apply your skill expertise, you can forego rolling the die and instead choose one ally who readied the same action; that ally rolls your expertise die and applies the result as an insight bonus to their check. If the readied action involves an attack roll, you can roll your expertise die and add its result to the damage dealt by one ally who also readied an attack and successfully hit the target. Once a creature benefits from this improvisation, it can’t do so again until you rest for 10 minutes to recover Stamina Points.",
+    source: { book: 'Interstellar Species', page: 22 },
+    sfsLegal: true,
+    prerequisites: [],
+    repeatable: false,
+    immunities: [{ scope: 'target', duration: 'until you rest 10 minutes to regain Stamina' }],
+  },
+  {
+    id: 'phalanx_fighting',
+    name: 'Phalanx Fighting',
+    levelRequired: 1,
+    actionType: 'move',
+    range: '10 feet',
+    tags: ['language-dependent', 'sense-dependent'],
+    shortDescription:
+      'If you or an ally within 10 ft is wielding a shield, as a move action you grant the shield’s unaligned shield bonus to you and all allies within 10 ft of that ally until your next turn.',
+    fullDescription:
+      "Whenever you or an ally within 10 feet of you is wielding a shield, as a move action you can grant yourself and all allies within 10 feet of that ally the unaligned shield bonus of that shield until the start of your next turn.",
+    source: { book: 'Character Operations Manual', page: 69 },
+    sfsLegal: true, 
+    prerequisites: [],
+    repeatable: false,
+    restrictions: ['Requires a shield being wielded by you or an ally within 10 feet.'],
+  },
+  {
+    id: 'quick_quaff',
+    name: 'Quick Quaff',
+    levelRequired: 1,
+    actionType: 'standard',
+    range: '60 feet',
+    tags: ['mind-affecting', 'sense-dependent'],
+    shortDescription:
+      'Grant an ally a bonus standard action next turn usable only to draw/drink a serum or draw/inject a spell ampoule (and you can do it too). Only 1 bonus action from this family per round.',
+    fullDescription:
+      "As a standard action, you can grant a single standard action to an ally within 60 feet. The ally can use that action during her next turn to draw or drink a serum or draw or inject a spell ampule. As part of the action to activate this ability, you can also draw a serum or spell ampule, or if you used a standard action, drink a serum or inject a spell ampule. If the ally is adjacent to you, she can draw serums and spell ampules that you are carrying as though she were carrying them herself. The ally can use her extra action in between her other actions, as well as before or after a full action. A character can use no more than one extra action from quick quaff or similar abilities (such as the coordinated reload or hurry envoy improvisations) in a single round.",
+    source: { book: 'Starfinder Armory', page: 144 },
+    sfsLegal: true,
+    prerequisites: [],
+    repeatable: false,
+    limitations: ['Bonus-action-family limit: 1 per round (quick quaff / coordinated reload / hurry / similar).'],
+  },
+  {
+    id: 'ready_to_dance',
+    name: 'Ready to Dance',
+    levelRequired: 1,
+    actionType: 'reaction',
+    range: null,
+    tags: [],
+    shortDescription:
+      'Reaction when an attack hits your AC: raise AC as if fighting defensively; spend 1 RP to count as total defense instead; lasts until start of your next turn.',
+    fullDescription:
+      "You're always ready for a tussle or twelve. When an attack succeeds against your AC, you can use your reaction to increase your AC as though you were fighting defensively; if you also spend 1 Resolve Point, calculate your AC as though you were using the total defense action instead. This can change a successful hit into a miss. Either way, you remain fighting defensively or totally defending yourself until the start of your next turn.",
+    source: { book: 'Angels of the Drift #5', page: 28 },
+    sfsLegal: true,
+    prerequisites: [],
+    repeatable: false,
+  },
+  {
+    id: 'sonic_shroud',
+    name: 'Sonic Shroud',
+    levelRequired: 1,
+    actionType: 'standard',
+    range: '20-foot-radius emanation (centered on you)',
+    tags: ['sense-dependent'],
+    shortDescription:
+      'Create an area that disrupts hearing and hearing/vibration blindsense/blindsight; can maintain with move actions up to 1 minute; Fort negates per creature (10-min immunity); cooldown 1d10 minutes; radius can increase with amplification.',
+    fullDescription:
+      "As a standard action, you create a jarring noise affecting a 20-foot-radius emanation centered on you until the beginning of your next turn. This disrupts hearing, as well as blindsight and blindsense abilities based on hearing or vibration. While in the area, creatures take a penalty to hearing-based Perception checks equal to 1 + half your Charisma modifier. You can maintain the effect each round as a move action, extending its duration until the beginning of the following turn, to a maximum of 1 minute.\nIn addition, creatures in the area with blindsight (hearing or vibration) instead receive the benefits of blindsense with the same range, and those with blindsense (hearing or vibration) are unable to use that ability. The blindsight and blindsense effects last as long as the creature remains in the area, and until the beginning of their next turn if they leave it. When exposed to your sonic shroud, a creature can attempt a Fortitude save to negate the effect and become immune to it for 10 minutes.\nAfter you use this improvisation, you cannot do so again for 1d10 minutes.\nSpecial: If you have a voice amplifier augmentation or other effect that significantly increases your volume, you can increase this improvisation’s radius to 30 feet while that amplifying effect is activated.",
+    source: { book: 'Starfinder Enhanced', page: 38 },
+    sfsLegal: true,
+    prerequisites: [],
+    repeatable: false,
+    cooldown: { type: 'randomMinutes', dice: '1d10' },
+    immunities: [{ scope: 'target', duration: '10 minutes', trigger: 'successful Fortitude save vs Sonic Shroud' }],
+    scaling: [],
+    special: ['If volume amplification active: radius 30 ft (instead of 20).'],
+  },
+  {
+    id: 'sow_discontent',
+    name: 'Sow Discontent',
+    levelRequired: 1,
+    actionType: 'move',
+    range: '30 feet',
+    tags: ['language-dependent', 'mind-affecting', 'sense-dependent'],
+    shortDescription:
+      'Bluff vs feint DC: on success, target treats allies as non-allies (no flanking/aid/ally-only effects) until your next turn; at 6th, 1 RP can extend for Cha mod rounds.',
+    fullDescription:
+      "As a move action, you can attempt to deceive an enemy within 30 feet who can hear you into suspecting its allies of treachery. Attempt a Bluff check with the same DC as a check to feint against that enemy (though this isn’t a standard check to feint, so Improved Feint and Greater Feint don’t apply). If you succeed, the target acts as though they have no allies and are not considered to be an ally to any other creature until the beginning of your next turn. An affected target can’t move freely through former allies’ spaces or flank creatures with them; the target can’t give or receive benefits from the aid another action, any spells, or effects that affect only allies. In addition, if the target can make an attack of opportunity, they do so even against their former allies, but they also avoid actions that would provoke attacks of opportunities from their former allies (even if those creatures wouldn’t make the attack of opportunity). This doesn’t otherwise grant you influence over the affected target or make it more positively disposed toward you or your allies.\nA creature who tries to cast a spell that has a range of touch on the affected target must succeed at an attack roll to touch the target, even if the spell is harmless, though the affected target isn’t forced to attempt saving throws against harmless effects.",
+    scaling: [
+      { level: 6, text: 'When you succeed, you can spend 1 RP to have the effect last a number of rounds equal to your Charisma modifier.' },
+    ],
+    source: { book: 'Starfinder #35: Merchants of the Void', page: 51 },
+    sfsLegal: true,
+    prerequisites: [],
+    repeatable: false,
+  },
+  {
+    id: 'spell_gem_understanding',
+    name: 'Spell Gem Understanding',
+    levelRequired: 1,
+    actionType: 'passive',
+    range: null,
+    tags: [],
+    shortDescription:
+      'Use spell gems as if a spellcaster; treat mystic/technomancer/witchwarper lists as yours; Cha is key ability; caster level = envoy level.',
+    fullDescription:
+      'You can use spell gems as if you were a spellcaster. For purposes of using spell gems, you treat all spells on the mystic, technomancer, and witchwarper spell lists as your class’s spell list, and you use Charisma as your key ability score for your spellcasting. Your effective caster level for any spell gems you use is equal to your envoy level',
+    source: { book: 'Character Operations Manual', page: 96 },
+    sfsLegal: true,
+    prerequisites: [],
+    repeatable: false,
+  },
+  {
+    id: 'superior_covering_fire',
+    name: 'Superior Covering Fire',
+    levelRequired: 1,
+    actionType: 'passive',
+    range: null,
+    tags: ['language-dependent', 'mind-affecting', 'sense-dependent'],
+    shortDescription:
+      'Your successful covering fire (AC 15) applies its circumstance bonus vs all attacks against that ally until your next turn; plus a full-action option to cover two allies (–4 each).',
+    fullDescription:
+      "When you take a standard action to provide covering fire and hit the AC 15 required, the target of your covering fire gains the circumstance bonus provided by your covering fire against all attacks attempted against them until the start of your next turn.\nAdditionally, as a full action you can make two ranged attack rolls to provide covering fire to two different allies, taking a −4 penalty to each attack roll. For each target that you successfully apply covering fire to, the circumstance bonus provided by your covering fire applies against all attacks attempted against that ally until the start of your next turn.",
+    source: { book: 'Character Operations Manual', page: 69 },
+    sfsLegal: true,
+    prerequisites: [],
+    repeatable: false,
+  },{
+    id: 'take_the_hit',
+    name: 'Take The Hit',
+    levelRequired: 1,
+    actionType: 'passive',
+    range: null,
+    tags: [],
+    shortDescription:
+      'Gain Bodyguard (or In Harm’s Way if you already have it). If you intercept an attack with In Harm’s Way and drop to 0 HP, the original target gets morale boosts and temp HP for Cha mod rounds or until you regain consciousness.',
+    fullDescription:
+      "Not only are you ready to risk yourself to protect others—your sacrifice also inspires your companion. You gain Bodyguard as a bonus feat. If you already have Bodyguard, you instead gain In Harm’s Way as a bonus feat. If you use In Harm’s Way to intercept an attack that then reduces you to 0 Hit Points, you grant the attack’s original target a +1 morale bonus to AC, attack rolls, saving throws, and skill checks, as well as a number of temporary Hit Points equal to your envoy level + your Charisma modifier. These benefits last for a number of rounds equal to your Charisma modifier or until you regain consciousness, whichever happens first.",
+    source: { book: 'Interstellar Species', page: 22 },
+    sfsLegal: true,
+    prerequisites: [],
+    repeatable: false,
+    grants: [{ type: 'feat', name: 'Bodyguard', fallback: { ifHas: 'Bodyguard', grant: 'In Harm’s Way' } }],
+  },
+  {
+    id: 'teamwork_is_dream_work',
+    name: 'Teamwork Is Dream Work',
+    levelRequired: 1,
+    actionType: 'reaction',
+    range: '60 feet (practically, to observe the triggering action)',
+    tags: ['language-dependent', 'mind-affecting', 'sense-dependent'],
+    shortDescription:
+      'Reaction after an ally attempts aid another/covering/harrying (before results): either add half your expertise die to their roll, or increase granted bonus to +3. At 6th, 1 RP lets you do both and without spending an action.',
+    fullDescription:
+      "Through supervision and communication, you enable seamless coordination among your allies. As a reaction after an ally makes a check or attack roll to use the aid another, covering fire, or harrying fire actions to help a second ally (but before the results are applied), you can provide insights in one of two ways. You can roll your expertise die and add half the result to the first ally’s check or attack, potentially turning a failed result into a success. Alternatively, you can cause the aid another, covering fire, or harrying fire action to increase its granted bonus to +3.\nAt 6th level, you can spend a Resolve Point to use this improvisation without spending an action. When you do so, you both apply half the result of your expertise die to the first ally’s check, and you increase the action’s granted bonus to +4.",
+    scaling: [
+      { level: 6, text: 'Spend 1 RP to use without spending an action; also apply half expertise die AND increase bonus to +4.' },
+    ],
+    source: { book: 'Starfinder Enhanced', page: 38 },
+    sfsLegal: true,
+    prerequisites: [],
+    repeatable: false,
+  },
+  {
+    id: 'universal_expression',
+    name: 'Universal Expression',
+    levelRequired: 1,
+    actionType: 'passive',
+    range: null,
+    tags: [],
+    shortDescription:
+      'When using a language-dependent improvisation that affects an enemy, you can use it even if you don’t share a language.',
+    fullDescription:
+      'When using a language-dependent improvisation that affects an enemy, you can use the improvisation against that enemy even if the two of you do not share a language.',
+    source: { book: 'Starfinder Core Rulebook', page: 62 },
+    sfsLegal: true,
+    prerequisites: [],
+    repeatable: false,
+  },
+  {
+    id: 'vexing_style',
+    name: 'Vexing Style',
+    levelRequired: 1,
+    actionType: 'swift (to start); free (to end at start of your turn)',
+    range: '60 feet',
+    tags: ['language-dependent', 'mind-affecting', 'sense-dependent'],
+    shortDescription:
+      'Swift to start: enemies in 60 ft take –1 to attacks vs you; you gain +2 to Bluff feints vs them; they deal bonus weapon damage vs you equal to half CR; crits can opt-out (immune) for 1 hour.',
+    fullDescription:
+      "You’re an expert at infuriating wordplay that trips up enemies. You can activate this improvisation as a swift action, and you can end it without spending an action at the beginning of your turn. The improvisation’s effects end automatically when combat ends or when you can no longer communicate effectively (such as by becoming inaudible, paralyzed, or unconscious). Enemies within 60 feet of you take a –1 penalty to attacks against you, and you gain a +2 bonus to Bluff checks to feint those creatures. In turn, they gain a bonus to weapon damage against you equal to half the creature’s CR (minimum 1, rounded down). When an affected creature scores a critical hit against you, they can choose to become immune to your vexing style improvisation and to improvisations that use vexing style as a prerequisite for 1 hour.",
+    source: { book: 'Starfinder Enhanced', page: 39 },
+    sfsLegal: true,
+    prerequisites: [],
+    repeatable: false,
+    immunities: [{ scope: 'target', duration: '1 hour', trigger: 'target crits you and chooses immunity' }],
+    special: ['Ends if you can no longer communicate effectively.'],
+  },
+  {
+    id: 'watch_your_step',
+    name: 'Watch Your Step',
+    levelRequired: 1,
+    actionType: 'reaction',
+    range: '60 feet',
+    tags: ['language-dependent', 'mind-affecting', 'sense-dependent'],
+    shortDescription:
+      'Reaction before an ally rolls a Reflex save vs harm: grant +2; at 6th, 1 RP lets them roll twice take better (both get +2).',
+    fullDescription:
+      'When an ally within 60 feet must succeed at a Reflex save to avoid a harmful effect, as a reaction before your ally attempts the saving throw, you can grant the ally a +2 bonus to that saving throw.',
+    scaling: [
+      {
+        level: 6,
+        text:
+          'You can spend 1 RP to have the ally roll twice on the saving throw and take the better result. Both rolls benefit from the +2 bonus.',
+      },
+    ],
+    source: { book: 'Starfinder Core Rulebook', page: 63 },
+    sfsLegal: true,
+    prerequisites: [],
+    repeatable: false,
+  },
+  // Level 2 Envoy Improvisations //
+  {
+    id: 'expert_guide',
+    name: 'Expert Guide',
+    levelRequired: 2,
+    actionType: 'move',
+    range: 'perceivable squares',
+    tags: ['language-dependent', 'sense-dependent'],
+    shortDescription:
+      'Move action: DC 15 Survival to mark difficult-terrain squares you can perceive; you and allies treat them as normal terrain until end of your next turn.',
+    fullDescription:
+      "As a move action, you can attempt a DC 15 Survival check to identify a clear path. If you succeed, select one 5-foot square of difficult terrain that you can perceive, plus one additional 5-foot square for every 5 points by which the result of your check exceeds the DC. Until the end of your next turn, you and your allies can move through the indicated spaces as though they weren’t difficult terrain.",
+    source: { book: 'Galaxy Exploration Manual', page: 16 },
+    sfsLegal: true,
+    prerequisites: [],
+    repeatable: false,
+    restrictions: [
+      'Squares must be difficult terrain.',
+      'You must be able to perceive the squares.',
+    ],
+  },
+  {
+    id: 'shoo',
+    name: 'Shoo!',
+    levelRequired: 2,
+    actionType: 'standard',
+    range: '60 feet',
+    tags: ['sense-dependent'],
+    shortDescription:
+      'Standard action: Intimidate to demoralize an animal/vermin; on success, Will save or frightened for 1 round (or until it moves away). Target immune 24 hours. At 6th, can target multiple.',
+    fullDescription:
+      "As a standard action, you can attempt an Intimidate check to demoralize a creature with the animal or vermin creature type within 60 feet of you. If you succeed, the target must also succeed at a Will saving throw (DC = 10 + 1/2 your envoy level + your Charisma modifier) or become frightened for 1 round or until it takes an action to move away from you. Once a creature has been affected by this ability, it’s immune for 24 hours.",
+    scaling: [
+      {
+        level: 6,
+        text:
+          "You can spend 1 Resolve Point to target multiple creatures with the animal or vermin creature type with this ability, up to a maximum number of creatures equal to half your envoy level. Attempt one Intimidate check against all your selected targets. The DC of the check is equal to the highest DC to demoralize any one of the foes, plus 1 for each additional target beyond the first.",
+      },
+    ],
+    immunities: [{ scope: 'target', duration: '24 hours' }],
+    source: { book: 'Galaxy Exploration Manual', page: 16 },
+    sfsLegal: true,
+    prerequisites: [],
+    repeatable: false,
+    restrictions: [
+      'Targets must be creature type animal or vermin.',
+    ],
+  },
+  {
+    id: 'spectacle',
+    name: 'Spectacle',
+    levelRequired: 2,
+    actionType: 'standard',
+    range: '60 feet',
+    tags: ['mind-affecting', 'sense-dependent'],
+    shortDescription:
+      'Standard action: Bluff vs Sense Motive/CR-based DC to “lock attention” on you, penalizing Perception not vs you and attacks that don’t include you. Can extend as a move action; at 6th can affect multiple.',
+    fullDescription:
+      "As a standard action, you can distract an opponent within 60 feet. Attempt a Bluff check; the DC of this check is equal to either 10 + your opponent’s total Sense Motive skill bonus or 15 + 1-1/2 × the opponent’s CR, whichever is greater. If you succeed, the target’s attention is locked on you, giving it a –2 penalty to Perception checks other than those made against you as well as a –2 penalty to attack rolls for any attack that doesn’t include you as a target. This effect lasts until the end of your next turn or until the target can no longer perceive you with a precise sense. As a move action, you can extend the effect’s duration until the end of your following turn.",
+    scaling: [
+      {
+        level: 6,
+        text:
+          "You can spend 1 Resolve Point to affect multiple creatures, up to a maximum of half your envoy level. Attempt one check against all of the targets. The DC of the check is equal to the DC to use spectacle against the creature with the highest CR of those you’re attempting to affect, plus 1 for each target beyond the first. When you extend the effect, the duration increases for all targets. However, the effect ends for a target (though not necessarily for other targets) once that target can no longer perceive you with a precise sense.",
+      },
+    ],
+    source: { book: 'Galaxy Exploration Manual', page: 16 },
+    sfsLegal: true,
+    prerequisites: [],
+    repeatable: false,
+    restrictions: [
+      'Effect ends for a target if it can no longer perceive you with a precise sense.',
+      'You can extend duration as a move action.',
+    ],
+  },
+  // Level 4 Envoy Improvisations //
+  {
+    id: 'borrowed_arcana',
+    name: 'Borrowed Arcana',
+    levelRequired: 4,
+    actionType: 'standard-or-longer',
+    range: '30 feet',
+    tags: ['spell-like'],
+    sfsLegal: false,
+    source: { book: 'Galactic Magic', page: 21 },
+    shortDescription:
+      "Spend RP to cast a willing/unconscious ally’s spell as a spell-like ability; ally expends slot; you use envoy level as CL and Cha for DCs. RP cost increases each time per day.",
+    fullDescription:
+      "You can spend 1 Resolve Point to draw magic from a willing or unconscious ally within 30 feet of you, casting one of their spells as a spell-like ability. The spell’s level cannot exceed the maximum spell level you can empower with your spell speaker ability, and the ally must expend the appropriate available spell slot. You use your envoy level as the caster level, and you use your Charisma modifier to calculate the spell’s saving throw DCs. Activating this improvisation and casting the spell takes a standard action or an amount of time equal to the spell’s casting time, whichever is longer. Each time you use this improvisation per day, its Resolve Point cost increases by 1.",
+    prerequisites: [
+      { type: 'level', value: 4 },
+      { type: 'alternateClassAbility', value: 'spell speaker' },
+    ],
+    restrictions: [
+      'Target ally must be willing or unconscious.',
+      'Ally must expend an appropriate available spell slot.',
+      'Spell level cannot exceed maximum spell level you can empower with spell speaker.',
+      'Activation time is standard action or the spell’s casting time, whichever is longer.',
+      'Each additional use per day increases RP cost by 1 (not tracked automatically).',
+    ],
+  },
+  {
+    id: 'clever_attack',
+    name: 'Clever Attack',
+    levelRequired: 4,
+    actionType: 'standard',
+    range: '60 feet',
+    tags: [],
+    sfsLegal: true,
+    source: { book: 'Starfinder Core Rulebook', page: 63 },
+    shortDescription:
+      'Standard action: make one attack and also use clever feint vs the target; apply clever feint effects before resolving the attack.',
+    fullDescription:
+      "You can make an attack that throws your enemy off-balance. As a standard action, you can make a single attack against a target within 60 feet and gain the benefits of clever feint (attempting a Bluff check against the target as normal). Apply the effects of clever feint before resolving your attack.",
+    prerequisites: [{ type: 'improvisation', value: 'Clever Feint' }],
+    restrictions: [],
+  },
+  {
+    id: 'combat_codebreaker',
+    name: 'Combat Codebreaker',
+    levelRequired: 4,
+    actionType: 'swift',
+    range: '60 feet',
+    tags: ['sense-dependent'],
+    sfsLegal: true,
+    source: { book: 'Starfinder Enhanced', page: 39 },
+    shortDescription:
+      'Swift action: study 2+ observed foes (clustered within 60 ft; within 30 ft of each other). Culture or Sense Motive vs CR/SM DC. On success, next time one studied foe attacks an ally before your next turn, that ally gains covering fire vs that attack. Rest-gated reuse.',
+    fullDescription:
+      "You swiftly dissect enemies’ battle jargon, letting you predict their next strategy. As a swift action, you can study two or more foes that you can observe precisely, all of which must be within 60 feet of you and no more than 30 feet apart from each other. Attempt either a Culture or Sense Motive check; the DC equals either 10 + the most powerful foe’s total Sense Motive skill bonus, or 15 + 1-1/2 × the most powerful foe’s CR, whichever is greater. If you succeed, the next time before the beginning of your next turn that one of those creatures makes an attack against one of your allies, that ally gains the benefit of covering fire against the attack. This improvisation has no effect when used to study only one creature. Once you grant an ally this covering fire benefit using this improvisation, you cannot use it again until you take a 10-minute rest to recover Stamina Points.",
+    prerequisites: [],
+    restrictions: [
+      'Requires studying at least 2 creatures.',
+      'Studied foes must be within 60 feet of you and within 30 feet of each other.',
+      'You must be able to observe the foes precisely.',
+      'After granting the covering fire benefit, you can’t use again until a 10-minute rest to regain SP.',
+    ],
+  },
+  {
+    id: 'duck_under',
+    name: 'Duck Under',
+    levelRequired: 4,
+    actionType: 'reaction',
+    range: 'melee attacker',
+    tags: [],
+    sfsLegal: true,
+    source: { book: 'Starfinder Core Rulebook', page: 63 },
+    shortDescription:
+      'Requires you to take total defense. If a foe misses you with a melee attack before your next turn, reaction to attempt reposition vs that foe with +8.',
+    fullDescription:
+      "You can duck under a foe’s melee attack, causing it to overextend and move into a position more favorable to you. You must take the total defense action (see page 247) to use this ability. If, before the start of your next turn, a foe misses you with a melee attack, as a reaction you can attempt a reposition combat maneuver with a +8 bonus to your attack roll against that foe.",
+    prerequisites: [],
+    restrictions: ['You must take the total defense action to use this ability.'],
+  },
+  {
+    id: 'exactly_as_i_would_have_done',
+    name: 'Exactly as I Would Have Done',
+    levelRequired: 4,
+    actionType: 'passive',
+    range: 'self',
+    tags: [],
+    sfsLegal: true,
+    source: { book: 'Starfinder #25: The Chimera Mystery', page: 47 },
+    shortDescription:
+      "You aren’t flat-footed during a surprise round. At 8th, you can spend RP to share with one ally (that use is language-dependent, mind-affecting, sense-dependent).",
+    fullDescription:
+      "Your keen tactical mind predicts when and where an ambush would be ideal so you aren’t surprised when enemies exploit the same strategy. You aren’t flat-footed during a surprise round.",
+    scaling: [
+      {
+        level: 8,
+        text:
+          "You can spend 1 Resolve Point to share this benefit with one ally you could have reasonably warned of the attack at the last minute; this application of the improvisation is a language-dependent, mind-affecting, sense-dependent effect.",
+      },
+    ],
+    prerequisites: [],
+    restrictions: [
+      '8th-level share requires you could have reasonably warned the ally.',
+    ],
+  },
+  {
+    id: 'false_flanking',
+    name: 'False Flanking',
+    levelRequired: 4,
+    actionType: 'reaction',
+    range: 'melee flanker',
+    tags: [],
+    sfsLegal: true,
+    source: { book: 'Starfinder #35: Merchants of the Void', page: 51 },
+    shortDescription:
+      'When flanked and a flanking foe misses you with melee, reaction: attempt reposition. On success, swap places and the foe rerolls the attack against their flanking ally with flanking benefits. At 12th, can use even if attack would hit by spending RP; you take minimum damage on success.',
+    fullDescription:
+      "You can trick a flanking enemy into hurting their ally. When a foe is flanking you and misses you with a melee attack, you can attempt a reposition combat maneuver against that foe as a reaction. If your combat maneuver succeeds, you switch places with that foe, and the foe rerolls the attack against the ally who was allowing them to flank you. This attack roll is made at the same bonus as the original attack and gains the benefits of flanking.",
+    scaling: [
+      {
+        level: 12,
+        text:
+          "You can use this improvisation even if the attack would hit you by spending 1 Resolve Point; if your combat maneuver succeeds, you take the minimum amount of damage, and the foe still rerolls the attack against their ally.",
+      },
+    ],
+    prerequisites: [],
+    restrictions: ['Trigger requires the foe is flanking you (and normally: misses you with a melee attack).'],
+  },
+  {
+    id: 'focus',
+    name: 'Focus',
+    levelRequired: 4,
+    actionType: 'standard',
+    range: '60 feet',
+    tags: ['mind-affecting', 'sense-dependent'],
+    sfsLegal: true,
+    source: { book: 'Starfinder Core Rulebook', page: 63 },
+    shortDescription:
+      'Standard action: end an ally’s flat-footed or off-target; if it would immediately reapply, suppress it for 1 round.',
+    fullDescription:
+      "As a standard action, you can encourage a single ally within 60 feet to focus on the danger at hand. If that ally is flat-footed or off-target, you end that condition. If circumstances would cause the ally to immediately become flat-footed or off-target again, you instead suppress that condition for 1 round.",
+    prerequisites: [],
+    restrictions: [],
+  },
+  {
+    id: 'hurry',
+    name: 'Hurry',
+    levelRequired: 4,
+    actionType: 'standard',
+    range: '60 feet',
+    tags: ['mind-affecting', 'sense-dependent'],
+    sfsLegal: true,
+    source: { book: 'Starfinder Core Rulebook', page: 63 },
+    shortDescription:
+      'Standard action: grant an ally one extra move action next turn (guarded step, move up to speed, draw/sheathe). Only one bonus action of this sort per round.',
+    fullDescription:
+      "As a standard action, you can grant a single move action to an ally within 60 feet. The ally can use that move action during her next turn to take a guarded step, move up to her speed, or draw or sheathe a weapon. The ally can use her extra move action in between her other actions, and she can even use it before or after a full action. A character can use no more than one extra action from hurry in a single round.",
+    prerequisites: [],
+    restrictions: [
+      'A character can use no more than one bonus action from hurry or similar abilities in a single round.',
+    ],
+  },
+  {
+    id: 'infuriating_target',
+    name: 'Infuriating Target',
+    levelRequired: 4,
+    actionType: 'passive-plus-reaction',
+    range: 'adjacent designated opponent',
+    tags: [],
+    sfsLegal: true,
+    source: { book: 'Starfinder #25: The Chimera Mystery', page: 47 },
+    shortDescription:
+      'Enhances Frustrating Target: while adjacent, you get +2 Reflex vs area; if designated opponent is also in area, it takes –2 Reflex. At 8th, RP reaction to expand the area to include designated opponent (if adjacent) and apply –2 Reflex.',
+    fullDescription:
+      "You move with skill and grace in combat, using others as living shields. When you use frustrating target, you also gain a +2 circumstance bonus to Reflex saving throws against area effects as long as you are still adjacent to the designated opponent. If your designated opponent is also within the same area of effect, it takes a –2 penalty to their Reflex save.",
+    prerequisites: [{ type: 'improvisation', value: 'Frustrating Target' }],
+    scaling: [
+      {
+        level: 8,
+        text:
+          "You can spend 1 Resolve Point as a reaction whenever you attempt a Reflex save against an area effect to have that area expand to encompass your designated opponent, as long as you are adjacent to it. The opponent’s Reflex save takes a –2 penalty.",
+      },
+    ],
+    restrictions: ['Requires you are using Frustrating Target and remain adjacent to the designated opponent.'],
+  },
+  {
+    id: 'long_range_improvisation',
+    name: 'Long-Range Improvisation',
+    levelRequired: 4,
+    actionType: 'passive',
+    range: 'self',
+    tags: [],
+    sfsLegal: true,
+    source: { book: 'Starfinder Core Rulebook', page: 63 },
+    shortDescription:
+      'Double the range of your improvisations with ranges of at least 30 feet.',
+    fullDescription:
+      'Double the range of your improvisations with ranges of at least 30 feet.',
+    prerequisites: [],
+    restrictions: ['Only affects improvisations whose range is at least 30 feet.'],
+  },
+  {
+    id: 'martyrs_improvisation',
+    name: "Martyr’s Improvisation",
+    levelRequired: 4,
+    actionType: 'reaction',
+    range: 'self',
+    tags: [],
+    sfsLegal: true,
+    source: { book: 'Character Operations Manual', page: 70 },
+    shortDescription:
+      'When reduced to 0 HP, reaction (before dying) to immediately use one improvisation that uses a standard/move/reaction. Rest-gated reuse.',
+    fullDescription:
+      "Whenever you’re reduced to 0 Hit Points, as a reaction before gaining the dying condition, you can immediately use any one of your envoy improvisations that can be used as a standard action, move action, or reaction. Once you have used this improvisation, you can’t use this ability again until you have regained Stamina Points following a 10-minute rest.",
+    prerequisites: [],
+    restrictions: [
+      'Trigger: reduced to 0 HP; must be before gaining dying condition.',
+      'Can’t use again until after a 10-minute rest to regain SP.',
+    ],
+  },
+  {
+    id: 'perfect_insult',
+    name: 'Perfect Insult',
+    levelRequired: 4,
+    actionType: 'standard',
+    range: '60 feet',
+    tags: ['language-dependent', 'mind-affecting', 'sense-dependent'],
+    sfsLegal: true,
+    source: { book: 'Galaxy Exploration Manual', page: 16 },
+    shortDescription:
+      'Standard action: Culture vs Bluff/CR DC; on success, you gain +2 circumstance to Bluff/Intimidate vs target for 1 minute; spend RP to share with allies within 60 ft. Target immune 24h.',
+    fullDescription:
+      "As a standard action, you study a creature to cultivate the perfect insult. Attempt a Culture check with a DC equal to 10 + your opponent’s total Bluff skill bonus, or 15 + 1-1/2 × the opponent’s CR, whichever is greater. If you succeed, you gain a +2 circumstance bonus to Bluff and Intimidate checks against that opponent for 1 minute. If you spend 1 Resolve Point, allies within 60 feet also gain this bonus for the same duration. Once you’ve attempted to craft a perfect insult against a creature, you can’t target that creature again with this ability for 24 hours.",
+    prerequisites: [],
+    immunities: [{ scope: 'target', duration: '24 hours' }],
+    restrictions: ['Once you attempt vs a creature, you can’t target it again for 24 hours.'],
+  },
+  {
+    id: 'quick_dispiriting_taunt',
+    name: 'Quick Dispiriting Taunt',
+    levelRequired: 4,
+    actionType: 'passive',
+    range: 'modifies Dispiriting Taunt',
+    tags: [],
+    sfsLegal: true,
+    source: { book: 'Starfinder Core Rulebook', page: 63 },
+    shortDescription:
+      'You can use Dispiriting Taunt as a move action instead of a standard action.',
+    fullDescription:
+      'You can use dispiriting taunt as a move action instead of a standard action.',
+    prerequisites: [{ type: 'improvisation', value: 'Dispiriting Taunt' }],
+    restrictions: [],
+  },
+  {
+    id: 'quick_inspiring_boost',
+    name: 'Quick Inspiring Boost',
+    levelRequired: 4,
+    actionType: 'passive',
+    range: 'modifies Inspiring Boost',
+    tags: [],
+    sfsLegal: true,
+    source: { book: 'Starfinder Core Rulebook', page: 63 },
+    shortDescription:
+      'You can use Inspiring Boost as a move action instead of standard, but ally regains fewer SP equal to your envoy level.',
+    fullDescription:
+      "You can use inspiring boost as a move action instead of a standard action, though when you do so, the number of Stamina Points your ally recovers is reduced by your envoy level.",
+    prerequisites: [{ type: 'improvisation', value: 'Inspiring Boost' }],
+    restrictions: ['Reduces SP restored by your envoy level when used as a move action.'],
+  },
+  {
+    id: 'quick_shoo',
+    name: 'Quick Shoo!',
+    levelRequired: 4,
+    actionType: 'passive',
+    range: 'modifies Shoo!',
+    tags: ['sense-dependent'],
+    sfsLegal: true,
+    source: { book: 'Galaxy Exploration Manual', page: 16 },
+    shortDescription:
+      'You can use Shoo! as a move action instead of a standard action.',
+    fullDescription:
+      'You can use shoo! as a move action instead of a standard action.',
+    prerequisites: [{ type: 'improvisation', value: 'Shoo!' }],
+    restrictions: [],
+  },
+  {
+    id: 'sting_of_failure',
+    name: 'Sting of Failure',
+    levelRequired: 4,
+    actionType: 'reaction',
+    range: '60 feet',
+    tags: ['language-dependent', 'mind-affecting', 'sense-dependent'],
+    sfsLegal: true,
+    source: { book: 'Starfinder Enhanced', page: 39 },
+    shortDescription:
+      'Reaction when a creature within 60 ft misses you: Will save or off-target until end of your next turn; if no shared language, target gets +4 to save. If it succeeds, immune 1 hour. At 6th, can spend RP to make off-target no-save and also prevent reactions (save negates reactions).',
+    fullDescription:
+      "As a reaction when a creature within 60 feet misses you with an attack, you can taunt them. The creature gains the off-target condition until the end of your next turn (Will negates). You can use this improvisation against a creature with whom you don’t share a language, but the creature gains a +4 bonus to its Will save against the effect. Once a creature successfully saves against this improvisation, it is immune to your sting of failure for 1 hour.",
+    scaling: [
+      {
+        level: 6,
+        text:
+          "You can spend a Resolve Point when you use this ability to enhance its effect. The creature becomes off-target until the end of your next turn (no save), during which time they cannot take reactions (save negates).",
+      },
+    ],
+    immunities: [{ scope: 'targetOnSuccessfulSave', duration: '1 hour' }],
+    restrictions: ['If you don’t share a language, the target gets +4 to its Will save.'],
+  },
+  {
+    id: 'sudden_shift',
+    name: 'Sudden Shift',
+    levelRequired: 4,
+    actionType: 'reaction',
+    range: '60 feet (from you); 60 feet (from opponent for allies)',
+    tags: ['language-dependent', 'mind-affecting', 'sense-dependent'],
+    sfsLegal: false,
+    source: { book: 'Character Operations Manual', page: 70 },
+    shortDescription:
+      'Reaction when you or an ally damages an opponent within 60 ft: all allies within 60 ft of that opponent can guarded step as a reaction; those allies take –5 speed until end of their next turn.',
+    fullDescription:
+      "Whenever you or an ally deal damage to an opponent within 60 feet of you, you can take a reaction to allow all allies within 60 feet of the opponent to take a guarded step as a reaction. All of the characters who took a guarded step using this improvisation have their speed reduced by 5 feet until the end of their next turn.",
+    prerequisites: [],
+    restrictions: ['Applies –5 speed to allies who used the guarded step via this improvisation until end of their next turn.'],
+  },
+  {
+    id: 'terrifying_blast',
+    name: 'Terrifying Blast',
+    levelRequired: 4,
+    actionType: 'passive',
+    range: 'grenade explosion radius',
+    tags: ['mind-affecting', 'sense-dependent'],
+    sfsLegal: true,
+    source: { book: 'Starfinder Armory', page: 144 },
+    shortDescription:
+      'When you throw a grenade: creatures in the blast that fail Reflex and take damage must Will save or be shaken 1 round (fear effect).',
+    fullDescription:
+      "When you throw a grenade, each creature within the radius of the explosion that fails its Reflex save against the grenade and takes damage from it must succeed at a Will save or gain the shaken condition for 1 round. This is a fear effect.",
+    prerequisites: [],
+    restrictions: ['Only triggers for creatures that both fail the grenade Reflex save and take damage.'],
+  },
+  {
+    id: 'watch_out',
+    name: 'Watch Out',
+    levelRequired: 4,
+    actionType: 'reaction',
+    range: '60 feet',
+    tags: ['language-dependent', 'mind-affecting', 'sense-dependent'],
+    sfsLegal: true,
+    source: { book: 'Starfinder Core Rulebook', page: 63 },
+    shortDescription:
+      'Reaction when an enemy declares a ranged attack vs an ally within 60 ft (before the roll): your ally can spend a reaction for +4 AC vs that attack; after it resolves, ally falls prone. At 8th, spend RP to prevent falling prone.',
+    fullDescription:
+      "As a reaction, when an enemy makes a ranged attack against an ally within 60 feet of you, you can warn that ally of the danger. You must spend your reaction when the enemy declares the attack but before it makes the attack roll. Your ally can spend a reaction to gain a +4 to AC against the triggering attack. Once the triggering attack is resolved, the ally falls prone.",
+    scaling: [
+      {
+        level: 8,
+        text:
+          "You can spend 1 Resolve Point to prevent your ally from falling prone after the attack.",
+      },
+    ],
+    prerequisites: [],
+    restrictions: [
+      'You must use your reaction after attack is declared but before the attack roll.',
+      'Ally must spend a reaction to gain the +4 AC.',
+      'Ally falls prone after the attack unless prevented at 8th level with RP.',
+    ],
+  },
+  {
+    id: 'youve_got_this',
+    name: "You’ve Got This",
+    levelRequired: 4,
+    actionType: 'reaction',
+    range: '60 feet',
+    tags: ['language-dependent', 'sense-dependent'],
+    sfsLegal: true,
+    source: { book: 'Galaxy Exploration Manual', page: 16 },
+    shortDescription:
+      'Reaction when an ally within 60 ft fails Acrobatics/Athletics: they reroll using your modifier if better; must take second result. Ally can’t benefit again until a 10-minute rest.',
+    fullDescription:
+      "When an ally within 60 feet fails an Acrobatics or Athletics check, as a reaction, you allow that ally to reroll the check, using your modifier for the skill if it’s better than theirs. They must use the second result. A creature can’t benefit from this ability again until they take a 10-minute rest to recover Stamina Points.",
+    prerequisites: [],
+    restrictions: ['A creature can’t benefit again until it takes a 10-minute rest to recover SP.'],
+  },
+  // Level 6 Envoy Improvisations //
+  {
+    id: 'become_the_robot',
+    name: 'Become the Robot',
+    levelRequired: 6,
+    actionType: 'standard',
+    range: 'self (affects nearby constructs)',
+    tags: ['sense-dependent'],
+    sfsLegal: true,
+    source: { book: 'Starfinder Enhanced', page: 39 },
+    shortDescription:
+      'Standard action: nearby constructs treat you as an authorized construct (–4 Perception to observe; starting attitude indifferent). Constructs can Will save to see through; on success immune 24h. Maintain up to 1 hour, then must “reset” for equal time. At 10th, RP + full action to extend to Cha-mod allies; allies must keep line of sight to you.',
+    fullDescription:
+      "As a standard action, you can adjust your stance and behavior to deceive nearby constructs into mistaking you for another construct that’s authorized to be nearby. Affected constructs barely notice you, taking a –4 penalty to Perception checks to observe you and having a starting attitude of indifferent toward you. The first time a construct observes you, it can attempt a Will save to see through the disguise, becoming immune to its effect for 24 hours if it succeeds; a construct applies its Intelligence modifier to this Will save, making unintelligent constructs especially easy to fool. A construct can attempt an additional saving throw to become immune to the effect if it observes you performing prohibited actions, like trying to enter a highly restricted area or rigging explosives. A construct automatically succeeds at the saving throw if it observes blatantly hostile actions, like your attacking one of its allies. You can maintain this improvisation for up to 1 hour, after which you need to stretch and move normally for an equal amount of time before you can use the improvisation again.",
+    scaling: [
+      {
+        level: 10,
+        text:
+          "You can spend 1 Resolve Point and use this ability as a full action to grant its effects to a number of allies equal to your Charisma modifier. The effect ends for an ally if they end their turn without line of sight to you.",
+      },
+    ],
+    immunities: [{ scope: 'constructOnSuccessfulSave', duration: '24 hours' }],
+    restrictions: [
+      'Applies only to constructs (deception target).',
+      'A construct applies its Intelligence modifier to the Will save.',
+      'Constructs can attempt an additional save to become immune if they observe prohibited actions.',
+      'Constructs automatically succeed if they observe blatantly hostile actions.',
+      'Maintain up to 1 hour; afterward, you must move/stretch normally for an equal amount of time before using again.',
+      '10th-level ally version ends for an ally if they end their turn without line of sight to you.',
+    ],
+  },
+  {
+    id: 'bedside_manner',
+    name: 'Bedside Manner',
+    levelRequired: 6,
+    actionType: 'passive',
+    range: 'varies',
+    tags: ['language-dependent', 'mind-affecting', 'sense-dependent'],
+    sfsLegal: true,
+    source: { book: 'Starfinder Armory', page: 144 },
+    shortDescription:
+      'When you successfully treat deadly wounds (or aid another to do so), add your Cha bonus to HP recovered. When you successfully treat disease/drugs/poison (or aid another), increase the save bonus to +6; if that save succeeds, it counts as two consecutive successes for curing.',
+    fullDescription:
+      "When you make a Medicine check to treat deadly wounds or successfully aid another for another creature’s Medicine check to treat deadly wounds, if the Medicine check is successful you can add your Charisma bonus to the number of Hit Points recovered as a result of the skill check. Additionally, when you make a Medicine check to treat disease or treat drugs or poison, or successfully aid another for another creature’s Medicine check to do so, if the Medicine check is successful, the saving throw bonus granted by the skill checks increases to +6. If the associated saving throw succeeds, it counts as two consecutive successes for the purposes of curing the intended affliction.",
+    prerequisites: [],
+    restrictions: [],
+  },
+  {
+    id: 'blocking_bodies',
+    name: 'Blocking Bodies',
+    levelRequired: 6,
+    actionType: 'reaction',
+    range: 'self',
+    tags: [],
+    sfsLegal: true,
+    source: { book: 'Starfinder Enhanced', page: 39 },
+    shortDescription:
+      'Reaction when attacked while you have soft cover from a creature vs the attacker: increase cover bonus to AC to +5. If attack roll is natural 1, you can have attacker reroll against the nearest creature granting you soft cover. At 10th, if attack misses you by 5 or less, you can spend RP to force reroll vs the cover-granting creature as though natural 1.',
+    fullDescription:
+      "Allies are your greatest asset, and sometimes your greatest armor. As a reaction when you are attacked and have soft cover granted by a creature against the attacker, you can increase your cover bonus to AC to +5. If the attack roll’s result is a natural 1, you can choose for the attacker to reroll the attack against the creature closest to you who is granting you soft cover, as if they were the original target.",
+    scaling: [
+      {
+        level: 10,
+        text:
+          "When you use this improvisation and the triggering attack fails to hit you by 5 or less, you can spend 1 Resolve Point. When you do, the attacker rerolls the attack against the creature granting you soft cover as though their original attack roll result had been a natural 1.",
+      },
+    ],
+    prerequisites: [],
+    restrictions: [
+      'Trigger requires you have soft cover from a creature against the attacker.',
+      'Natural 1 rider: you may redirect reroll to the nearest creature granting you soft cover.',
+      '10th-level rider requires the triggering attack misses you by 5 or less and costs 1 RP.',
+    ],
+  },
+  {
+    id: 'clever_improvisations',
+    name: 'Clever Improvisations',
+    levelRequired: 6,
+    actionType: 'passive',
+    range: 'self',
+    tags: [],
+    sfsLegal: true,
+    source: { book: 'Starfinder Core Rulebook', page: 63 },
+    shortDescription:
+      'The first time you would spend RP on an envoy improvisation after a rest, reduce that cost by 1 (min 0). Refreshes after 10-minute rest (recover SP) and after 8-hour rest (recover RP).',
+    fullDescription:
+      "The first time you would spend Resolve Points on one of your envoy improvisations, reduce the cost by 1 Resolve Point (minimum 0). This ability refreshes whenever you take a 10-minute rest to recover Stamina Points and after an 8-hour rest to recover Resolve Points, reducing the Resolve Point cost of your next envoy improvisation after the rest.",
+    prerequisites: [],
+    restrictions: ['Applies only to the first improvisation after the relevant rest that would cost RP.'],
+  },
+  {
+    id: 'coordinated_barrage',
+    name: 'Coordinated Barrage',
+    levelRequired: 6,
+    actionType: 'move',
+    range: '60 feet',
+    tags: ['language-dependent', 'mind-affecting', 'sense-dependent'],
+    sfsLegal: true,
+    source: { book: 'Character Operations Manual', page: 70 },
+    shortDescription:
+      'Move action: choose one ally within 60 ft; they gain Coordinated Shot. If they already have it, foes do not grant cover vs attacks made by you and your allies. Lasts until start of your next turn.',
+    fullDescription:
+      "As a move action, choose one ally within 60 feet. That ally gains the benefit of the Coordinated Shot feat. If the chosen ally already has this feat, they do not grant foes cover against attacks made by you and your allies. The effects of this improvisation last until the start of your next turn.",
+    prerequisites: [],
+    restrictions: [],
+  },
+  {
+    id: 'coordinated_flankers',
+    name: 'Coordinated Flankers',
+    levelRequired: 6,
+    actionType: 'move',
+    range: '60 feet',
+    tags: ['language-dependent', 'mind-affecting', 'sense-dependent'],
+    sfsLegal: true,
+    source: { book: 'Character Operations Manual', page: 70 },
+    shortDescription:
+      'Move action: until start of your next turn, you and allies count as flanking any creature that at least two of you threaten, regardless of position.',
+    fullDescription:
+      "As a move action, you can coordinate your allies into effective flanking partners. Until the start of your next turn, you and your allies count as flanking any creature that at least two of you threaten, regardless of your position.",
+    prerequisites: [],
+    restrictions: [],
+  },
+  {
+    id: 'draw_fire',
+    name: 'Draw Fire',
+    levelRequired: 6,
+    actionType: 'standard',
+    range: '100 feet',
+    tags: ['sense-dependent'],
+    sfsLegal: true,
+    source: { book: 'Starfinder Core Rulebook', page: 63 },
+    shortDescription:
+      'Standard action + 1 RP: all enemies within 100 ft take –4 to ranged attacks that don’t target you until end of your next turn. Penalty persists even if you/enemy later move beyond 100 ft; enemies not initially in range aren’t affected if they enter later.',
+    fullDescription:
+      "As a standard action, you can spend 1 Resolve Point to make all enemies within 100 feet take a –4 penalty to all ranged attacks they make that don’t target you until the end of your next turn. This penalty remains even if you and an enemy move more than 100 feet away from each other, and enemies that weren’t within 100 feet when you used draw fire don’t take the penalty if they later come within range.",
+    prerequisites: [],
+    restrictions: ['Only affects enemies within 100 feet at the time you use it.'],
+  },
+  {
+    id: 'fast_camouflage',
+    name: 'Fast Camouflage',
+    levelRequired: 6,
+    actionType: 'special',
+    range: 'self or adjacent willing creature',
+    tags: [],
+    sfsLegal: true,
+    source: { book: 'Galaxy Exploration Manual', page: 16 },
+    shortDescription:
+      'Apply basic biome camouflage (1d3 rounds with disguise kit; 1d3 minutes without). In that biome, you can apply expertise to Stealth; lasts 1 hour. Spend 1 RP to apply to adjacent willing creature (they use your expertise die on Stealth); each creature can’t benefit again until 10-minute rest.',
+    fullDescription:
+      "You can use a disguise kit for 1d3 rounds to apply basic camouflage to yourself suitable for a specific biome; without a disguise kit, it takes 1d3 minutes to scavenge suitable materials and apply the camouflage. While wearing this disguise in that biome, you can apply your expertise ability to your Stealth checks. The camouflage lasts for 1 hour. If you spend 1 Resolve Point when using this ability, you can instead apply the camouflage to a willing adjacent creature, applying your expertise die to the creature’s Stealth checks. Once any other creature has benefited from this improvisation, it can’t gain the benefits again until it has taken a 10-minute rest to recover Stamina Points.",
+    prerequisites: [],
+    restrictions: [
+      'Camouflage is biome-specific.',
+      'If applied to another creature with RP, that creature can’t benefit again until a 10-minute rest to recover SP.',
+    ],
+  },
+  {
+    id: 'heads_up',
+    name: 'Heads Up',
+    levelRequired: 6,
+    actionType: 'reaction',
+    range: '60 feet',
+    tags: ['language-dependent', 'sense-dependent'],
+    sfsLegal: true,
+    source: { book: 'Starfinder Core Rulebook', page: 63 },
+    shortDescription:
+      'Reaction when you succeed at a Perception check: one ally within 60 ft can act as if they also succeeded with the same result.',
+    fullDescription:
+      "When you succeed at a Perception check, as a reaction, you can signal a single ally within 60 feet. That ally can act as if he had also succeeded at the Perception check with the same result.",
+    prerequisites: [],
+    restrictions: [],
+  },
+  {
+    id: 'improved_get_em',
+    name: "Improved Get 'Em",
+    levelRequired: 6,
+    actionType: 'passive-plus-standard',
+    range: '60 feet',
+    tags: [],
+    sfsLegal: true,
+    source: { book: 'Starfinder Core Rulebook', page: 63 },
+    shortDescription:
+      "Your get ’em morale bonus becomes +2. Also: standard action to attack a target within 60 ft and apply get ’em for you/allies within 60 ft before the roll. Optional 1 RP to grant +2 morale to attack & damage vs all enemies within 60 ft. Requires Get 'Em.",
+    fullDescription:
+      "Your morale bonus from get ’em increases to +2. As a standard action, you can make a single attack against a target within 60 feet. You and your allies within 60 feet gain the benefits of get ’em against that target (applying these effects before making the attack roll). If you spend 1 Resolve Point when using this ability, you grant a +2 morale bonus to attack and damage rolls against all enemies who are within 60 feet.",
+    prerequisites: [{ type: 'improvisation', value: "Get 'Em" }],
+    restrictions: [],
+  },
+  {
+    id: 'improved_vexation',
+    name: 'Improved Vexation',
+    levelRequired: 6,
+    actionType: 'passive',
+    range: 'creatures affected by Vexing Style',
+    tags: ['language-dependent', 'mind-affecting', 'sense-dependent'],
+    sfsLegal: true,
+    source: { book: 'Starfinder Enhanced', page: 40 },
+    shortDescription:
+      'First time each round you hit with a weapon attack vs a creature affected by your vexing style, you can use Cha mod for damage instead of Str (or half Cha if Str wouldn’t normally apply). Not usable with area weapons. Requires Vexing Style.',
+    fullDescription:
+      "Your blistering battle rapport adds an extra sting to your attacks. The first time each round that you succeed at a weapon attack against a creature affected by your vexing style, you can choose to add your Charisma modifier to the attack’s damage instead of adding your Strength modifier. If the attack would not normally add your Strength modifier to its damage, you instead add half your Charisma modifier as a bonus to the damage. You cannot apply your Charisma modifier to damage in this way with weapons that affect an area, such as those with the explode or line special weapon properties.",
+    prerequisites: [{ type: 'improvisation', value: 'Vexing Style' }],
+    restrictions: ['Cannot be used with weapons that affect an area (e.g., explode or line).'],
+  },
+  {
+    id: 'inspiring_oration',
+    name: 'Inspiring Oration',
+    levelRequired: 6,
+    actionType: 'full',
+    range: '60 feet',
+    tags: ['language-dependent', 'mind-affecting', 'sense-dependent'],
+    sfsLegal: true,
+    source: { book: 'Character Operations Manual', page: 70 },
+    shortDescription:
+      'Use inspiring boost as a full action to restore SP to all allies within 60 ft (same amount as inspiring boost). Shares the same “can’t benefit again until 10-minute rest” lockout across inspiring boost/oration. Optional 1 RP to add envoy level. Requires Inspiring Boost.',
+    fullDescription:
+      "You can use inspiring boost as a full action. If you do, all allies within 60 feet of you regain a number of Stamina Points equal to twice your envoy level + your Charisma modifier (up to their maximum); at 15th level, this increases to three times your envoy level + your Charisma modifier. Once an ally has benefited from your inspiring boost or inspiring oration, that ally can’t gain the benefits of either improvisation again until they recover Stamina Points following a 10-minute rest. As with the inspiring boost envoy improvisation, you can spend 1 Resolve Point to add your envoy level to the number of Stamina Points regained.",
+    prerequisites: [{ type: 'improvisation', value: 'Inspiring Boost' }],
+    restrictions: [
+      'An ally can’t benefit from inspiring boost or inspiring oration again until after a 10-minute rest to recover SP.',
+    ],
+  },
+  {
+    id: 'kiss_it_better',
+    name: 'Kiss It Better',
+    levelRequired: 6,
+    actionType: 'standard',
+    range: 'natural reach',
+    tags: ['mind-affecting', 'sense-dependent'],
+    sfsLegal: true,
+    source: { book: 'Starfinder Enhanced', page: 39 },
+    shortDescription:
+      'Standard action: Bluff or Medicine vs ally DC; on success grant temp HP (2d8+Cha, scaling by +1d8 per 4 envoy levels beyond 6th; max 5d8+Cha at 18th) for 10 minutes. Each use on a creature increases the DC vs that creature by +5 for 1 day.',
+    fullDescription:
+      "With only a token medical effort, you can convince allies that they’ve recovered from recent injuries. As a standard action, you can attempt a Bluff or Medicine check against an ally within your natural reach who has less than their maximum number of Hit Points or Stamina Points. The DC for this check is equal to either 5 + your ally’s total Sense Motive bonus, 5 + your ally’s total Medicine bonus, or 10 + 1-1/2 × the ally’s level, whichever is greater. If your check succeeds, the ally gains temporary Hit Points equal to 2d8 + your Charisma Modifier, plus an additional 1d8 temporary Hit Points for every 4 envoy levels you have beyond 6th (maximum 5d8 + your Charisma modifier at 18th level). These temporary Hit Points last for 10 minutes. Each time you use kiss it better on a creature, the skill check DC to affect that creature with the improvisation increases by 5 for 1 day.",
+    prerequisites: [],
+    restrictions: [
+      'Target ally must be within your natural reach and be below max HP or SP.',
+      'Each time you use it on a creature, the DC to affect that creature increases by 5 for 1 day.',
+    ],
+  },
+  {
+    id: 'natural_spectacle',
+    name: 'Natural Spectacle',
+    levelRequired: 6,
+    actionType: 'passive',
+    range: 'modifies Spectacle',
+    tags: [],
+    sfsLegal: true,
+    source: { book: 'Galaxy Exploration Manual', page: 17 },
+    shortDescription:
+      'Once per minute, you can extend Spectacle as a swift action instead of a move action. Spectacle ends for a creature only when duration ends or when you end your turn where it can no longer perceive you with a precise sense. Requires Spectacle.',
+    fullDescription:
+      "Once per minute, you can extend your spectacle ability’s duration as a swift action rather than a move action. The effect of your spectacle ends for a creature only when the duration ends or when you end your turn where the creature can no longer perceive you with a precise sense. You must have the spectacle envoy improvisation to choose this improvisation.",
+    prerequisites: [{ type: 'improvisation', value: 'Spectacle' }],
+    restrictions: ['Once per minute.'],
+  },
+  {
+    id: 'quick_perfect_insult',
+    name: 'Quick Perfect Insult',
+    levelRequired: 6,
+    actionType: 'passive',
+    range: 'modifies Perfect Insult',
+    tags: ['language-dependent', 'mind-affecting', 'sense-dependent'],
+    sfsLegal: true,
+    source: { book: 'Galaxy Exploration Manual', page: 17 },
+    shortDescription:
+      'You can use Perfect Insult as a move action instead of a standard action. Requires Perfect Insult.',
+    fullDescription:
+      'You can use perfect insult as a move action instead of a standard action.',
+    prerequisites: [{ type: 'improvisation', value: 'Perfect Insult' }],
+    restrictions: [],
+  },
+  {
+    id: 'shocking_weakness',
+    name: 'Shocking Weakness',
+    levelRequired: 6,
+    actionType: 'move',
+    range: '60 feet',
+    tags: ['language-dependent', 'mind-affecting', 'sense-dependent'],
+    sfsLegal: false,
+    source: { book: 'Galaxy Exploration Manual', page: 17 },
+    shortDescription:
+      'When you succeed at identifying a creature, move action to call out weaknesses: creature becomes flat-footed until start of your next turn; applies to all creatures of same species within 60 ft that can hear you. Once per species until 10-minute rest.',
+    fullDescription:
+      "When you succeed at a check to identify a creature, as a move action you can audibly point out its weaknesses in a way that makes the creature self-conscious. The creature becomes flat-footed until the start of your next turn. If there’s more than one creature of the same species present, this applies to all creatures of that species within 60 feet that can hear you. You can only use this ability once per species until you have taken a 10-minute rest to recover Stamina Points.",
+    prerequisites: [],
+    restrictions: ['Once per species until a 10-minute rest to recover SP.'],
+  },
+  {
+    id: 'take_em_alive',
+    name: "Take ’Em Alive",
+    levelRequired: 6,
+    actionType: 'reaction',
+    range: '60 feet (you to ally and target)',
+    tags: ['language-dependent', 'sense-dependent'],
+    sfsLegal: true,
+    source: { book: 'Galaxy Exploration Manual', page: 17 },
+    shortDescription:
+      'Reaction when an ally would drop a foe to 0 HP: if you’re within 60 ft of both ally and target, target took nonlethal damage within last minute, and the triggering damage is < half target max HP, you can have the target fall unconscious as though damage were nonlethal.',
+    fullDescription:
+      "You can urge your companions to avoid killing blows at the last second. To use this ability, you must be within 60 feet of both an ally and your ally’s target, the latter which must have taken damage from a nonlethal attack within the last minute. If your ally would reduce the target to 0 HP—and the attack doesn’t deal damage that equals or exceeds half the target’s maximum Hit Points—then, as a reaction, you can have the target merely fall unconscious from the attack as though the attack had dealt nonlethal damage.",
+    prerequisites: [],
+    restrictions: [
+      'Must be within 60 feet of both the ally and the ally’s target.',
+      'Target must have taken damage from a nonlethal attack within the last minute.',
+      'Triggering damage must be less than half the target’s maximum HP.',
+    ],
+  },
+  {
+    id: 'trust_your_gear',
+    name: 'Trust Your Gear',
+    levelRequired: 6,
+    actionType: 'move',
+    range: '60 feet',
+    tags: ['language-dependent', 'mind-affecting', 'sense-dependent'],
+    sfsLegal: true,
+    source: { book: 'Starfinder Armory', page: 145 },
+    shortDescription:
+      'Move action: choose an ally within 60 ft; until start of your next turn, they gain one: (1) treat ACP as 4 lower (min 0), (2) ignore penalties for nonproficient armor/weapon, or (3) ignore broken condition of an item worn/used.',
+    fullDescription:
+      "As a move action, you can select an ally within 60 feet. Until the start of your next turn, that ally gains one of the following benefits: he can treat the armor check penalty of his armor as 4 lower than normal (to a minimum of 0); he can ignore the penalties for using armor or a weapon he is not proficient with; or he can ignore the broken condition of an item he is wearing or using.",
+    prerequisites: [],
+    restrictions: [],
+  },
+  {
+    id: 'what_did_we_learn',
+    name: 'What Did We Learn?',
+    levelRequired: 6,
+    actionType: 'passive (during 10-minute rest)',
+    range: 'up to 5 allies within rest group',
+    tags: ['language-dependent', 'mind-affecting', 'sense-dependent'],
+    sfsLegal: true,
+    source: { book: 'Starfinder Enhanced', page: 40 },
+    shortDescription:
+      'During a 10-minute rest where you spend 1 RP to recover SP, you can coach up to 5 allies also spending RP to recover SP. Each gets a “lesson” (attack, save, or skill). Before a check of that type, they can expend it for +2 morale. Lesson lasts 8 hours, until used, or until replaced.',
+    fullDescription:
+      "While resting, you coach your allies on how to turn past failures into future successes. When you spend 1 Resolve Point when resting for 10 minutes to recover Stamina Points, you can review tactics with up to 5 allies who also are spending Resolve Points to regain Stamina Points. Each affected ally learns a one-time lesson associated with their choice of attack rolls, saving throws, or skill checks. Before attempting a check of the chosen type, an affected ally can expend their lesson to apply a +2 morale bonus to the check. A lesson lasts for 8 hours, until expended, or until the ally is affected by this improvisation again, at which point any new lesson replaces the previous one.",
+    prerequisites: [],
+    restrictions: [
+      'Only during a 10-minute rest where you spend 1 RP to recover SP.',
+      'Affects up to 5 allies who also spend RP to recover SP.',
+      'Lesson is single-use; lasts 8 hours, until expended, or until replaced by a new lesson from this improvisation.',
+    ],
+  },
+  // Level 8 Envoy Improvisations //
+  {
+    id: 'changing_circumstances',
+    name: 'Changing Circumstances',
+    levelRequired: 8,
+    actionType: 'reaction',
+    range: '60 feet',
+    tags: ['language-dependent', 'mind-affecting', 'sense-dependent'],
+    sfsLegal: true,
+    source: { book: 'Galaxy Exploration Manual', page: 17 },
+    shortDescription:
+      "Reaction + 1 RP: change the trigger condition for an ally’s readied action within 60 ft (the readied action itself doesn’t change). Ally becomes immune for 24 hours.",
+    fullDescription:
+      "As a reaction, you can spend 1 Resolve Point to change the triggering condition for the readied action of an ally within 60 feet, but you don’t change the readied action. Once a creature has been affected by this ability, they become immune to it for 24 hours.",
+    prerequisites: [],
+    immunities: [{ scope: 'affectedCreature', duration: '24 hours' }],
+    restrictions: ['Does not change the readied action—only the trigger condition.'],
+  },
+  {
+    id: 'coordinated_maneuvers',
+    name: 'Coordinated Maneuvers',
+    levelRequired: 8,
+    actionType: 'reaction',
+    range: '60 feet',
+    tags: ['language-dependent', 'mind-affecting', 'sense-dependent'],
+    sfsLegal: true,
+    source: { book: 'Character Operations Manual', page: 70 },
+    shortDescription:
+      'Reaction when an ally within 60 ft attempts a combat maneuver: grant them a morale bonus to that maneuver attack roll equal to 1d4+1. Refreshes after a 10-minute rest to recover SP.',
+    fullDescription:
+      "Whenever an ally within 60 feet attempts to use a combat maneuver against an opponent, as a reaction you can signal weak points in the opponent’s defenses. The ally gains a morale bonus to their attack roll for that combat maneuver equal to 1d4+1. Once you use this ability, you can’t use it again until after you regain Stamina Points following a 10-minute rest.",
+    prerequisites: [],
+    restrictions: ['Once per 10-minute rest (recover SP).'],
+  },
+  {
+    id: 'desperate_defense',
+    name: 'Desperate Defense',
+    levelRequired: 8,
+    actionType: 'move',
+    range: 'adjacent ally',
+    tags: [],
+    sfsLegal: true,
+    source: { book: 'Starfinder Core Rulebook', page: 64 },
+    shortDescription:
+      'Move action: an adjacent ally is not considered helpless for effects that work only on helpless creatures (e.g., coup de grace). Ends if they stop being adjacent or at the beginning of your next turn.',
+    fullDescription:
+      "As a move action, you can cause one ally adjacent to you to not be considered helpless (see page 276) for the purpose of actions that can be used only against helpless creatures (such as a coup de grace). This effect ends if the creature ceases to be adjacent to you or at the beginning of your next turn, whichever comes first.",
+    prerequisites: [],
+    restrictions: ['Target must remain adjacent; otherwise effect ends early.'],
+  },
+  {
+    id: 'doooom',
+    name: 'Dooooom!',
+    levelRequired: 8,
+    actionType: 'standard',
+    range: 'area within 60 feet',
+    tags: ['language-dependent', 'mind-affecting', 'sense-dependent'],
+    sfsLegal: true,
+    source: { book: 'Starfinder Enhanced', page: 40 },
+    shortDescription:
+      'Standard action: choose 120-ft line, 60-ft cone, or 20-ft radius burst within 60 ft; Bluff or Intimidate vs each enemy DC. On success, each must (next turn) fight defensively, full defense, move out of area, or move to cover vs you. –4 to the check unless you have an obvious prop/weapon-like threat. Regardless of success, each creature is unaffected by this again for 24 hours. Fear effect.',
+    fullDescription:
+      "When you use this ability, choose either a 120-foot line, a 60-foot cone, or a 20-foot radius burst within 60 feet of you. As a standard action, you fearsomely foretell the devastation that your next attack will inflict on creatures in the area, convincing them to scatter. Attempt a Bluff or Intimidate check, applying the result to each enemy in the area; the DC equals either 10 + the creature’s total Sense Motive skill bonus, or 15 + 1-1/2 × the creature’s CR, whichever is greater. Unless you are wielding a weapon-like object, using a supernatural ability with a fearsome appearance (like token spell or activating a solarian’s stellar attunement), or leveraging some other obvious prop to make your threats, you take a –4 penalty to the skill check. Each creature against which your check succeeds must do one of the following on its next turn: fight defensively, use the full defense action, move out of the area, or move to an area that grants them cover against your attacks. Whether your check succeeds or not, you cannot affect that creature with this improvisation again for 24 hours. This is a fear effect.",
+    prerequisites: [],
+    immunities: [{ scope: 'eachTargetAttempted', duration: '24 hours' }],
+    restrictions: [
+      'Takes a –4 penalty to the check unless you have an obvious prop/weapon-like threat or fearsome display.',
+      'Each creature you attempt to affect becomes ineligible for 24 hours (success or failure).',
+      'Fear effect.',
+    ],
+  },
+  {
+    id: 'early_warning',
+    name: 'Early Warning',
+    levelRequired: 8,
+    actionType: 'passive (reaction timing rule)',
+    range: 'self',
+    tags: [],
+    sfsLegal: true,
+    source: { book: 'Galaxy Exploration Manual', page: 17 },
+    shortDescription:
+      "Before the first time you act in a combat, you can use a reaction—but only to use an envoy improvisation. Can’t be used during a surprise round.",
+    fullDescription:
+      "You can use a reaction before the first time you act in a combat, but only to use an envoy improvisation. You can’t use early warning during a surprise round.",
+    prerequisites: [],
+    restrictions: ['Only before your first turn in combat.', 'Only for using an envoy improvisation.', "Can’t be used during a surprise round."],
+  },
+  {
+    id: 'expert_attack',
+    name: 'Expert Attack',
+    levelRequired: 8,
+    actionType: 'move',
+    range: 'self',
+    tags: [],
+    sfsLegal: true,
+    source: { book: 'Starfinder Core Rulebook', page: 64 },
+    shortDescription:
+      'Move action + 2 RP: add your expertise bonus to your next attack roll before the end of your turn.',
+    fullDescription:
+      "As a move action, you can spend 2 Resolve Points to add your bonus from expertise to your next attack roll before the end of your turn.",
+    prerequisites: [],
+    restrictions: ['Must be used before end of your turn; applies to your next attack roll that turn.'],
+  },
+  {
+    id: 'hidden_agenda',
+    name: 'Hidden Agenda',
+    levelRequired: 8,
+    actionType: 'passive',
+    range: 'self',
+    tags: [],
+    sfsLegal: true,
+    source: { book: 'Starfinder Core Rulebook', page: 64 },
+    shortDescription:
+      'Sense Motive checks to detect your deception: the creature rolls twice and takes the worse result. Saves vs effects that read thoughts/reveal motives: you roll twice and take the better result.',
+    fullDescription:
+      "You’re an expert at veiling your true thoughts and goals. Whenever a creature attempts a Sense Motive check to detect a deception of yours, the creature must roll twice and take the worse of the two results. When you attempt a saving throw against an effect or ability that would read your thoughts or reveal your motives, you can roll twice and take the better of the two results.",
+    prerequisites: [],
+    restrictions: [],
+  },
+  {
+    id: 'i_said_now',
+    name: 'I Said Now',
+    levelRequired: 8,
+    actionType: 'swift (encounter-limited timing)',
+    range: '30 feet',
+    tags: ['mind-affecting', 'sense-dependent'],
+    sfsLegal: true,
+    source: { book: 'Starfinder Enhanced', page: 40 },
+    shortDescription:
+      'Swift action before end of your first full turn each encounter: pick an ally within 30 ft who hasn’t acted; they reroll initiative (use higher). New result can’t exceed your initiative; if it would, they act immediately after your turn. Ally immune 24 hours.',
+    fullDescription:
+      "As a swift action before the end of your first full turn during each encounter, you can motivate an ally who hasn’t acted yet and is within 30 feet of you to act more quickly. That ally rerolls their initiative check, using the second result if it’s higher. The second initiative check’s result cannot exceed your own initiative count; if it would equal or exceed yours, the ally acts immediately after your turn in the initiative order. Once a creature has been affected by this ability, it’s immune for 24 hours.",
+    prerequisites: [],
+    immunities: [{ scope: 'affectedCreature', duration: '24 hours' }],
+    restrictions: ['Only before the end of your first full turn each encounter.', 'Target ally must not have acted yet.'],
+  },
+  {
+    id: 'improved_brace_yourselves',
+    name: 'Improved Brace Yourselves',
+    levelRequired: 8,
+    actionType: 'passive',
+    range: 'modifies Brace Yourselves',
+    tags: [],
+    sfsLegal: true,
+    source: { book: 'Starfinder Armory', page: 145 },
+    shortDescription:
+      'Your Brace Yourselves morale bonus becomes +2. When you use Brace Yourselves, each ally within 60 ft may also drop prone as a reaction. Requires Brace Yourselves.',
+    fullDescription:
+      "Your morale bonus from brace yourselves increases to +2. When you use this ability, each ally within 60 feet may also drop prone as a reaction.",
+    prerequisites: [{ type: 'improvisation', value: 'Brace Yourselves' }],
+    restrictions: [],
+  },
+  {
+    id: 'improved_hurry',
+    name: 'Improved Hurry',
+    levelRequired: 8,
+    actionType: 'passive',
+    range: 'modifies Hurry',
+    tags: [],
+    sfsLegal: true,
+    source: { book: 'Starfinder Core Rulebook', page: 64 },
+    shortDescription:
+      "You can use Hurry as a move action instead of a standard action. At 12th: you can use Hurry as a standard action + 1 RP to grant a standard action instead of a move action. Requires Hurry.",
+    fullDescription:
+      "You can use the hurry envoy improvisation as a move action instead of a standard action. You must have the hurry envoy improvisation to choose this improvisation. At 12th level, you can use hurry as a standard action and spend 1 Resolve Point to grant a standard action instead of a move action.",
+    prerequisites: [{ type: 'improvisation', value: 'Hurry' }],
+    scaling: [
+      {
+        level: 12,
+        text:
+          'You can use hurry as a standard action and spend 1 Resolve Point to grant a standard action instead of a move action.',
+      },
+    ],
+    restrictions: [],
+  },
+  {
+    id: 'improved_terrifying_blast',
+    name: 'Improved Terrifying Blast',
+    levelRequired: 8,
+    actionType: 'passive',
+    range: 'modifies Terrifying Blast',
+    tags: [],
+    sfsLegal: true,
+    source: { book: 'Starfinder Armory', page: 145 },
+    shortDescription:
+      "When you use Terrifying Blast, the shaken duration on a failed Will save becomes 1d4+1 rounds. Requires Terrifying Blast. Fear effect.",
+    fullDescription:
+      "When you use the terrifying blast envoy improvisation, the amount of rounds that creatures are shaken due to failing the Will save increases to 1d4+1 rounds. You must have the terrifying blast envoy improvisation to choose this improvisation. This is a fear effect.",
+    prerequisites: [{ type: 'improvisation', value: 'Terrifying Blast' }],
+    restrictions: ['Fear effect.'],
+  },
+  {
+    id: 'just_like_that',
+    name: 'Just Like That!',
+    levelRequired: 8,
+    actionType: 'reaction',
+    range: 'encouraged allies (within communication)',
+    tags: ['language-dependent', 'sense-dependent'],
+    sfsLegal: true,
+    source: { book: 'Galaxy Exploration Manual', page: 17 },
+    shortDescription:
+      'Reaction when you or an ally crits a creature: encourage up to Cha-mod allies to crit that creature on 19–20 for 1 round; ends immediately after an encouraged ally scores a crit on the target. Cooldown: 1 minute.',
+    fullDescription:
+      "When you or an ally scores a critical hit against a creature, as a reaction, you can encourage a number of allies equal to your Charisma modifier to continue fighting that creature. For 1 round, the encouraged allies can score a critical hit against the creature on a natural 19 or 20; this effect ends immediately after an encouraged ally scores a critical hit against the target. Once you use this ability, you can’t use it again for 1 minute.",
+    prerequisites: [],
+    restrictions: ['Can’t be used again for 1 minute.'],
+  },
+  {
+    id: 'quick_study',
+    name: 'Quick Study',
+    levelRequired: 8,
+    actionType: 'move',
+    range: '30 feet',
+    tags: [],
+    sfsLegal: true,
+    source: { book: 'Galaxy Exploration Manual', page: 17 },
+    shortDescription:
+      'Move action: gain proficiency with a weapon type another ally within 30 ft is proficient with; if they have weapon specialization, you can also apply it. Lasts rounds = half envoy level. Then can’t use again until after a 10-minute rest to recover SP.',
+    fullDescription:
+      "As a move action, you become proficient with a type of weapon with which another ally within 30 feet is proficient. If that ally has weapon specialization with that weapon type, you can also apply that ally’s weapon specialization with that weapon type. This ability’s effects last a number of rounds equal to half your envoy level, after which you can’t use this ability again until after you regain Stamina Points following a 10-minute rest.",
+    prerequisites: [],
+    restrictions: ['Requires an ally within 30 feet who is proficient with the weapon type.', 'After it ends, can’t use again until after a 10-minute rest to recover SP.'],
+  },
+  {
+    id: 'reprimand_spell',
+    name: 'Reprimand Spell',
+    levelRequired: 8,
+    actionType: 'standard (or reaction at 12th)',
+    range: '30 feet',
+    tags: ['sense-dependent'],
+    sfsLegal: false,
+    source: { book: 'Galactic Magic', page: 21 },
+    shortDescription:
+      'Standard action + 1 RP: dispel magic (30 ft), using envoy level as caster level. At 12th, you can spend 2 RP to use as a reaction to counter a spell affecting a target within 30 ft; if you beat DC by 10+, you can redirect targets and gain dismiss control. Requires 8th level + spell speaker alternate class ability.',
+    fullDescription:
+      "As a standard action, you spend 1 Resolve Point to scold a spell out of existence. This functions as dispel magic with a range of 30 feet, using your envoy level as your caster level. At 12th level, you can instead spend 2 Resolve Points to cast dispel magic as a reaction, using its counter function against a spell that affects any target or creature within 30 feet of you. If your dispel check exceeds the DC by 10 or more, you convince the spell to follow your commands and can select a new target (or targets, as appropriate) for the spell within the spell’s original range. The spellcaster loses the ability to dismiss the spell, and you gain that ability.",
+    prerequisites: [{ type: 'alternateClassAbility', value: 'Spell Speaker' }],
+    scaling: [
+      {
+        level: 12,
+        text:
+          'Spend 2 RP to cast dispel magic as a reaction (counter). If dispel check exceeds DC by 10+, you can redirect targets; original caster can’t dismiss; you can dismiss.',
+      },
+    ],
+    restrictions: ['Requires Spell Speaker alternate class ability.'],
+  },
+  {
+    id: 'scapegoat',
+    name: 'Scapegoat',
+    levelRequired: 8,
+    actionType: 'standard',
+    range: '30 feet (ally), 100 feet (enemy radius around ally)',
+    tags: ['sense-dependent'],
+    sfsLegal: true,
+    source: { book: 'Starfinder #35: Merchants of the Void', page: 51 },
+    shortDescription:
+      'Standard action + 1 RP: choose a willing ally within 30 ft. Until end of your next turn, enemies within 100 ft of that ally who can sense both you and the ally take –4 to ranged attacks that don’t target that ally (as if the ally used Draw Fire). Requires Draw Fire.',
+    fullDescription:
+      "Through a mix of complex manipulation and other cues, you focus enemies’ fire on an ally. As a standard action, you can spend 1 Resolve Point and select a willing ally within 30 feet. Until the end of your next turn, enemies within 100 feet of that ally who can sense both you and that ally take a –4 penalty to all ranged attacks they make that don’t target that ally. This ability otherwise acts as if that ally used the draw fire improvisation. You must have the draw fire improvisation to choose this improvisation.",
+    prerequisites: [{ type: 'improvisation', value: 'Draw Fire' }],
+    restrictions: ['Chosen ally must be willing. Enemies must be able to sense both you and the ally.'],
+  },
+  {
+    id: 'seize_the_advantage',
+    name: 'Seize the Advantage',
+    levelRequired: 8,
+    actionType: 'reaction',
+    range: '60 feet (to ally), tied to crit target',
+    tags: ['language-dependent', 'mind-affecting', 'sense-dependent'],
+    sfsLegal: true,
+    source: { book: 'Character Operations Manual', page: 70 },
+    shortDescription:
+      'Reaction when you or an ally crits a creature: choose one ally within 60 ft of the crit target; they can immediately attack that creature with a wielded weapon as a reaction (–4 to attack) and become staggered until end of their next turn. Can’t benefit creatures that can’t be staggered. Refreshes after 10-minute rest to recover SP.',
+    fullDescription:
+      "As a reaction, whenever you or one of your allies critically hits a creature, you can choose one ally within 60 feet of the target of the critical hit. The chosen ally can immediately attack the target creature with one weapon they’re currently wielding as a reaction. If they do, the chosen ally takes a −4 penalty to their attack roll and is staggered until the end of their next turn. Characters who can’t be staggered can’t benefit from this improvisation. Once you use this ability, you can’t use it again until after you regain Stamina Points following a 10-minute rest.",
+    prerequisites: [],
+    restrictions: ['Target ally must be able to become staggered.', 'Once per 10-minute rest (recover SP).'],
+  },
+  {
+    id: 'situational_awareness',
+    name: 'Situational Awareness',
+    levelRequired: 8,
+    actionType: 'special (modifies readied action)',
+    range: 'self',
+    tags: [],
+    sfsLegal: true,
+    source: { book: 'Starfinder Core Rulebook', page: 64 },
+    shortDescription:
+      'If you ready an action, once before the trigger occurs you can spend 1 RP to change both the trigger and the readied action. The new readied action must be the same action type or a lesser action.',
+    fullDescription:
+      "If you ready an action, once before the trigger you selected occurs, you can spend 1 Resolve Point to change both the trigger and the action you have ready. You must ready an action that takes the same kind of action as your originally readied action, or you must ready a lesser action. (For example, if you readied a standard action, you could switch to another standard action, a move action, or a swift action, and if you readied a move action, you could switch to another move action or a swift action.)",
+    prerequisites: [],
+    restrictions: ['Can be used only once per readied action, before the original trigger occurs.', 'Replacement action must be same action type or a lesser action.'],
+  },
+  {
+    id: 'sustained_determination',
+    name: 'Sustained Determination',
+    levelRequired: 8,
+    actionType: 'move',
+    range: '60 feet',
+    tags: ['language-dependent', 'mind-affecting', 'sense-dependent'],
+    sfsLegal: true,
+    source: { book: 'Starfinder Core Rulebook', page: 64 },
+    shortDescription:
+      'Move action + 2 RP: give an ally within 60 ft 1 temporary RP they can spend to empower an ability (even if they’re at 0). They must spend it before start of your next turn or it’s lost (your spent RP are still lost). You can’t use on the same ally again until both of you recover RP after an 8-hour rest.',
+    fullDescription:
+      "As a move action, you can spend 2 Resolve Points to grant an ally within 60 feet 1 Resolve Point that he can spend to empower one of his abilities, even if he has spent all of his own Resolve Points. The ally must spend the Resolve Point before the start of your next turn; if he does not do so, he loses the Resolve Point and you still lose the Resolve Points you spent. You can’t grant the same ally the benefits of this ability again until both you and your ally have recovered your Resolve Points after an 8-hour rest or its equivalent.",
+    prerequisites: [],
+    restrictions: ['Ally must spend the granted RP before the start of your next turn or it is lost.', "Can’t target the same ally again until both you and the ally recover RP after an 8-hour rest (or equivalent)."],
+  },
+  // Level 10 Envoy Improvisations //
+  {
+    id: 'exploit_weakness',
+    name: 'Exploit Weakness',
+    levelRequired: 10,
+    actionType: 'move (after identifying a creature)',
+    range: '30 feet (allies who can hear you)',
+    tags: ['language-dependent', 'mind-affecting', 'sense-dependent'],
+    sfsLegal: true,
+    source: { book: 'Starfinder Enhanced', page: 40 },
+    shortDescription:
+      "After you identify a creature, move action to brief allies within 30 ft. For 1 minute, you and each affected ally can, once, partially ignore one of the creature’s DR/ER (or similar) when your damage would be reduced: roll expertise die + Int or Wis mod; ignore that much reduction (min 0). Target creature becomes immune for 24 hours.",
+    fullDescription:
+      "When you succeed at a check to identify a creature, you can audibly communicate its vulnerabilities to allies within 30 feet of you as a move action. When you or your affected allies deal damage to the identified creature and that damage would be reduced by the creature’s energy resistance, damage reduction, or a similar effect, roll your expertise die and add your Intelligence or Wisdom modifier. The attack or effect ignores an amount of one of that creature’s damage-reducing abilities equal to the result (reduced to a minimum of 0). The attacker does not need to know the specific defensive ability that the identified creature has to benefit from this improvisation. You and all affected allies can ignore part of the identified creature’s damage-reducing abilities in this way with one attack each for 1 minute, after which these benefits end. Once a creature has been affected by this ability, it’s immune to additional uses for 24 hours.",
+    prerequisites: [],
+    duration: '1 minute (or until each affected creature has used its one attack benefit)',
+    uses: { type: 'at-will', note: 'Target creature gains immunity after being affected.' },
+    immunities: [{ scope: 'identifiedCreature', duration: '24 hours' }],
+    restrictions: [
+      'Requires you to have succeeded at a check to identify the creature.',
+      'Each affected ally (and you) can apply the reduction-ignoring benefit to one attack/effect during the 1-minute window.',
+    ],
+  },
+  {
+    id: 'fearsome_blast',
+    name: 'Fearsome Blast',
+    levelRequired: 10,
+    actionType: 'special (when you activate or attack with a grenade)',
+    range: 'grenade area',
+    tags: ['mind-affecting', 'sense-dependent'],
+    sfsLegal: true,
+    source: { book: 'Starfinder Enhanced', page: 40 },
+    shortDescription:
+      "When you use a grenade: each creature in the grenade’s area makes an extra Will save (DC = lower of 10 + 1/2 envoy level + Cha mod OR grenade DC + 2). Fail = shaken 1d4 rounds; natural 1 = frightened 1 round then shaken 1 round. Refreshes after a 10-minute rest to recover SP. Fear effect.",
+    fullDescription:
+      "You maximize the chaos caused by a mid-combat explosion. When you activate or attack with a grenade, you can use this improvisation to spread fear among anyone caught in the grenade’s area of effect. Each creature affected by the grenade must attempt a Will saving throw, in addition to saves against the grenade’s usual effects. This save DC equals either 10 + 1/2 your envoy level + your Charisma modifier, or the grenade’s saving throw DC + 2, whichever is lower. A creature who fails the saving throw is shaken for 1d4 rounds. A creature whose Will save result is a natural 1 is instead frightened for 1 round, after which they are shaken for 1 round. Once you use this improvisation, you cannot do so again until you take a 10-minute rest to recover Stamina Points. This is a fear effect.",
+    prerequisites: [],
+    restrictions: ['Requires using a grenade (activate or attack with a grenade).', 'Once per 10-minute rest (recover SP).', 'Fear effect.'],
+  },
+  {
+    id: 'injury_to_insult',
+    name: 'Injury to Insult',
+    levelRequired: 10,
+    actionType: 'reaction',
+    range: '60 feet (typical envoy comms range; triggered by a hit you can react to)',
+    tags: ['language-dependent', 'mind-affecting', 'sense-dependent'],
+    sfsLegal: true,
+    source: { book: 'Starfinder Enhanced', page: 40 },
+    shortDescription:
+      "Reaction when you or an ally hits and deals damage to a creature affected by your Vexing Style: add extra damage = Cha mod. If the creature is flat-footed, off-target, or shaken due to your actions, instead add expertise die to damage. Target becomes immune for 24 hours after taking extra damage. Doesn’t work with area weapon attacks (explode/line, etc.). Requires Improved Vexation.",
+    fullDescription:
+      "Your quips make your enemies’ wounds feel even worse. As a reaction when you or an ally hits and deals damage to a creature affected by your vexing style, you can increase the attack’s damage by an amount equal to your Charisma modifier. If the creature is flat-footed, off-target, or shaken due to your actions (such as your demoralizing the creature or using the dispiriting taunt improvisation), you can instead roll your expertise die and apply the result as a bonus to the attack’s damage. After a creature takes extra damage from this improvisation, it becomes immune to your injury to insult for 24 hours. You cannot apply this bonus to damage weapon attacks that affect an area, such as those with the explode or line special weapon properties. You must have the improved vexation improvisation to choose this improvisation.",
+    prerequisites: [{ type: 'improvisation', value: 'Improved Vexation' }],
+    immunities: [{ scope: 'creatureThatTookBonusDamage', duration: '24 hours' }],
+    restrictions: [
+      'Target must be affected by your Vexing Style.',
+      'Cannot apply to area weapon attacks (explode/line, etc.).',
+      'Using the expertise-die option requires the target be flat-footed, off-target, or shaken due to your actions.',
+    ],
+  },
+  {
+    id: 'spell_scoot',
+    name: 'Spell Scoot',
+    levelRequired: 10,
+    actionType: 'standard',
+    range: '60 feet',
+    tags: ['sense-dependent'],
+    sfsLegal: false,
+    source: { book: 'Galactic Magic', page: 21 },
+    shortDescription:
+      "Standard action: targeted dispel (60 ft, envoy level as caster level). On success, don’t dispel—instead move the spell’s area up to 5 ft × Cha mod (no rotation, instantaneous), OR clear the spell’s effect for 1 round from up to Cha-mod 5-ft cubes (e.g., a path through Wall of Force). Requires Spell Speaker alternate class ability.",
+    fullDescription:
+      "As a standard action, you can convince a spell effect to move. This functions as the targeted dispel function of dispel magic with a range of 60 feet, using your envoy level as your caster level. Rather than dispelling the effect, if you succeed, you move the spell’s area of effect a distance that cannot exceed 5 feet × your Charisma modifier. This adjustment cannot change the effect’s orientation, and the movement is instantaneous, causing no incidental damage or disruption as it moves to its new location. Alternatively, you can use this improvisation to clear the spell’s effect for 1 round from a number of 5-foot cubes that does not exceed your Charisma modifier, such as to clear a path through a wall of force. You must be 10th level and have the spell speaker alternate class ability to choose this improvisation.",
+    prerequisites: [{ type: 'alternateClassAbility', value: 'Spell Speaker' }],
+    restrictions: [
+      'Requires Spell Speaker alternate class ability.',
+      'Moves an area without changing its orientation; movement is instantaneous and causes no incidental damage/disruption.',
+      'Alternate mode clears the effect for 1 round from up to Cha-mod 5-foot cubes.',
+    ],
+  },
+  // Level 12 Envoy Improvisations //
+  {
+    id: 'coordinated_charge',
+    name: 'Coordinated Charge',
+    levelRequired: 12,
+    actionType: 'reaction (when you or an ally charges)',
+    range: '60 feet (from you to charging character; and charging character to signaled allies)',
+    tags: ['language-dependent', 'mind-affecting', 'sense-dependent'],
+    sfsLegal: true,
+    source: { book: 'Character Operations Manual', page: 70 },
+    shortDescription:
+      "Reaction when you or an ally within 60 ft charges: signal all allies within 60 ft of the charging character; each signaled ally can also charge the same opponent as a reaction if their distance to the target is ≤ their speed. All chargers become staggered until end of their next turn; creatures that can’t be staggered can’t benefit. Refreshes after 10-minute rest to recover SP.",
+    fullDescription:
+      "Whenever you or an ally within 60 feet of you charges an opponent, you can signal all allies within 60 feet of the charging character as a reaction. Signaled characters can also charge the opponent as a reaction if the distance between the character and the charged opponent is equal to or less than the signaled character’s speed. All characters that charge an opponent using this improvisation are staggered until the end of their next turn. Characters who can’t be staggered can’t benefit from this improvisation. Once you use this ability, you can’t use it again until after you regain Stamina Points following a 10-minute rest.",
+    prerequisites: [],
+    restrictions: [
+      'Trigger: you or an ally within 60 feet charges an opponent.',
+      'Only allies within 60 feet of the charging character can be signaled.',
+      'A signaled ally can charge only if their distance to the target is ≤ their speed.',
+      'All characters who charge via this improvisation become staggered until end of their next turn.',
+      "Creatures that can't be staggered can't benefit.",
+      'Usable once per 10-minute rest to recover Stamina Points.',
+    ],
+  },
+  {
+    id: 'cry_of_the_valkyrie',
+    name: 'Cry of the Valkyrie',
+    levelRequired: 12,
+    actionType: 'full',
+    range: '30 feet',
+    tags: ['mind-affecting', 'sense-dependent'],
+    sfsLegal: true,
+    source: { book: 'Starfinder Enhanced', page: 41 },
+    shortDescription:
+      "Full action: revive a creature that died recently (not death effects/undead/body destroyed, etc.). Spend RP equal to 1 + rounds dead (fractions count as a round). If target has 0 RP, it regains 1 RP. Heal HP and SP equal to (expertise die + Cha mod) and give the creature a temporary negative level. Refreshes only after you spend 1 RP during a 10-minute rest to recover SP. Treat the target as not dead for mind-affecting/sense-dependent applicability.",
+    fullDescription:
+      "With a shout, you compel a departing spirit to return to its body. As a full action, you bring a creature that died recently back to life. If the creature has no Resolve Points, it regains 1 Resolve Point. Roll your expertise die and add your Charisma modifier to the result; the creature regains Hit Points and Stamina Points equal to the result. Finally, the creature gains a temporary negative level. This improvisation has a range of 30 feet, and you must spend a number of Resolve Points equal to 1 + the number of rounds that the creature has been dead, treating any fraction of a round as a round for this purpose. This improvisation can’t resuscitate creatures slain by death effects, creatures turned into undead, or creatures whose bodies were destroyed, significantly mutilated, disintegrated, and so on. For the purpose of determining whether a dead creature could be affected due to this improvisation’s mind-affecting and sense-dependent descriptors, treat the creature as though it were not dead.\nYou can’t use this again until you spend a Resolve Point during a 10-minute rest to recover Stamina Points.",
+    prerequisites: [],
+    costs: {
+      resolvePoints: '1 + roundsDead (fractions count as 1 round)',
+      note: "Also requires a later 10-minute rest spend to refresh (see restrictions).",
+    },
+    effects: [
+      'Target returns to life (if eligible).',
+      'If target has 0 RP, it regains 1 RP.',
+      'Target regains HP and SP equal to (expertise die + your Cha modifier).',
+      'Target gains a temporary negative level.',
+    ],
+    restrictions: [
+      'Cannot resuscitate creatures slain by death effects.',
+      "Cannot resuscitate creatures turned into undead.",
+      'Cannot resuscitate creatures whose bodies were destroyed, significantly mutilated, disintegrated, etc.',
+      'For mind-affecting/sense-dependent applicability, treat target as not dead.',
+      'After use, you can’t use again until you spend 1 RP during a 10-minute rest to recover Stamina Points.',
+    ],
+  },
+  {
+    id: 'fusion_resonance',
+    name: 'Fusion Resonance',
+    levelRequired: 12,
+    actionType: 'standard',
+    range: '60 feet (target); plus 10-foot proximity requirements',
+    tags: ['language-dependent'],
+    sfsLegal: true,
+    source: { book: 'Character Operations Manual', page: 70 },
+    shortDescription:
+      "Standard action: choose yourself or one ally within 60 ft. The chosen character must be within 10 ft of you or another ally within 60 ft of you. Until end of the chosen character’s turn, they choose one weapon fusion on a weapon wielded by an ally within 10 ft of them; the chosen character gains that fusion’s benefits on all their weapon attacks until end of their next turn (when applicable). This borrowed fusion doesn’t count against the chosen character’s weapons’ max total fusion level.",
+    fullDescription:
+      "As a standard action, choose yourself or one ally within 60 feet. The chosen character must be within 10 feet of you or another ally that is within 60 feet of you. Until the end of the chosen character’s turn, they can choose one weapon fusion on a weapon wielded by an ally within 10 feet of them. The chosen character applies the benefits of the chosen weapon fusion on all weapon attacks they make until the end of their next turn (except any to which the fusion could not normally apply). This fusion doesn’t count toward the maximum total level of fusions the chosen character’s weapons can have at once.",
+    prerequisites: [],
+    duration: 'Until end of the chosen character’s next turn (fusion benefits on weapon attacks, as applicable)',
+    restrictions: [
+      'Choose yourself or one ally within 60 feet.',
+      'Chosen character must be within 10 feet of you OR within 10 feet of another ally who is within 60 feet of you.',
+      'Fusion must come from a weapon wielded by an ally within 10 feet of the chosen character.',
+      "Applies only to attacks where the fusion could normally apply.",
+      "Borrowed fusion doesn’t count against the chosen character’s maximum total fusion level.",
+    ],
+  },
 ];
 
 export const TECHNOMANCER_MAGIC_HACKS = [
